@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void mainCommon({required bool isDevelopment}) {
+  runApp(MyApp(isDevelopment: isDevelopment));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isDevelopment;
+  const MyApp({super.key, required this.isDevelopment});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: isDevelopment,
       home: const Placeholder(),
     );
   }
