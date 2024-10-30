@@ -8,12 +8,12 @@ platform :android do
   lane :internal_distribute do
     sh "flutter clean"
     sh "flutter build apk --release --flavor development --target lib/main_development.dart --no-tree-shake-icons"
-    firebase_app_distribution(
-      app: ENV("FIREBASE_ANDROID_APP_ID"),
-      firebase_cli_token: ENV("FIREBASE_CLI_TOKEN"),
+    release = firebase_app_distribution(
+      app: "1:753243983889:android:63790850f40c6d816921b0",
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-development-release.apk",
-      groups: "Internal Testers",
+      groups: "internal-testers",
       release_notes: "This build is for testing purposes"
     )
   end
