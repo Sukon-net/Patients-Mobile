@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753243983889",
+    "project_id": "sukon-net",
+    "storage_bucket": "sukon-net.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753243983889:android:0ffa1f862109fac66921b0",
+        "android_client_info": {
+          "package_name": "net.sukon.clients"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUp9dHhTs31rnmZQLQDapGanCdXy6QFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
