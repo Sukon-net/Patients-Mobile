@@ -1,0 +1,20 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Distibute a new version to Firebase App Distribution for QA Team"
+  lane :internal_distribute do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor development --target lib/main_development.dart --no-tree-shake-icons"
+    firebase_app_distribution(
+      app: ENV("FIREBASE_ANDROID_APP_ID"),
+      firebase_cli_token: ENV("FIREBASE_CLI_TOKEN"),
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-development-release.apk",
+      groups: "Internal Testers",
+      release_notes: "This build is for testing purposes"
+    )
+  end
+end
