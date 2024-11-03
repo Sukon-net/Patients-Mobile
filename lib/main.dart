@@ -1,12 +1,12 @@
+import 'package:clients/core/flavors/flavor_config.dart';
 import 'package:flutter/material.dart';
 
-void mainCommon({required bool isDevelopment}) {
-  runApp(MyApp(isDevelopment: isDevelopment));
+void mainCommon() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool isDevelopment;
-  const MyApp({super.key, required this.isDevelopment});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      debugShowCheckedModeBanner: isDevelopment,
+      debugShowCheckedModeBanner: FlavorConfig.isDevelopment(),
       home: const Placeholder(),
     );
   }
