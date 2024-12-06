@@ -5,9 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 final GetIt sl = GetIt.instance;
 
 Future<void> initDI() async {
-  sl.registerLazySingletonAsync<SharedPreferences>(
-      () async => await SharedPreferences.getInstance());
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   sl.registerLazySingleton<SharedPreferencesHelper>(
-      () => SharedPreferencesHelper(sl()));
+      () => SharedPreferencesHelper(sharedPreferences));
 }

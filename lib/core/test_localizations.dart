@@ -1,5 +1,7 @@
+import 'package:clients/core/constants/assets.dart';
+import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
-import 'package:clients/generated/locale_keys.g.dart';
+import 'package:clients/core/widgets/secondary_cta_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,10 @@ class TestingWidget extends StatelessWidget {
           TextButton(
             onPressed: context.switchLanguage,
             child: Text(context.tr(LocaleKeys.switch_locale)),
+          ),
+          SecondaryCtaButton(
+            icon: Assets.assetsSvgFacebook,
+            text: LocaleKeys.facebook.tr(),
           ),
         ],
       ),
