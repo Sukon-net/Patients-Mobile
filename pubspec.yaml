@@ -28,3 +28,10 @@ flutter:
 
   assets:
     - assets/translations/
+
+flutter_assets:
+assets_path:
+  - assets/images/
+  - assets/svg/
+output_path: lib/core/constants/
+filename: assets.dart
