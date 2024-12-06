@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDI();
+  await ScreenUtil.ensureScreenSize();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
 
