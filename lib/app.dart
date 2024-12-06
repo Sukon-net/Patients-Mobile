@@ -1,4 +1,6 @@
 import 'package:clients/core/flavors/flavor_config.dart';
+import 'package:clients/core/routing/app_router.dart';
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/test_localizations.dart';
 import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,6 +15,8 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: Routes.onboarding,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
