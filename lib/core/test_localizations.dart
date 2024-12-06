@@ -21,7 +21,7 @@ class TestingWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: PrimaryFilledButton(
-              text: 'Test',
+              text: 'استكمال بالبريد الالكتروني',
               isActive: true,
               onClick: () {},
             ),
