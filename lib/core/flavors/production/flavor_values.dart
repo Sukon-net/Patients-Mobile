@@ -4,7 +4,7 @@ void setupDevelopmentFlavor() {
   FlavorConfig.initialize(
     name: 'development',
     values: const FlavorValues(
-      apiBaseUrl: 'https://api.sukon.net/dev/',
+      apiBaseUrl: 'https://api.sukon.net/v1/',
     ),
   );
 }

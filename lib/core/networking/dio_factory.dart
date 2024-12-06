@@ -1,0 +1,39 @@
+import 'package:clients/core/networking/api_constants.dart';
+import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
+import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+class DioFactory {
+  const DioFactory._();
+
+  static Dio? _dio;
+
+  static Dio getDio() {
+    if (_dio == null) {
+      Duration timeOut = 30.seconds;
+      _dio = Dio(
+        BaseOptions(
+          connectTimeout: timeOut,
+          receiveTimeout: timeOut,
+          sendTimeout: timeOut,
+          baseUrl: ApiConstants.baseUrl,
+        ),
+      );
+      _addLoggingInterceptor();
+    }
+    return _dio!;
+  }
+
+  static void _addLoggingInterceptor() {
+    _dio?.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+        error: true,
+        compact: true,
+      ),
+    );
+  }
+}
