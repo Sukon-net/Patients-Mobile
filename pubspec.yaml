@@ -9,11 +9,14 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.8
+  easy_localization: ^3.0.7
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   flutter_launcher_icons: ^0.14.1
-  flutter_localizations:
-    sdk: flutter
+  get_it: ^8.0.2
+  shared_preferences: ^2.3.3
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -23,12 +26,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-flutter_intl:
-  enabled: true
-  class_name: S
-  main_locale: en
-  arb_dir: lib/common/localization/l10n
-  output_dir: lib/common/localization/generated
-  use_deferred_loading: false
-#  assets:
-#    - assets/images/
+  assets:
+    - assets/translations/

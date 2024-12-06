@@ -1,5 +1,5 @@
-import 'package:clients/common/flavors/development/flavor_values.dart';
-import 'package:clients/common/main.dart';
+import 'package:clients/core/flavors/development/flavor_values.dart';
+import 'package:clients/core/main.dart';
 
 void main() {
   setupProductionFlavor();
