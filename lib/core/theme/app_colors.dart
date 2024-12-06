@@ -3,6 +3,7 @@ import 'dart:ui';
 abstract class AppColors {
   abstract final Color primaryCTAColor;
   abstract final Color onPrimaryCTAColor;
+  abstract final Color disabledPrimaryCTAColor;
   abstract final Color secondaryCTAColor;
   abstract final Color onSecondaryCTAColor;
   abstract final Color primaryBackgroundColor;
@@ -51,6 +52,9 @@ class LightAppColors extends AppColors {
 
   @override
   final Color dividerColor = const Color(0xFFA9A9BC);
+
+  @override
+  final Color disabledPrimaryCTAColor = const Color(0xFFB8E3FF);
 }
 
 class DarkAppColors extends AppColors {
@@ -89,4 +93,7 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color dividerColor = const Color(0xFFA9A9BC);
+
+  @override
+  final Color disabledPrimaryCTAColor = const Color(0xFFB8E3FF);
 }
