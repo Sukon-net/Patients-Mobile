@@ -1,43 +1,39 @@
+import 'package:clients/app.dart';
 import 'package:clients/core/di/dependency_container.dart';
-import 'package:clients/core/flavors/flavor_config.dart';
-import 'package:clients/core/test_localizations.dart';
-import 'package:clients/generated/locale_keys.g.dart';
+import 'package:clients/core/theme/cubit/theme_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDI();
   await EasyLocalization.ensureInitialized();
 
+  final ThemeCubit themeCubit = ThemeCubit(sl());
+  await themeCubit.loadTheme();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
-      child: const MyApp(),
+      child: AppContainer(
+        themeCubit: themeCubit,
+      ),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppContainer extends StatelessWidget {
+  final ThemeCubit themeCubit;
+  const AppContainer({super.key, required this.themeCubit});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: context.locale,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      onGenerateTitle: (context) => context.tr(LocaleKeys.app_name),
-      debugShowCheckedModeBanner: FlavorConfig.isDevelopment(),
-      home: const Scaffold(
-        body: TestingWidget(),
-      ),
+    return BlocProvider.value(
+      value: themeCubit,
+      child: const MyApp(),
     );
   }
 }
