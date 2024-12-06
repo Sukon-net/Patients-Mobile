@@ -4,7 +4,7 @@ void setupProductionFlavor() {
   FlavorConfig.initialize(
     name: 'production',
     values: const FlavorValues(
-      apiBaseUrl: 'https://api.sukon.net/',
+      apiBaseUrl: 'https://api.sukon.net/v1/',
     ),
   );
 }
