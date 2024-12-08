@@ -36,16 +36,16 @@ class OnboardingScreen extends StatelessWidget {
                           onPressed: context.switchLanguage,
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                'assets/icons/language.svg',
-                                width: 20.w,
-                                height: 20.h,
-                              ),
-                              SizedBox(width: 4.w),
                               Text(
                                 context.tr(LocaleKeys.language),
                                 style: TextStyles.size14Weight500.copyWith(
                                     color: context.colors.primaryTextColor),
+                              ),
+                              SizedBox(width: 4.w),
+                              SvgPicture.asset(
+                                'assets/icons/language.svg',
+                                width: 20.w,
+                                height: 20.h,
                               ),
                             ],
                           ),
