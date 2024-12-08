@@ -20,6 +20,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.3.3
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -49,6 +50,9 @@ flutter:
 
   assets:
     - assets/translations/
+    - assets/icons/
+    - assets/svg/
+    - assets/images/
 
 flutter_assets:
 assets_path:

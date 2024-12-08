@@ -54,4 +54,9 @@ class TextStyles{
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle size24Weight700 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+  );
 }

@@ -7,8 +7,8 @@ class PrimaryFilledButton extends StatelessWidget {
   const PrimaryFilledButton({
     super.key,
     required this.text,
-    required this.isActive,
     required this.onClick,
+    this.isActive = true,
   });
 
   final String text;
