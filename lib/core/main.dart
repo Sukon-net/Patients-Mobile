@@ -18,7 +18,7 @@ void mainCommon() async {
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
-      path: 'assets/translations',
+      path: 'assets/strings',
       fallbackLocale: const Locale('en'),
       child: AppContainer(
         themeCubit: themeCubit,

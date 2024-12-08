@@ -1,0 +1,17 @@
+{
+  "app_name": "Sukon",
+  "hello": "Hello",
+  "switch_locale": "العربية",
+  "test": "test",
+  "onboarding_main_text" : "Welcome to Sukon, your friend on your journey.",
+  "onboarding_button_text" : "Complete by email",
+  "or_divider": "OR",
+  "google": "Google",
+  "facebook": "Facebook",
+  "continue_as_a_guest": "Continue as a guest",
+  "text_span_1": "By continuing you agree to our ",
+  "terms_of_service": "Terms of Service",
+  "and": " and ",
+  "privacy_policy": "Privacy Policy",
+  "text_span_2": "."
+}
