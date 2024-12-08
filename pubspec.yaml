@@ -49,7 +49,7 @@ flutter:
           weight: 100
 
   assets:
-    - assets/translations/
+    - assets/strings/
     - assets/icons/
     - assets/svg/
     - assets/images/

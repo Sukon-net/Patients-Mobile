@@ -1,3 +1,4 @@
+import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
@@ -30,20 +31,20 @@ class OnboardingScreen extends StatelessWidget {
                         EdgeInsetsDirectional.symmetric(vertical: 32.h),
                     child: Row(
                       children: [
-                        SvgPicture.asset('assets/svg/horizontal_logo.svg'),
+                        SvgPicture.asset(Assets.assetsSvgHorizontalLogo),
                         const Spacer(),
                         TextButton(
                           onPressed: context.switchLanguage,
                           child: Row(
                             children: [
                               Text(
-                                context.tr(LocaleKeys.language),
+                                context.tr(LocaleKeys.switch_locale),
                                 style: TextStyles.size14Weight500.copyWith(
                                     color: context.colors.primaryTextColor),
                               ),
                               SizedBox(width: 4.w),
                               SvgPicture.asset(
-                                'assets/icons/language.svg',
+                                Assets.assetsIconsLanguage,
                                 width: 20.w,
                                 height: 20.h,
                               ),
@@ -53,7 +54,7 @@ class OnboardingScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SvgPicture.asset('assets/images/onboarding_image.svg'),
+                  SvgPicture.asset(Assets.assetsImagesOnboarding),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 24.h),
                     child: Text(

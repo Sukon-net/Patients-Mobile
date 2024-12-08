@@ -1,4 +1,4 @@
-import 'package:clients/app.dart';
+import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/generated/locale_keys.g.dart';
@@ -29,8 +29,8 @@ class SocialMediaButton extends StatelessWidget {
               .copyWith(color: context.colors.primaryTextColor),
         ),
         icon: isGoogle
-            ? SvgPicture.asset('assets/icons/google.svg')
-            : SvgPicture.asset('assets/icons/facebook.svg'),
+            ? SvgPicture.asset(Assets.assetsIconsGoogle)
+            : SvgPicture.asset(Assets.assetsIconsFacebook),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.sp),
@@ -40,7 +40,7 @@ class SocialMediaButton extends StatelessWidget {
           ),
           side: BorderSide(
             color: context.colors.borderColor,
-            width: 1,
+            width: 1.r,
           ),
         ),
       ),

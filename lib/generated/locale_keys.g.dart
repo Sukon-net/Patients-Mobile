@@ -5,7 +5,6 @@ abstract class  LocaleKeys {
   static const hello = 'hello';
   static const switch_locale = 'switch_locale';
   static const test = 'test';
-  static const language = 'language';
   static const onboarding_main_text = 'onboarding_main_text';
   static const onboarding_button_text = 'onboarding_button_text';
   static const or_divider = 'or_divider';
