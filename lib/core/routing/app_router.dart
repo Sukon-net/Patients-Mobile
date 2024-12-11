@@ -1,4 +1,5 @@
 import 'package:clients/core/routing/routes.dart';
+import 'package:clients/features/auth/login/presentation/login_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => Container());
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => Container());
+        return MaterialPageRoute(builder: (_) =>  const LoginScreen());
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       default:
