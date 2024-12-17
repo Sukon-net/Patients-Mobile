@@ -19,5 +19,6 @@
   "email": "البريد الإلكتروني",
   "required": "مطلوب",
   "no_password_needed": "لا حاجة لكلمة مرور",
-  "send_verification_code": "أرسل رمز التحقق"
+  "send_verification_code": "أرسل رمز التحقق",
+  "invalid_email_format": "تنسيق البريد الإلكتروني غير صالح"
 }

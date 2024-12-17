@@ -16,8 +16,9 @@
   "text_span_2": ".",
   "login_or_signup": "Login / Create an account",
   "we_will_send_verification_code": "We will send the verification code to your email.",
-  "email": "e-mail",
-  "required": "required",
+  "email": "Email",
+  "required": "Required",
   "no_password_needed": "No password needed",
-  "send_verification_code": "Send verification code"
+  "send_verification_code": "Send verification code",
+  "invalid_email_format": "Invalid email format"
 }

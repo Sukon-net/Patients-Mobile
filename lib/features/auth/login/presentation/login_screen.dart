@@ -1,10 +1,14 @@
-import 'package:clients/app.dart';
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
+import 'package:clients/core/utils/extensions/context_extension.dart';
+import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/core/widgets/error_screen.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
-import 'package:clients/core/widgets/spacer.dart';
+import 'package:clients/core/widgets/or_divider.dart';
+import 'package:clients/core/widgets/primary_filled_button.dart';
+import 'package:clients/core/widgets/social_media_button.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
+import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,54 +21,99 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(),
-      child: Scaffold(
-        appBar: const TopAppBar(),
-        body: BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            switch (state) {
-              case LoginInitial():
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+    final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+    final isKeyboardVisible = bottomInsets > 100;
+    return Scaffold(
+      appBar: const TopAppBar(),
+      body: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            context.pushNamedAndRemoveUntil(Routes.otp,
+                predicate: (_) => false);
+          }
+          if (state is LoginError && state.errorMessage != null) {
+            // TODO: Change to toastification
+            context.showSnackBar(message: state.errorMessage!);
+          }
+        },
+        builder: (context, state) {
+          if (state is LoginLoading) {
+            return const LoadingWidget();
+          }
+          return Stack(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      VerticalSpacer(48.h),
                       Text(
-                        LocaleKeys.login_or_signup,
+                        context.tr(LocaleKeys.login_or_signup),
                         style: TextStyles.size24Weight600.copyWith(
                           color: context.colors.primaryTextColor,
                         ),
-                        textAlign: TextAlign.start,
                       ),
-                      Text(
-                        LocaleKeys.we_will_send_verification_code,
-                        style: TextStyles.size14Weight400.copyWith(
-                          color: context.colors.subTextColor,
+                      Padding(
+                        padding: EdgeInsets.only(top: 8.h, bottom: 16.h),
+                        child: Text(
+                          context.tr(LocaleKeys.we_will_send_verification_code),
+                          style: TextStyles.size14Weight400.copyWith(
+                            color: context.colors.subTextColor,
+                          ),
                         ),
-                        textAlign: TextAlign.start,
                       ),
-                      Text(
-                        LocaleKeys.email,
-                        style: TextStyles.size16Weight500.copyWith(
-                          color: context.colors.primaryTextColor,
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        child: AuthTextFromField(
+                          label: context.tr(LocaleKeys.email),
+                          hint: context.tr(LocaleKeys.required),
+                          helperText: context.tr(LocaleKeys.no_password_needed),
+                          autoFillHints: const [AutofillHints.email],
+                          keyboardType: TextInputType.emailAddress,
+                          controller:
+                              context.read<LoginCubit>().emailController,
+                          errorText:
+                              state is LoginError ? state.emailError : null,
                         ),
-                        textAlign: TextAlign.start,
                       ),
+                      if (!isKeyboardVisible)
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24.h),
+                          child: const OrDivider(),
+                        ),
+                      if (!isKeyboardVisible)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SocialMediaButton(isGoogle: true, onClick: () {}),
+                            SocialMediaButton(isGoogle: false, onClick: () {}),
+                          ],
+                        ),
                     ],
                   ),
-                );
-              case LoginLoading():
-                return const LoadingWidget();
-              case LoginLoaded():
-              // TODO: Handle this case.
-              case LoginError():
-              // TODO: Handle this case.
-            }
-            return const ErrorScreen("Unknown state");
-          },
-        ),
+                ),
+              ),
+              Positioned(
+                bottom: 20.h,
+                left: 24.w,
+                right: 24.w,
+                child: PrimaryFilledButton(
+                  text: context.tr(LocaleKeys.send_verification_code),
+                  onClick: () {
+                    context.read<LoginCubit>().onSendVerificationCodeClicked(
+                          context.read<LoginCubit>().emailController.text,
+                        );
+                  },
+                  isActive: state is ButtonEnabled,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

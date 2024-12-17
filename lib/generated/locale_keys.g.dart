@@ -22,4 +22,5 @@ abstract class  LocaleKeys {
   static const required = 'required';
   static const no_password_needed = 'no_password_needed';
   static const send_verification_code = 'send_verification_code';
+  static const invalid_email_format = 'invalid_email_format';
 }

@@ -1,7 +1,11 @@
 import 'package:clients/core/routing/routes.dart';
+import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
+import 'package:clients/features/auth/OTP/presentation/otp_screen.dart';
+import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/login/presentation/login_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -10,12 +14,24 @@ class AppRouter {
     final arguments = settings.arguments;
 
     switch (settings.name) {
-      case Routes.home:
-        return MaterialPageRoute(builder: (_) => Container());
-      case Routes.login:
-        return MaterialPageRoute(builder: (_) =>  const LoginScreen());
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+      case Routes.login:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => LoginCubit(),
+            child: const LoginScreen(),
+          ),
+        );
+      case Routes.otp:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => OtpCubit(),
+            child: const OtpScreen(),
+          ),
+        );
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => Container());
       default:
         return _buildInvalidRoute(settings);
     }
