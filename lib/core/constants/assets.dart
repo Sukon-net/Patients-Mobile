@@ -5,5 +5,6 @@ class Assets{
   static const String assetsIconsLanguage = "assets/icons/language.svg";
   static const String assetsImagesOnboarding = "assets/images/onboarding_image.svg";
   static const String assetsSvgHorizontalLogo = "assets/svg/horizontal_logo.svg";
+  static const String assetsSvgLogoBlue = "assets/svg/logo_blue.svg";
 
 }

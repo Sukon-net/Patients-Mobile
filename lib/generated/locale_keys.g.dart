@@ -16,4 +16,11 @@ abstract class  LocaleKeys {
   static const and = 'and';
   static const privacy_policy = 'privacy_policy';
   static const text_span_2 = 'text_span_2';
+  static const login_or_signup = 'login_or_signup';
+  static const we_will_send_verification_code = 'we_will_send_verification_code';
+  static const email = 'email';
+  static const required = 'required';
+  static const no_password_needed = 'no_password_needed';
+  static const send_verification_code = 'send_verification_code';
+  static const invalid_email_format = 'invalid_email_format';
 }

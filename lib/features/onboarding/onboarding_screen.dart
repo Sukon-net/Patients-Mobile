@@ -1,6 +1,8 @@
 import 'package:clients/core/constants/assets.dart';
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
+import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
@@ -65,8 +67,9 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   PrimaryFilledButton(
                     text: context.tr(LocaleKeys.onboarding_button_text),
-                    //TODO: when complete by email pressed
-                    onClick: () {},
+                    onClick: () {
+                      context.pushNamed(Routes.login);
+                    },
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 12.h),

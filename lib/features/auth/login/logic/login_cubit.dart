@@ -1,0 +1,46 @@
+import 'dart:developer';
+
+import 'package:clients/core/utils/validators.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
+
+import '../../../../generated/locale_keys.g.dart';
+
+part 'login_state.dart';
+
+class LoginCubit extends Cubit<LoginState> {
+  late final TextEditingController emailController;
+
+  LoginCubit() : super(LoginInitial()) {
+    emailController = TextEditingController();
+    emailController.addListener(() {
+      if (emailController.text.contains("@") &&
+          emailController.text.contains(".")) {
+        emit(ButtonEnabled());
+      } else {
+        emit(LoginInitial());
+      }
+    });
+  }
+
+  void onSendVerificationCodeClicked(String email) {
+    emit(LoginLoading());
+    if (Validators.isValidEmail(email)) {
+      emit(LoginSuccess());
+    } else {
+      emit(
+        LoginError(
+          emailError: LocaleKeys.invalid_email_format.tr(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    return super.close();
+  }
+}

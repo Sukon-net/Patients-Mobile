@@ -10,6 +10,7 @@ abstract class AppColors {
   abstract final Color primaryTextColor;
   abstract final Color secondaryTextColor;
   abstract final Color accentTextColor;
+  abstract final Color subTextColor;
   abstract final Color borderColor;
   abstract final Color errorColor;
   abstract final Color errorAccentColor;
@@ -55,6 +56,9 @@ class LightAppColors extends AppColors {
 
   @override
   final Color disabledPrimaryCTAColor = const Color(0xFFB8E3FF);
+
+  @override
+  final Color subTextColor = const Color(0xFF8E8E8E);
 }
 
 class DarkAppColors extends AppColors {
@@ -96,4 +100,7 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color disabledPrimaryCTAColor = const Color(0xFFB8E3FF);
+
+  @override
+  final Color subTextColor = const Color(0xFF8E8E8E);
 }

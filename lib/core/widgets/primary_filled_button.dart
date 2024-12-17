@@ -1,5 +1,6 @@
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
+import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,11 +21,10 @@ class PrimaryFilledButton extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
       child: FilledButton(
-        onPressed: onClick,
+        onPressed: isActive ? onClick : null,
         style: FilledButton.styleFrom(
-          backgroundColor: isActive
-              ? context.colors.primaryCTAColor
-              : context.colors.disabledPrimaryCTAColor,
+          backgroundColor: context.colors.primaryCTAColor,
+          disabledBackgroundColor: context.colors.disabledPrimaryCTAColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100.r),
           ),
