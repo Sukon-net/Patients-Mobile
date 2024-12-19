@@ -3,8 +3,8 @@
   "hello": "Hello",
   "switch_locale": "العربية",
   "test": "test",
-  "onboarding_main_text" : "Welcome to Sukon, your friend on your journey.",
-  "onboarding_button_text" : "Complete by email",
+  "onboarding_main_text": "Welcome to Sukon, your friend on your journey.",
+  "onboarding_button_text": "Complete by email",
   "or_divider": "OR",
   "google": "Google",
   "facebook": "Facebook",
@@ -20,5 +20,12 @@
   "required": "Required",
   "no_password_needed": "No password needed",
   "send_verification_code": "Send verification code",
-  "invalid_email_format": "Invalid email format"
+  "invalid_email_format": "Invalid email format",
+  "verify_email": "Verify email",
+  "enter_the_verification_code": "Enter the verification code sent to your email",
+  "did_not_receive_the_verification_code": "Didn't receive the verification code?",
+  "second": "second",
+  "confirm_code": "Confirm code",
+  "resend": "Resend",
+  "verification_code_is_wrong": "Verification code is wrong"
 }

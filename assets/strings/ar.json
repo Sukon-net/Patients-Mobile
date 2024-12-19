@@ -3,8 +3,8 @@
   "hello": "مرحبا",
   "switch_locale": "English",
   "test": "اختبار",
-  "onboarding_main_text" : "اهلاََ بك في تطبيق سكون رفيقك في رحلتك النفسية.",
-  "onboarding_button_text" : "إستكمال بالبريد الالكتروني",
+  "onboarding_main_text": "اهلاََ بك في تطبيق سكون رفيقك في رحلتك النفسية.",
+  "onboarding_button_text": "إستكمال بالبريد الالكتروني",
   "or_divider": "أو",
   "google": "جوجل",
   "facebook": "فيسبوك",
@@ -20,5 +20,12 @@
   "required": "مطلوب",
   "no_password_needed": "لا حاجة لكلمة مرور",
   "send_verification_code": "أرسل رمز التحقق",
-  "invalid_email_format": "تنسيق البريد الإلكتروني غير صالح"
+  "invalid_email_format": "تنسيق البريد الإلكتروني غير صالح",
+  "verify_email": "التحقق من البريد الإلكتروني",
+  "enter_the_verification_code": "أدخل رمز التحقق المرسل إلى بريدك الإلكتروني",
+  "did_not_receive_the_verification_code": "لم يصلك رمز التحقق؟",
+  "second": "ثانية",
+  "confirm_code": "تأكيد الرمز",
+  "resend": "إعادة إرسال",
+  "verification_code_is_wrong": "رمز التحقق خاطئ"
 }

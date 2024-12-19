@@ -28,8 +28,7 @@ class LoginScreen extends StatelessWidget {
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.pushNamedAndRemoveUntil(Routes.otp,
-                predicate: (_) => false);
+            context.pushNamed(Routes.otp);
           }
           if (state is LoginError && state.errorMessage != null) {
             // TODO: Change to toastification
