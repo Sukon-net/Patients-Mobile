@@ -43,10 +43,15 @@ class AuthTextFromField extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
-          cursorColor: context.colors.primaryCTAColor,
-          cursorErrorColor: context.colors.errorColor,
+          cursorColor: context.colors.primaryTextColor,
+          cursorErrorColor: context.colors.primaryTextColor,
           autofillHints: autoFillHints,
           decoration: InputDecoration(
+            filled: true,
+            fillColor: errorText != null
+                ? context.colors.errorAccentColor
+                : context.colors.primaryBackgroundColor,
+
             ///Default State///
             enabledBorder: OutlineInputBorder(
               borderSide:
