@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                           context.read<LoginCubit>().emailController.text,
                         );
                   },
-                  isActive: state is ButtonEnabled,
+                  isActive: state is LoginButtonEnabled,
                 ),
               ),
             ],
