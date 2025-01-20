@@ -1,7 +1,7 @@
 import 'package:clients/core/flavors/flavor_config.dart';
 import 'package:clients/core/routing/app_router.dart';
 import 'package:clients/core/routing/routes.dart';
-import 'package:clients/core/test_localizations.dart';
+import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (context) => context.tr(LocaleKeys.app_name),
       debugShowCheckedModeBanner: FlavorConfig.isDevelopment(),
       home: const Scaffold(
-        body: TestingWidget(),
+        body: OnboardingScreen(),
       ),
     );
   }

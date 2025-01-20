@@ -7,10 +7,11 @@ final GetIt sl = GetIt.instance;
 
 Future<void> initDI() async {
   // Shared Preferences
-  final SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
+  final SharedPreferences _sharedPreferences =
+      await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferencesHelper>(
-          () => SharedPreferencesHelper(_sharedPreferences));
+      () => SharedPreferencesHelper(_sharedPreferences));
 
   // Dio
-  sl.registerLazySingleton(() => DioFactory.getDio(););
+  sl.registerLazySingleton(() => DioFactory.getDio());
 }

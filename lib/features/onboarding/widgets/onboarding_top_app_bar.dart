@@ -1,4 +1,3 @@
-import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
@@ -7,7 +6,6 @@ import 'package:clients/core/widgets/spacers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class OnboardingTopAppBar extends StatelessWidget {
   const OnboardingTopAppBar({super.key});
@@ -19,9 +17,6 @@ class OnboardingTopAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(
-            Assets.assetsSvgSukonLogoWithText,
-          ),
           InkWell(
             onTap: () {
               context.switchLanguage();

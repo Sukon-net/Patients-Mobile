@@ -32,5 +32,6 @@
   "second": "ثانية",
   "confirm_code": "تأكيد الرمز",
   "resend": "إعادة إرسال",
-  "verification_code_is_wrong": "رمز التحقق خاطئ"
+  "verification_code_is_wrong": "رمز التحقق خاطئ",
+  "vertical_logo": "assets/svg/arabic_logo.svg"
 }

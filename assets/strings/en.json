@@ -31,6 +31,7 @@
   "second": "second",
   "confirm_code": "Confirm code",
   "resend": "Resend",
-  "verification_code_is_wrong": "Verification code is wrong"
+  "verification_code_is_wrong": "Verification code is wrong",
+  "vertical_logo": "assets/svg/english_logo.svg"
   "ours": ""
 }
