@@ -29,11 +29,10 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.symmetric(vertical: 32.h),
+                    padding: EdgeInsetsDirectional.symmetric(vertical: 32.h),
                     child: Row(
                       children: [
-                        SvgPicture.asset(Assets.assetsSvgHorizontalLogo),
+                        SvgPicture.asset(context.tr(LocaleKeys.vertical_logo)),
                         const Spacer(),
                         TextButton(
                           onPressed: context.switchLanguage,
@@ -47,8 +46,6 @@ class OnboardingScreen extends StatelessWidget {
                               SizedBox(width: 4.w),
                               SvgPicture.asset(
                                 Assets.assetsIconsLanguage,
-                                width: 20.w,
-                                height: 20.h,
                               ),
                             ],
                           ),
@@ -92,7 +89,7 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   TextButton(
                     // TODO: when continue as a guest pressed
-                    onPressed: () { },
+                    onPressed: () {},
                     child: Text(
                       context.tr(LocaleKeys.continue_as_a_guest),
                       style: TextStyles.size16Weight500.copyWith(

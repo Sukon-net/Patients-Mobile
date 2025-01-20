@@ -32,4 +32,5 @@ abstract class LocaleKeys {
   static const confirm_code = 'confirm_code';
   static const resend = 'resend';
   static const verification_code_is_wrong = 'verification_code_is_wrong';
+  static const vertical_logo = 'vertical_logo';
 }

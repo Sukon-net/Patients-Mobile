@@ -5,13 +5,17 @@
   "test": "test",
   "onboarding_main_text": "Welcome to Sukon, your friend on your journey.",
   "onboarding_button_text": "Complete by email",
-  "or_divider": "OR",
-  "google": "Google",
   "facebook": "Facebook",
   "continue_as_a_guest": "Continue as a guest",
   "text_span_1": "By continuing you agree to our ",
   "terms_of_service": "Terms of Service",
-  "and": " and ",
+  "google": "Google",
+  "onboarding_welcome_message": "Welcome to Sukon\nYour friend in your mental journey.",
+  "or_divider": "or",
+  "continue_as_guest": "Continue as a guest",
+  "by_continuing_you_agree": "By continuing, you agree to our ",
+  "terms_and_conditions": "Terms and Conditions",
+  "and": "and",
   "privacy_policy": "Privacy Policy",
   "text_span_2": ".",
   "login_or_signup": "Login / Create an account",
@@ -27,5 +31,7 @@
   "second": "second",
   "confirm_code": "Confirm code",
   "resend": "Resend",
-  "verification_code_is_wrong": "Verification code is wrong"
+  "verification_code_is_wrong": "Verification code is wrong",
+  "vertical_logo": "assets/svg/english_logo.svg"
+  "ours": ""
 }
