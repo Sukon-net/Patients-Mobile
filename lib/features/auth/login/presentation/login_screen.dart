@@ -10,11 +10,13 @@ import 'package:clients/core/widgets/social_media_button.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
-import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/flavors/flavor_config.dart';
+import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -103,9 +105,11 @@ class LoginScreen extends StatelessWidget {
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.send_verification_code),
                   onClick: () {
-                    context.read<LoginCubit>().onSendVerificationCodeClicked(
-                          context.read<LoginCubit>().emailController.text,
-                        );
+                    if (FlavorConfig.isDevelopment()) {
+                      context.read<LoginCubit>().emailController.text =
+                          "nadinahmed316@gmail.com";
+                    }
+                    context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
                   isActive: state is LoginButtonEnabled,
                 ),

@@ -1,16 +1,19 @@
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
+import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
-import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
+
+import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 part '../widgets/otp_widget.dart';
 
@@ -21,7 +24,12 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TopAppBar(),
-      body: BlocBuilder<OtpCubit, OtpState>(
+      body: BlocConsumer<OtpCubit, OtpState>(
+        listener: (context, state) {
+          if (state is OtpSuccess) {
+            context.pushNamed(Routes.completeProfile);
+          }
+        },
         builder: (context, state) {
           if (state is OtpLoading) {
             return const LoadingWidget();

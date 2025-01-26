@@ -17,7 +17,6 @@
   "terms_of_service": "شروط الخدمة",
   "and": " و ",
   "privacy_policy": "سياسة الخصوصية",
-  "ours": "الخاصة بنا",
   "text_span_2": " الخاصة بنا.",
   "login_or_signup": "تسجيل الدخول / إنشاء حساب",
   "we_will_send_verification_code": "سوف نرسل رمز التحقق إلى بريدك الإلكتروني",
@@ -33,5 +32,17 @@
   "confirm_code": "تأكيد الرمز",
   "resend": "إعادة إرسال",
   "verification_code_is_wrong": "رمز التحقق خاطئ",
-  "vertical_logo": "assets/svg/arabic_logo.svg"
+  "vertical_logo": "assets/svg/arabic_logo.svg",
+  "complete_your_data": "إستكمل بياناتك",
+  "one_simple_step_separates_you": "خطوة بسيطة تفصلك عن انشاء حسابك",
+  "first_name": "الإسم الأول",
+  "last_name": "الإسم الأخير",
+  "gender": "الجنس",
+  "male": "ذكر",
+  "female": "أنثي",
+  "age": "العمر",
+  "phone_number": "رقم الهاتف",
+  "create_account": "إنشاء الحساب",
+  "invalid_name_format": "يجب أن يحتوي الإسم علي 3 أحرف على الأقل",
+  "invalid_phone_format": "تنسيق رقم الهاتف غير صالح"
 }

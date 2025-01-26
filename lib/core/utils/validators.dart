@@ -11,4 +11,6 @@ class Validators {
     if (otpCode == 1234) return true;
     return false;
   }
+
+  static bool isValidName(String name) => name.length >= 3;
 }
