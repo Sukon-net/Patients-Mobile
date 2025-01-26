@@ -1,9 +1,10 @@
-import '../../generated/locale_keys.g.dart';
+import '../l10n/generated/locale_keys.g.dart';
 
 class Assets {
   Assets._();
 
-  static const String assetsImagesOnboardingImage = "assets/images/onboarding_image.png";
+  static const String assetsImagesOnboardingImage =
+      "assets/images/onboarding_image.png";
   static const String assetsIconsFacebook = "assets/icons/facebook.svg";
   static const String assetsIconsGoogle = "assets/icons/google.svg";
   static const String assetsIconsLanguage = "assets/icons/language.svg";
@@ -14,6 +15,8 @@ class Assets {
   static const String assetsSvgFacebook = "assets/svg/facebook.svg";
   static const String assetsSvgGoogle = "assets/svg/google.svg";
   static const String assetsSvgLogoWhite = "assets/svg/logo_white.svg";
-  static const String assetsSvgSukonLogoWithText = "assets/svg/sukon_logo_with_text.svg";
-  static const String assetsSvgSukonWBlueBackground = "assets/svg/sukon_w_blue_background.svg";
+  static const String assetsSvgSukonLogoWithText =
+      "assets/svg/sukon_logo_with_text.svg";
+  static const String assetsSvgSukonWBlueBackground =
+      "assets/svg/sukon_w_blue_background.svg";
 }

@@ -31,6 +31,7 @@ class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 child: Icon(
                   Icons.arrow_forward_sharp,
+                  textDirection: TextDirection.rtl,
                   color: context.colors.primaryTextColor,
                 ),
               ),

@@ -5,4 +5,5 @@ class Routes {
   static const String onboarding = '/onboarding';
   static const String login = '/login';
   static const String otp = '/otp';
+  static const String completeProfile = '/completeProfile';
 }

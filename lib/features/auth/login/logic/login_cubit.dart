@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../generated/locale_keys.g.dart';
+import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 part 'login_state.dart';
 
@@ -23,9 +23,9 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  void onSendVerificationCodeClicked(String email) {
+  void onSendVerificationCodeClicked([String? email]) {
     emit(LoginLoading());
-    if (Validators.isValidEmail(email)) {
+    if (Validators.isValidEmail(email ?? emailController.text)) {
       emit(LoginSuccess());
     } else {
       emit(

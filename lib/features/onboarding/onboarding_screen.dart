@@ -7,12 +7,13 @@ import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/core/widgets/social_media_button.dart';
-import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../core/l10n/generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

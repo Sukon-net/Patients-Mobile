@@ -15,7 +15,7 @@
   "continue_as_guest": "Continue as a guest",
   "by_continuing_you_agree": "By continuing, you agree to our ",
   "terms_and_conditions": "Terms and Conditions",
-  "and": "and",
+  "and": " and ",
   "privacy_policy": "Privacy Policy",
   "text_span_2": ".",
   "login_or_signup": "Login / Create an account",
@@ -33,5 +33,16 @@
   "resend": "Resend",
   "verification_code_is_wrong": "Verification code is wrong",
   "vertical_logo": "assets/svg/english_logo.svg",
-  "ours": ""
+  "complete_your_data": "Complete your data",
+  "one_simple_step_separates_you": "One step further to create your account",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "age": "Age",
+  "phone_number": "Phone Number",
+  "create_account": "Create account",
+  "invalid_name_format": "Name must contain at least 3 letters",
+  "invalid_phone_format": "Invalid phone number format"
 }

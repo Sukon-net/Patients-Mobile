@@ -1,6 +1,8 @@
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
 import 'package:clients/features/auth/OTP/presentation/otp_screen.dart';
+import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
+import 'package:clients/features/auth/complete%20profile/presentation/complete_profile_screen.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/login/presentation/login_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
@@ -28,6 +30,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (BuildContext context) => OtpCubit(),
             child: const OtpScreen(),
+          ),
+        );
+      case Routes.completeProfile:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => CompleteProfileCubit(),
+            child: const CompleteProfileScreen(),
           ),
         );
       case Routes.home:

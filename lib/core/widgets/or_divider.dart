@@ -1,9 +1,10 @@
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../l10n/generated/locale_keys.g.dart';
 
 class OrDivider extends StatelessWidget {
   const OrDivider({super.key});
