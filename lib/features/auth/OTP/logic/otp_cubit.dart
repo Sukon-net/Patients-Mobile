@@ -12,8 +12,9 @@ part 'otp_state.dart';
 class OtpCubit extends Cubit<OtpState> {
   late final TextEditingController otpController;
   final OtpRepository _otpRepository;
+  final String emailAddress;
 
-  OtpCubit(this._otpRepository) : super(OtpInitial()) {
+  OtpCubit(this._otpRepository, this.emailAddress) : super(OtpInitial()) {
     otpController = TextEditingController();
     otpController.addListener(() {
       if (otpController.text.length == 4) {

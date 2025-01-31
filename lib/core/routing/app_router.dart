@@ -28,9 +28,10 @@ class AppRouter {
           ),
         );
       case Routes.otp:
+        final emailAddress = arguments as String;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => OtpCubit(sl()),
+            create: (BuildContext context) => OtpCubit(sl(), emailAddress),
             child: const OtpScreen(),
           ),
         );

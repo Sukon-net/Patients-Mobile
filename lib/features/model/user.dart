@@ -1,13 +1,25 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
 class User {
+  @JsonKey(name: 'first_name')
   final String firstName;
+  @JsonKey(name: 'last_name')
   final String lastName;
   final String email;
+  @JsonKey(name: 'gender')
   final Gender gender;
+  @JsonKey(name: 'mobile')
   final String phoneNum;
-  final String age;
+  @JsonKey(name: 'date_of_birth')
   final DateTime dateOfBirth;
+  @JsonKey(name: 'is_active')
   final bool isActive;
+  @JsonKey(name: 'is_email_verified')
   final bool isEmailVerified;
+  @JsonKey(name: 'has_completed_signup')
   final bool hasCompletedSignup;
 
   User({
@@ -16,42 +28,17 @@ class User {
     required this.email,
     required this.gender,
     required this.phoneNum,
-    required this.age,
     required this.dateOfBirth,
     required this.isActive,
     required this.hasCompletedSignup,
     required this.isEmailVerified,
   });
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'gender': gender,
-      'phoneNum': phoneNum,
-      'age': age,
-      'dateOfBirth': dateOfBirth,
-      'isActive': isActive,
-      'hasCompletedSignup': hasCompletedSignup,
-      'isEmailVerified': isEmailVerified,
-    };
-  }
-
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      email: map['email'] as String,
-      gender: map['gender'] as Gender,
-      phoneNum: map['phoneNum'] as String,
-      age: map['age'] as String,
-      dateOfBirth: map['dateOfBirth'] as DateTime,
-      isActive: map['isActive'] as bool,
-      hasCompletedSignup: map['hasCompletedSignup'] as bool,
-      isEmailVerified: map['isEmailVerified'] as bool,
-    );
-  }
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 
-enum Gender { male, female }
+enum Gender {
+  male,
+  female,
+}

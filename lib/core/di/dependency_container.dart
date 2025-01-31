@@ -11,19 +11,21 @@ final GetIt sl = GetIt.instance;
 
 Future<void> initDI() async {
   // Shared Preferences
-  final SharedPreferences _sharedPreferences =
+  final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferencesHelper>(
-      () => SharedPreferencesHelper(_sharedPreferences));
+      () => SharedPreferencesHelper(sharedPreferences));
   // Dio
   sl.registerLazySingleton(() => DioFactory.getDio());
-  //Login Service
+
+  //Login
   sl.registerLazySingleton(() => LoginService(dio: sl()));
-  //Login Repository
   sl.registerLazySingleton<LoginRepository>(
       () => LoginRepositoryImpl(loginService: sl()));
-  //Otp Service
+
+  //Otp
   sl.registerLazySingleton(() => OtpService(dio: sl()));
-  //Otp Repository
-  sl.registerLazySingleton(() => OtpRepositoryImpl(otpService: sl()));
+  sl.registerLazySingleton<OtpRepository>(
+      () => OtpRepositoryImpl(otpService: sl()));
 }
+

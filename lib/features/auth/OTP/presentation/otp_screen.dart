@@ -22,8 +22,6 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String emailFormLogin =
-        ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(

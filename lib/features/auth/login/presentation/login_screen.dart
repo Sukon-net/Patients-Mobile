@@ -16,7 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
-import '../../../../core/flavors/flavor_config.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -126,10 +125,6 @@ class LoginScreen extends StatelessWidget {
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.send_verification_code),
                   onClick: () {
-                    if (FlavorConfig.isDevelopment()) {
-                      context.read<LoginCubit>().emailController.text =
-                          "nadinahmed316@gmail.com";
-                    }
                     context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
                   isActive: state is LoginButtonEnabled,

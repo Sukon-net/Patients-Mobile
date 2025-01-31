@@ -1,10 +1,10 @@
 import '../flavor_config.dart';
 
-void setupDevelopmentFlavor() {
+void setupProductionFlavor() {
   FlavorConfig.initialize(
-    name: 'development',
+    name: 'production',
     values: const FlavorValues(
-      apiBaseUrl: 'http://api.sukon.net/v1/',
+      apiBaseUrl: 'https://api.sukon.net/v1/',
     ),
   );
 }

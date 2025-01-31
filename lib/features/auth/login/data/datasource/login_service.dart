@@ -9,9 +9,10 @@ class LoginService {
 
   LoginService({required Dio dio}) : _dio = dio;
 
-  Future<Either<String, BackendFailure>> sendEmail(String data) async {
+  Future<Either<String, BackendFailure>> sendEmail(String email) async {
     try {
-      final response = await _dio.post(ApiConstants.login, data: data);
+      final response =
+          await _dio.post(ApiConstants.login, data: {"email": email});
       if (response.statusCode == 200) return left("");
       if (response.statusCode == 422) {
         return right(InvalidEmailFailure());
