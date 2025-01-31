@@ -26,6 +26,7 @@ dependencies:
   flutter_dotenv: ^5.2.1
   toastification: ^2.3.0
   dartz: ^0.10.1
+  seconds_countdown_timer: ^0.1.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

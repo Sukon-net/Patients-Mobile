@@ -30,8 +30,8 @@ class AppRouter {
       case Routes.otp:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => OtpCubit(sl()),
-            child: const OtpScreen(),
+            create: (BuildContext context) => OtpCubit(),
+            child: OtpScreen(),
           ),
         );
       case Routes.completeProfile:

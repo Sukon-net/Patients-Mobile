@@ -1,7 +1,5 @@
 import 'package:clients/core/networking/dio_factory.dart';
 import 'package:clients/core/utils/shared_preferences/shared_preferences_helper.dart';
-import 'package:clients/features/auth/OTP/data/datasource/otp_service.dart';
-import 'package:clients/features/auth/OTP/data/repository/otp_repository.dart';
 import 'package:clients/features/auth/login/data/datasource/login_service.dart';
 import 'package:clients/features/auth/login/data/repository/login_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -22,8 +20,8 @@ Future<void> initDI() async {
   //Login Repository
   sl.registerLazySingleton<LoginRepository>(
       () => LoginRepositoryImpl(loginService: sl()));
-  //Otp Service
-  sl.registerLazySingleton(() => OtpService(dio: sl()));
-  //Otp Repository
-  sl.registerLazySingleton(() => OtpRepositoryImpl(otpService: sl()));
+  // //Otp Service
+  // sl.registerLazySingleton(() => OtpService(dio: sl()));
+  // //Otp Repository
+  //sl.registerLazySingleton<OtpRepository>(() => OtpRepositoryImpl(otpService: sl()));
 }

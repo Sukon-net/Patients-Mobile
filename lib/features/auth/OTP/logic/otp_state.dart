@@ -25,6 +25,6 @@ final class OtpError extends OtpState {
 
 final class OtpButtonEnabled extends OtpState {}
 
-final class OtpResendEnabled extends OtpState {}
-
 final class OtpCounterDown extends OtpState {}
+
+final class OtpCounterFinished extends OtpState {}

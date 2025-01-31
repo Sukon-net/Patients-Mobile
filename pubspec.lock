@@ -501,6 +501,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  seconds_countdown_timer:
+    dependency: "direct main"
+    description:
+      name: seconds_countdown_timer
+      sha256: d63671f35fa3c2a88b67c80471feb6c34487842aa24d71c32eea642960f8eb48
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   shared_preferences:
     dependency: "direct main"
     description:

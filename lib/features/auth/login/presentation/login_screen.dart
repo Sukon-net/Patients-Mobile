@@ -30,12 +30,12 @@ class LoginScreen extends StatelessWidget {
     final textColor = context.colors.primaryTextColor;
     final borderColor = context.colors.errorColor;
 
+    var emailToOtp = context.read<LoginCubit>().emailController.text;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            var emailToOtp = context.read<LoginCubit>().emailController.text;
             context.pushNamed(Routes.otp, arguments: emailToOtp);
           }
           if (state is LoginError && state.errorMessage != null) {
@@ -127,8 +127,7 @@ class LoginScreen extends StatelessWidget {
                   text: context.tr(LocaleKeys.send_verification_code),
                   onClick: () {
                     if (FlavorConfig.isDevelopment()) {
-                      context.read<LoginCubit>().emailController.text =
-                          "nadinahmed316@gmail.com";
+                      context.pushNamed(Routes.otp, arguments: emailToOtp);
                     }
                     context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
