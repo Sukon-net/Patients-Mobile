@@ -9,6 +9,8 @@ import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../di/dependency_container.dart';
+
 class AppRouter {
   const AppRouter._();
 
@@ -21,14 +23,14 @@ class AppRouter {
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => LoginCubit(),
+            create: (BuildContext context) => LoginCubit(sl()),
             child: const LoginScreen(),
           ),
         );
       case Routes.otp:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => OtpCubit(),
+            create: (BuildContext context) => OtpCubit(sl()),
             child: const OtpScreen(),
           ),
         );

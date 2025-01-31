@@ -22,12 +22,14 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String emailFormLogin =
+        ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(
         listener: (context, state) {
           if (state is OtpSuccess) {
-            context.pushNamed(Routes.completeProfile);
+            context.pushReplacementNamed(Routes.completeProfile);
           }
         },
         builder: (context, state) {

@@ -1,8 +1,8 @@
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
-import 'package:clients/core/utils/extensions/context_extension.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
+import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
@@ -14,6 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../core/flavors/flavor_config.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
@@ -25,16 +26,36 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
     final isKeyboardVisible = bottomInsets > 100;
+    final backgroundColor = context.colors.errorAccentColor;
+    final textColor = context.colors.primaryTextColor;
+    final borderColor = context.colors.errorColor;
+
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.pushNamed(Routes.otp);
+            var emailToOtp = context.read<LoginCubit>().emailController.text;
+            context.pushNamed(Routes.otp, arguments: emailToOtp);
           }
           if (state is LoginError && state.errorMessage != null) {
-            // TODO: Change to toastification
-            context.showSnackBar(message: state.errorMessage!);
+            toastification.show(
+              context: context,
+              title: Text(
+                state.errorMessage!,
+                style: TextStyle(
+                  color: textColor,
+                ),
+              ),
+              style: ToastificationStyle.flatColored,
+              type: ToastificationType.error,
+              closeOnClick: true,
+              dragToClose: true,
+              autoCloseDuration: 3.seconds,
+              borderSide: BorderSide(color: borderColor),
+              backgroundColor: backgroundColor,
+              closeButtonShowType: CloseButtonShowType.none,
+            );
           }
         },
         builder: (context, state) {

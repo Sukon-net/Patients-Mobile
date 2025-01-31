@@ -1,3 +1,4 @@
+import 'package:clients/features/auth/OTP/data/repository/otp_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +11,9 @@ part 'otp_state.dart';
 
 class OtpCubit extends Cubit<OtpState> {
   late final TextEditingController otpController;
+  final OtpRepository _otpRepository;
 
-  OtpCubit() : super(OtpInitial()) {
+  OtpCubit(this._otpRepository) : super(OtpInitial()) {
     otpController = TextEditingController();
     otpController.addListener(() {
       if (otpController.text.length == 4) {

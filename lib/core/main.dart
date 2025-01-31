@@ -1,12 +1,10 @@
-import 'dart:ui';
-
 import 'package:clients/app.dart';
 import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/theme/cubit/theme_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void mainCommon() async {
@@ -15,6 +13,7 @@ void mainCommon() async {
   await ScreenUtil.ensureScreenSize();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  await dotenv.load(fileName: ".env");
 
   final ThemeCubit themeCubit = ThemeCubit(sl());
   await themeCubit.loadTheme();
