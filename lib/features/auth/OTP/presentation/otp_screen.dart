@@ -66,9 +66,6 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Object? args = ModalRoute.of(context)?.settings.arguments;
-    final String? emailFormLogin = args is String ? args : null;
-
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(

@@ -16,7 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
-import '../../../../core/flavors/flavor_config.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -30,7 +29,6 @@ class LoginScreen extends StatelessWidget {
     final textColor = context.colors.primaryTextColor;
     final borderColor = context.colors.errorColor;
 
-    var emailToOtp = context.read<LoginCubit>().emailController.text;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<LoginCubit, LoginState>(
@@ -126,9 +124,6 @@ class LoginScreen extends StatelessWidget {
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.send_verification_code),
                   onClick: () {
-                    if (FlavorConfig.isDevelopment()) {
-                      context.pushNamed(Routes.otp, arguments: emailToOtp);
-                    }
                     context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
                   isActive: state is LoginButtonEnabled,
