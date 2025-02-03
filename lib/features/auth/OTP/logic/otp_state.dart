@@ -1,37 +1,31 @@
 part of 'otp_cubit.dart';
 
-sealed class OtpState extends Equatable {
-  const OtpState();
-
-  @override
-  List<Object?> get props => [];
+enum OtpStatus {
+  initial,
+  loading,
+  success,
+  error,
 }
 
-final class OtpInitial extends OtpState {}
+class OtpState extends Equatable {
+  final OtpStatus status;
+  final Duration countDownDuration;
 
-final class OtpLoading extends OtpState {}
-
-final class OtpSuccess extends OtpState {}
-
-final class OtpError extends OtpState {
-  final String? otpError;
-  final String? errorMessage;
-
-  const OtpError({this.otpError, this.errorMessage});
+  const OtpState({
+    this.status = OtpStatus.initial,
+    required this.countDownDuration,
+  });
 
   @override
-  List<Object?> get props => [otpError, errorMessage];
+  List<Object?> get props => [status, countDownDuration];
+
+  OtpState copyWith({
+    OtpStatus? status,
+    Duration? countDownDuration,
+  }) {
+    return OtpState(
+      status: status ?? this.status,
+      countDownDuration: countDownDuration ?? this.countDownDuration,
+    );
+  }
 }
-
-final class OtpButtonEnabled extends OtpState {}
-
-final class OtpCounterDown extends OtpState {
-  final int counter;
-
-  const OtpCounterDown(this.counter);
-
-  @override
-  List<Object?> get props => [counter];
-}
-
-final class OtpCounterFinished extends OtpState {}

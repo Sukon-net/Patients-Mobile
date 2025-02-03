@@ -31,8 +31,9 @@ class AppRouter {
         final emailAddress = arguments as String;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => OtpCubit(sl(), emailAddress),
-            child: OtpScreen(),
+            create: (BuildContext context) =>
+                OtpCubit(sl(), emailAddress)..startTimer(),
+            child: const OtpScreen(),
           ),
         );
       case Routes.completeProfile:

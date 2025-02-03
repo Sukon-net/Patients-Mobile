@@ -2,7 +2,6 @@ import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
@@ -17,37 +16,37 @@ import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 part '../widgets/otp_widget.dart';
 
-class OtpScreen extends StatelessWidget {
-  OtpScreen({super.key});
+class OtpScreen extends StatefulWidget {
+  const OtpScreen({super.key});
 
-  final TapGestureRecognizer _tapGestureRecognizer = TapGestureRecognizer();
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  bool isButtonActive = false;
+
+  void onConfirmCodeSubmit(BuildContext context) {
+    context.pushReplacementNamed(Routes.completeProfile);
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isCounterDownActive = false;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(
         listener: (context, state) {
-          if (state is OtpCounterDown) {
-            isCounterDownActive = true;
-          }
-          if (state is OtpCounterFinished) {
-            isCounterDownActive = false;
-          }
-          if (state is OtpSuccess) {
+          if (state.status == OtpStatus.success) {
             context.pushReplacementNamed(Routes.completeProfile);
           }
         },
         builder: (context, state) {
-          if (state is OtpLoading) {
-            return const LoadingWidget();
+          if (state.status == OtpStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
           }
           return Stack(
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+              SizedBox.expand(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
@@ -73,19 +72,32 @@ class OtpScreen extends StatelessWidget {
                             textAlign: TextAlign.start,
                           ),
                         ),
-                        const _OtpWidget(),
+                        _OtpWidget(
+                          onCompleted: (pin) {
+                            context.read<OtpCubit>().verifyOtp(otp: pin);
+                          },
+                          onChanged: (pin) {
+                            setState(() {
+                              isButtonActive = pin.length == 4;
+                            });
+                          },
+                          errorMessage: state.status == OtpStatus.error
+                              ? context
+                                  .tr(LocaleKeys.verification_code_is_wrong)
+                              : null,
+                        ),
                         Padding(
                           padding: EdgeInsets.only(top: 24.h),
-                          child: RichText(
+                          child: Text.rich(
                             textAlign: TextAlign.center,
-                            text: TextSpan(
+                            TextSpan(
                               text: context.tr(LocaleKeys
                                   .did_not_receive_the_verification_code),
                               style: TextStyles.size16Weight400.copyWith(
                                 color: context.colors.accentTextColor,
                               ),
                               children: [
-                                if (!isCounterDownActive)
+                                if (state.countDownDuration == Duration.zero)
                                   TextSpan(
                                     text: context.tr(LocaleKeys.resend),
                                     style: TextStyles.size16Weight400.copyWith(
@@ -94,22 +106,19 @@ class OtpScreen extends StatelessWidget {
                                       decorationColor:
                                           context.colors.primaryCTAColor,
                                     ),
-                                    recognizer: _tapGestureRecognizer
+                                    recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        context
-                                            .read<OtpCubit>()
-                                            .onResendOtpClicked();
+                                        context.read<OtpCubit>().resendOtp();
                                       },
                                   ),
-                                if (isCounterDownActive &&
-                                    state is OtpCounterDown)
+                                if (state.countDownDuration != Duration.zero)
                                   TextSpan(
                                     text:
-                                        " ${state.counter ~/ 60}:${(state.counter % 60).toString().padLeft(2, '0')}",
+                                        "${state.countDownDuration.inMinutes.toString().padLeft(2, '0')}:${(state.countDownDuration.inSeconds % 60).toString().padLeft(2, '0')}",
                                     style: TextStyles.size16Weight500.copyWith(
                                       color: context.colors.primaryTextColor,
                                     ),
-                                  )
+                                  ),
                               ],
                             ),
                           ),
@@ -125,13 +134,8 @@ class OtpScreen extends StatelessWidget {
                 bottom: 24.h,
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.confirm_code),
-                  isActive: state is OtpButtonEnabled,
-                  onClick: () {
-                    context.read<OtpCubit>().onConfirmCodeSubmit(
-                          int.parse(
-                              context.read<OtpCubit>().otpController.text),
-                        );
-                  },
+                  isActive: isButtonActive,
+                  onClick: () => onConfirmCodeSubmit(context),
                 ),
               )
             ],
