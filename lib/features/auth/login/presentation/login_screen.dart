@@ -34,7 +34,8 @@ class LoginScreen extends StatelessWidget {
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.pushNamed(Routes.otp, arguments: emailToOtp);
+            context.pushNamed(Routes.otp,
+                arguments: context.read<LoginCubit>().emailController.text);
           }
           if (state is LoginError && state.errorMessage != null) {
             toastification.show(

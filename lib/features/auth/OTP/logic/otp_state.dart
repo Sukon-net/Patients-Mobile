@@ -25,6 +25,13 @@ final class OtpError extends OtpState {
 
 final class OtpButtonEnabled extends OtpState {}
 
-final class OtpCounterDown extends OtpState {}
+final class OtpCounterDown extends OtpState {
+  final int counter;
+
+  const OtpCounterDown(this.counter);
+
+  @override
+  List<Object?> get props => [counter];
+}
 
 final class OtpCounterFinished extends OtpState {}

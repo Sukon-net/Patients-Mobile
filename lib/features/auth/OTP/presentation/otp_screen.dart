@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
@@ -19,57 +17,24 @@ import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 part '../widgets/otp_widget.dart';
 
-class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+class OtpScreen extends StatelessWidget {
+  OtpScreen({super.key});
 
-  @override
-  State<OtpScreen> createState() => _OtpScreenState();
-}
-
-class _OtpScreenState extends State<OtpScreen> {
-  bool isCounterDownAvailable = false;
   final TapGestureRecognizer _tapGestureRecognizer = TapGestureRecognizer();
-
-  int _counter = 0;
-  late Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    startCountdown();
-  }
-
-  void startCountdown() {
-    setState(() {
-      isCounterDownAvailable = true;
-      _counter = 60;
-    });
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_counter > 0) {
-        setState(() {
-          _counter--;
-        });
-      } else {
-        _timer.cancel();
-        setState(() {
-          isCounterDownAvailable = false;
-        });
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
+    bool isCounterDownActive = false;
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(
         listener: (context, state) {
+          if (state is OtpCounterDown) {
+            isCounterDownActive = true;
+          }
+          if (state is OtpCounterFinished) {
+            isCounterDownActive = false;
+          }
           if (state is OtpSuccess) {
             context.pushReplacementNamed(Routes.completeProfile);
           }
@@ -77,9 +42,6 @@ class _OtpScreenState extends State<OtpScreen> {
         builder: (context, state) {
           if (state is OtpLoading) {
             return const LoadingWidget();
-          }
-          if (state is OtpCounterDown) {
-            isCounterDownAvailable = true;
           }
           return Stack(
             children: [
@@ -123,37 +85,31 @@ class _OtpScreenState extends State<OtpScreen> {
                                 color: context.colors.accentTextColor,
                               ),
                               children: [
-                                !isCounterDownAvailable
-                                    ? TextSpan(
-                                        text: context.tr(LocaleKeys.resend),
-                                        style:
-                                            TextStyles.size16Weight400.copyWith(
-                                          color: context.colors.primaryCTAColor,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor:
-                                              context.colors.primaryCTAColor,
-                                        ),
-                                        recognizer: _tapGestureRecognizer
-                                          ..onTap = () {
-                                            setState(() {
-                                              _counter = 60;
-                                              isCounterDownAvailable = true;
-                                            });
-                                            startCountdown();
-                                            context
-                                                .read<OtpCubit>()
-                                                .onResendOtpClicked();
-                                          },
-                                      )
-                                    : TextSpan(
-                                        text:
-                                            '${(_counter ~/ 60).toString().padLeft(2, '0')}:${(_counter % 60).toString().padLeft(2, '0')}',
-                                        style:
-                                            TextStyles.size16Weight500.copyWith(
-                                          color:
-                                              context.colors.primaryTextColor,
-                                        ),
-                                      )
+                                if (!isCounterDownActive)
+                                  TextSpan(
+                                    text: context.tr(LocaleKeys.resend),
+                                    style: TextStyles.size16Weight400.copyWith(
+                                      color: context.colors.primaryCTAColor,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor:
+                                          context.colors.primaryCTAColor,
+                                    ),
+                                    recognizer: _tapGestureRecognizer
+                                      ..onTap = () {
+                                        context
+                                            .read<OtpCubit>()
+                                            .onResendOtpClicked();
+                                      },
+                                  ),
+                                if (isCounterDownActive &&
+                                    state is OtpCounterDown)
+                                  TextSpan(
+                                    text:
+                                        " ${state.counter ~/ 60}:${(state.counter % 60).toString().padLeft(2, '0')}",
+                                    style: TextStyles.size16Weight500.copyWith(
+                                      color: context.colors.primaryTextColor,
+                                    ),
+                                  )
                               ],
                             ),
                           ),
