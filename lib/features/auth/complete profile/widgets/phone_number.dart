@@ -33,71 +33,74 @@ class PhoneNumberFormField extends StatelessWidget {
             ),
           ),
         ),
-        PhoneFormField(
-          controller: controller,
-          cursorColor: context.colors.primaryTextColor,
-          initialValue: const PhoneNumber(isoCode: IsoCode.EG, nsn: ''),
-          validator: PhoneValidator.compose([
-            PhoneValidator.required(context),
-            PhoneValidator.validMobile(context, errorText: errorText)
-          ]),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: errorText != null
-                ? context.colors.errorAccentColor
-                : context.colors.primaryBackgroundColor,
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: PhoneFormField(
+            controller: controller,
+            cursorColor: context.colors.primaryTextColor,
+            initialValue: const PhoneNumber(isoCode: IsoCode.EG, nsn: ''),
+            validator: PhoneValidator.compose([
+              //PhoneValidator.required(context),
+              PhoneValidator.validMobile(context, errorText: errorText)
+            ]),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: errorText != null
+                  ? context.colors.errorAccentColor
+                  : context.colors.primaryBackgroundColor,
 
-            ///Default State///
-            enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: 1.r, color: context.colors.borderColor),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
+              ///Default State///
+              enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(width: 1.r, color: context.colors.borderColor),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
 
-            ///Error Handling///
-            errorBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: 2.r, color: context.colors.errorColor),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
+              ///Error Handling///
+              errorBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(width: 2.r, color: context.colors.errorColor),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
 
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 2.r,
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 2.r,
+                  color: context.colors.errorColor,
+                ),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              errorStyle: TextStyles.size14Weight400.copyWith(
                 color: context.colors.errorColor,
               ),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            errorStyle: TextStyles.size14Weight400.copyWith(
-              color: context.colors.errorColor,
-            ),
-            //errorText: errorText,
+              //errorText: errorText,
 
-            ///Focused Handling///
-            focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: 2.r, color: context.colors.primaryCTAColor),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
+              ///Focused Handling///
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    width: 2.r, color: context.colors.primaryCTAColor),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
 
-            ///Hint Text///
-            hintText: hint,
-            hintStyle: TextStyles.size14Weight400
-                .copyWith(color: context.colors.accentTextColor),
-          ),
-          countrySelectorNavigator:
-              const CountrySelectorNavigator.draggableBottomSheet(
-            favorites: [
-              IsoCode.EG,
-              IsoCode.SA,
-              IsoCode.PS,
-              IsoCode.AE,
-            ],
-          ),
-          countryButtonStyle: const CountryButtonStyle(
-            showDialCode: false,
-            showIsoCode: true,
-            showFlag: false,
+              ///Hint Text///
+              hintText: hint,
+              hintStyle: TextStyles.size14Weight400
+                  .copyWith(color: context.colors.accentTextColor),
+            ),
+            countrySelectorNavigator:
+                const CountrySelectorNavigator.draggableBottomSheet(
+              favorites: [
+                IsoCode.EG,
+                IsoCode.SA,
+                IsoCode.PS,
+                IsoCode.AE,
+              ],
+            ),
+            countryButtonStyle: const CountryButtonStyle(
+              showDialCode: false,
+              showIsoCode: true,
+              showFlag: false,
+            ),
           ),
         ),
       ],

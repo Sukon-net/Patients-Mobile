@@ -27,8 +27,8 @@
   "invalid_email_format": "تنسيق البريد الإلكتروني غير صالح",
   "verify_email": "التحقق من البريد الإلكتروني",
   "enter_the_verification_code": "أدخل رمز التحقق المرسل إلى بريدك الإلكتروني",
-  "did_not_receive_the_verification_code": "لم يصلك رمز التحقق؟",
-  "second": "ثانية",
+  "did_not_receive_the_verification_code": "لم يصلك رمز التحقق؟ ",
+  "second": " ثانية",
   "confirm_code": "تأكيد الرمز",
   "resend": "إعادة إرسال",
   "verification_code_is_wrong": "رمز التحقق خاطئ",
@@ -44,5 +44,7 @@
   "phone_number": "رقم الهاتف",
   "create_account": "إنشاء الحساب",
   "invalid_name_format": "يجب أن يحتوي الإسم علي 3 أحرف على الأقل",
-  "invalid_phone_format": "تنسيق رقم الهاتف غير صالح"
+  "invalid_phone_format": "تنسيق رقم الهاتف غير صالح",
+  "no_internet_connection": "لا يوجد اتصال بالانترنت",
+  "unknown_error_has_occurred": "حدثت مشكلة غير متوقعة، من فضلك عاود المحاولة في وقت لاحق."
 }

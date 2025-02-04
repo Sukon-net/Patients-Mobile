@@ -45,4 +45,6 @@ abstract class LocaleKeys {
   static const create_account = 'create_account';
   static const invalid_name_format = 'invalid_name_format';
   static const invalid_phone_format = 'invalid_phone_format';
+  static const no_internet_connection = 'no_internet_connection';
+  static const unknown_error_has_occurred = 'unknown_error_has_occurred';
 }

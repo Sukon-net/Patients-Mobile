@@ -6,11 +6,5 @@ class Validators {
         .hasMatch(email);
   }
 
-  //TODO edit isValidOtp function
-  static bool isValidOtp(int otpCode) {
-    if (otpCode == 1234) return true;
-    return false;
-  }
-
   static bool isValidName(String name) => name.length >= 3;
 }

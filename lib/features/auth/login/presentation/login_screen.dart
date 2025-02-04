@@ -1,8 +1,8 @@
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
-import 'package:clients/core/utils/extensions/context_extension.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
+import 'package:clients/core/utils/toastifications.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/flavors/flavor_config.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -25,16 +24,26 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
     final isKeyboardVisible = bottomInsets > 100;
+    final backgroundColor = context.colors.errorAccentColor;
+    final textColor = context.colors.primaryTextColor;
+    final borderColor = context.colors.errorColor;
+
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.pushNamed(Routes.otp);
+            context.pushNamed(Routes.otp,
+                arguments: context.read<LoginCubit>().emailController.text);
           }
           if (state is LoginError && state.errorMessage != null) {
-            // TODO: Change to toastification
-            context.showSnackBar(message: state.errorMessage!);
+            Toastifications.show(
+              context: context,
+              message: state.errorMessage!,
+              textColor: textColor,
+              borderColor: borderColor,
+              backgroundColor: backgroundColor,
+            );
           }
         },
         builder: (context, state) {
@@ -105,10 +114,6 @@ class LoginScreen extends StatelessWidget {
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.send_verification_code),
                   onClick: () {
-                    if (FlavorConfig.isDevelopment()) {
-                      context.read<LoginCubit>().emailController.text =
-                          "nadinahmed316@gmail.com";
-                    }
                     context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
                   isActive: state is LoginButtonEnabled,
