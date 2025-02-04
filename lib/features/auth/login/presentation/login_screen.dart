@@ -2,7 +2,7 @@ import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
+import 'package:clients/core/utils/toastifications.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
@@ -14,7 +14,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:toastification/toastification.dart';
 
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 
@@ -38,22 +37,12 @@ class LoginScreen extends StatelessWidget {
                 arguments: context.read<LoginCubit>().emailController.text);
           }
           if (state is LoginError && state.errorMessage != null) {
-            toastification.show(
+            Toastifications.show(
               context: context,
-              title: Text(
-                state.errorMessage!,
-                style: TextStyle(
-                  color: textColor,
-                ),
-              ),
-              style: ToastificationStyle.flatColored,
-              type: ToastificationType.error,
-              closeOnClick: true,
-              dragToClose: true,
-              autoCloseDuration: 3.seconds,
-              borderSide: BorderSide(color: borderColor),
+              message: state.errorMessage!,
+              textColor: textColor,
+              borderColor: borderColor,
               backgroundColor: backgroundColor,
-              closeButtonShowType: CloseButtonShowType.none,
             );
           }
         },

@@ -1,9 +1,13 @@
+import 'package:clients/core/networking/failures.dart';
 import 'package:clients/features/auth/OTP/data/datasource/otp_service.dart';
+import 'package:clients/features/auth/model/authed_user.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class OtpRepository {
-  Future<Either<String, void>> resendOtp();
-  Future<Either<String, void>> verifyOtp({required String otp, required String email});
+  Future<Either<String, BackendFailure>> resendOtp(String email);
+
+  Future<Either<AuthedUser, BackendFailure>> verifyOtp(
+      {required int otp, required String email});
 }
 
 class OtpRepositoryImpl extends OtpRepository {
@@ -13,23 +17,13 @@ class OtpRepositoryImpl extends OtpRepository {
       : _otpService = otpService;
 
   @override
-  Future<Either<String, void>> resendOtp() async {
-    try {
-      await _otpService.resendOtp();
-      return right(null);
-    } catch (e) {
-      return left(e.toString());
-    }
+  Future<Either<String, BackendFailure>> resendOtp(String email) async {
+    return _otpService.resendOtp(email);
   }
 
   @override
-  Future<Either<String, void>> verifyOtp({required String otp, required String email}) async {
-    try {
-      await _otpService.verifyOtp(otp, email);
-      return right(null);
-    } catch (e) {
-      return left(e.toString());
-    }
+  Future<Either<AuthedUser, BackendFailure>> verifyOtp(
+      {required int otp, required String email}) async {
+    return _otpService.verifyOtp(otp, email);
   }
-
 }

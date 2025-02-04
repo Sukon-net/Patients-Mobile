@@ -4,12 +4,19 @@ class _OtpWidget extends StatelessWidget {
   final void Function(String) onCompleted;
   final void Function(String) onChanged;
   final String? errorMessage;
-  const _OtpWidget(
-      {required this.onCompleted, required this.onChanged, this.errorMessage});
+  final TextEditingController? controller;
+
+  const _OtpWidget({
+    required this.onCompleted,
+    required this.onChanged,
+    this.errorMessage,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Pinput(
+      controller: controller,
       crossAxisAlignment: CrossAxisAlignment.start,
       onCompleted: onCompleted,
       onChanged: onChanged,

@@ -13,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../core/l10n/generated/locale_keys.g.dart';
+import '../../../../core/utils/toastifications.dart';
 
 part '../widgets/otp_widget.dart';
 
@@ -25,19 +26,36 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   bool isButtonActive = false;
+  final TextEditingController _controller = TextEditingController();
 
-  void onConfirmCodeSubmit(BuildContext context) {
-    context.pushReplacementNamed(Routes.completeProfile);
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = context.colors.errorAccentColor;
+    final textColor = context.colors.primaryTextColor;
+    final borderColor = context.colors.errorColor;
+
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocConsumer<OtpCubit, OtpState>(
+        listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
           if (state.status == OtpStatus.success) {
             context.pushReplacementNamed(Routes.completeProfile);
+          }
+          if (state.status == OtpStatus.error) {
+            Toastifications.show(
+              context: context,
+              message: state.errorMessage,
+              textColor: textColor,
+              borderColor: borderColor,
+              backgroundColor: backgroundColor,
+            );
           }
         },
         builder: (context, state) {
@@ -73,6 +91,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                         ),
                         _OtpWidget(
+                          controller: _controller,
                           onCompleted: (pin) {
                             context.read<OtpCubit>().verifyOtp(otp: pin);
                           },
@@ -135,7 +154,11 @@ class _OtpScreenState extends State<OtpScreen> {
                 child: PrimaryFilledButton(
                   text: context.tr(LocaleKeys.confirm_code),
                   isActive: isButtonActive,
-                  onClick: () => onConfirmCodeSubmit(context),
+                  onClick: () {
+                    context
+                        .read<OtpCubit>()
+                        .onConfirmCodeSubmit(otp: _controller.text);
+                  },
                 ),
               )
             ],

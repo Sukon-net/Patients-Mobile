@@ -10,6 +10,7 @@ part 'otp_state.dart';
 class OtpCubit extends Cubit<OtpState> {
   final OtpRepository _otpRepository;
   final String email;
+
   OtpCubit(this._otpRepository, this.email)
       : super(const OtpState(countDownDuration: _defaultTimer));
 
@@ -34,13 +35,32 @@ class OtpCubit extends Cubit<OtpState> {
   }
 
   void resendOtp() {
-    _otpRepository.resendOtp();
-    emit(state.copyWith(countDownDuration: _defaultTimer));
+    emit(state.copyWith(status: OtpStatus.loading));
+    _otpRepository.resendOtp(email);
+    emit(state.copyWith(
+        status: OtpStatus.initial, countDownDuration: _defaultTimer));
     startTimer();
   }
 
   void verifyOtp({required String otp}) {
-    _otpRepository.verifyOtp(otp: otp, email: email);
+    emit(state.copyWith(status: OtpStatus.loading));
+    _otpRepository
+        .verifyOtp(otp: int.parse(otp.trim()), email: email)
+        .then((result) {
+      result.fold(
+        (_) => emit(state.copyWith(status: OtpStatus.success)),
+        (error) => emit(
+          state.copyWith(
+            status: OtpStatus.error,
+            errorMessage: error.message,
+          ),
+        ),
+      );
+    });
+  }
+
+  void onConfirmCodeSubmit({required String otp}) {
+    verifyOtp(otp: otp);
   }
 
   @override

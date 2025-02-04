@@ -1,5 +1,6 @@
 import 'package:clients/core/flavors/flavor_config.dart';
 import 'package:clients/core/routing/app_router.dart';
+import 'package:clients/core/routing/navigator_service.dart';
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: NavigatorService.navigatorKey,
       locale: context.locale,
       localizationsDelegates: [
         ...context.localizationDelegates,
