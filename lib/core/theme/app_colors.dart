@@ -15,6 +15,17 @@ abstract class AppColors {
   abstract final Color errorColor;
   abstract final Color errorAccentColor;
   abstract final Color dividerColor;
+  abstract final Color imgBorderColor;
+  abstract final Color secondaryBorderColor;
+  abstract final Color onSecondaryBorderColor;
+  abstract final Color navBarLabel;
+  abstract final Color secondaryBackgroundColor;
+  abstract final Color primaryProgressColor;
+  abstract final Color secondaryProgressColor;
+  abstract final Color backgroundCategoryIconColor;
+  abstract final Color secondaryCTABackgroundColor;
+  abstract final Color blackWith10Opacity;
+  abstract final List<Color> adGradientColors;
 }
 
 class LightAppColors extends AppColors {
@@ -34,7 +45,7 @@ class LightAppColors extends AppColors {
   final Color primaryBackgroundColor = const Color(0xFFFFFFFF);
 
   @override
-  final Color primaryTextColor = const Color(0xFF121217);
+  final Color primaryTextColor = const Color(0xFF282833);
 
   @override
   final Color secondaryTextColor = const Color(0xFF222744);
@@ -59,6 +70,42 @@ class LightAppColors extends AppColors {
 
   @override
   final Color subTextColor = const Color(0xFF8E8E8E);
+
+  @override
+  final Color imgBorderColor = const Color(0xFF1C3E7F);
+
+  @override
+  final Color secondaryBorderColor = const Color(0xFFEBEBEF);
+
+  @override
+  final Color onSecondaryBorderColor = const Color(0xFF55556D);
+
+  @override
+  final Color navBarLabel = const Color(0xFF8A8AA3);
+
+  @override
+  final Color secondaryBackgroundColor = const Color(0xFF52FFB8);
+
+  @override
+  final Color primaryProgressColor = const Color(0xFF0061A6);
+
+  @override
+  final Color secondaryProgressColor = const Color(0x3B14A5F8);
+
+  @override
+  final Color backgroundCategoryIconColor = const Color(0xFFF7F7F8);
+
+  @override
+  final List<Color> adGradientColors = [
+    const Color(0xFFEBEBEF),
+    const Color(0xFFF7F7F8),
+  ];
+
+  @override
+  final Color secondaryCTABackgroundColor = const Color(0xFFDFF0FF);
+
+  @override
+  final Color blackWith10Opacity = const Color(0x1A000000);
 }
 
 class DarkAppColors extends AppColors {
@@ -78,7 +125,7 @@ class DarkAppColors extends AppColors {
   final Color primaryBackgroundColor = const Color(0xFFFFFFFF);
 
   @override
-  final Color primaryTextColor = const Color(0xFF121217);
+  final Color primaryTextColor = const Color(0xFF282833);
 
   @override
   final Color secondaryTextColor = const Color(0xFF222744);
@@ -103,4 +150,40 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color subTextColor = const Color(0xFF8E8E8E);
+
+  @override
+  final Color imgBorderColor = const Color(0xFF1C3E7F);
+
+  @override
+  final Color secondaryBorderColor = const Color(0xFFEBEBEF);
+
+  @override
+  final Color onSecondaryBorderColor = const Color(0xFF55556D);
+
+  @override
+  final Color navBarLabel = const Color(0xFF8A8AA3);
+
+  @override
+  final Color secondaryBackgroundColor = const Color(0xFF52FFB8);
+
+  @override
+  final Color primaryProgressColor = const Color(0xFF0061A6);
+
+  @override
+  final Color secondaryProgressColor = const Color(0x3B14A5F8);
+
+  @override
+  final Color backgroundCategoryIconColor = const Color(0xFFF7F7F8);
+
+  @override
+  final List<Color> adGradientColors = [
+    const Color(0xFFEBEBEF),
+    const Color(0xFFF7F7F8),
+  ];
+
+  @override
+  final Color secondaryCTABackgroundColor = const Color(0xFFDFF0FF);
+
+  @override
+  final Color blackWith10Opacity = const Color(0x1A000000);
 }

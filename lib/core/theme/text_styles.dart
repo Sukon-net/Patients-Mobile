@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TextStyles{
+class TextStyles {
   TextStyles._();
 
   static TextStyle size30Weight700 = TextStyle(
@@ -58,5 +57,25 @@ class TextStyles{
   static TextStyle size24Weight700 = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle size20Weight600 = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w600,
+  );
+
+  static TextStyle size12Weight400 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle size12Weight500 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle size10Weight400 = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
   );
 }

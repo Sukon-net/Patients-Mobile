@@ -5,6 +5,8 @@ import 'package:clients/features/auth/complete%20profile/logic/complete_profile_
 import 'package:clients/features/auth/complete%20profile/presentation/complete_profile_screen.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/login/presentation/login_screen.dart';
+import 'package:clients/features/home/logic/home_cubit.dart';
+import 'package:clients/features/home/presentation/home_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +46,12 @@ class AppRouter {
           ),
         );
       case Routes.home:
-        return MaterialPageRoute(builder: (_) => Container());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => HomeCubit(),
+            child: const HomeScreen(),
+          ),
+        );
       default:
         return _buildInvalidRoute(settings);
     }
