@@ -1,6 +1,5 @@
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
