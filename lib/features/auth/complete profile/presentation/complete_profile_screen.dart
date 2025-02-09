@@ -1,3 +1,4 @@
+import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
@@ -6,6 +7,7 @@ import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
 import 'package:clients/features/auth/complete%20profile/widgets/gender_selector.dart';
 import 'package:clients/features/auth/complete%20profile/widgets/phone_number.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -25,7 +27,8 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: sl<AuthCubit>().state.authedUser?.user.email);
   Gender? gender;
 
   @override
@@ -154,6 +157,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       label: context.tr(LocaleKeys.email),
                       hint: 'example@example.com',
                       controller: emailController,
+                      enabled: false,
                       keyboardType: TextInputType.emailAddress,
                       errorText: state is CompleteProfileError
                           ? state.emailErrorMessage
@@ -166,9 +170,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       text: context.tr(LocaleKeys.create_account),
                       onClick: () {
                         context.read<CompleteProfileCubit>().onCreateAccSubmit(
-                            firstNameController.text,
-                            lastNameController.text,
-                            emailController.text);
+                              firstNameController.text,
+                              lastNameController.text,
+                              emailController.text,
+                            );
                       },
                       isActive: state is CompProfileButtonEnabled,
                     ),

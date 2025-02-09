@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
 import 'package:clients/features/auth/OTP/data/repository/otp_repository.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +12,7 @@ part 'otp_state.dart';
 class OtpCubit extends Cubit<OtpState> {
   final OtpRepository _otpRepository;
   final String email;
+  final AuthCubit _authCubit = sl();
 
   OtpCubit(this._otpRepository, this.email)
       : super(const OtpState(countDownDuration: _defaultTimer));
@@ -48,7 +51,10 @@ class OtpCubit extends Cubit<OtpState> {
         .verifyOtp(otp: int.parse(otp.trim()), email: email)
         .then((result) {
       result.fold(
-        (_) => emit(state.copyWith(status: OtpStatus.success)),
+        (authedUser) {
+          _authCubit.authenticateUser(authedUser);
+          emit(state.copyWith(status: OtpStatus.success));
+        },
         (error) => emit(
           state.copyWith(
             status: OtpStatus.error,
