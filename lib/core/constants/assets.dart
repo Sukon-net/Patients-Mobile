@@ -19,4 +19,49 @@ class Assets {
       "assets/svg/sukon_logo_with_text.svg";
   static const String assetsSvgSukonWBlueBackground =
       "assets/svg/sukon_w_blue_background.svg";
+  static const String assetsNotificationIcon = "assets/icons/notification.svg";
+  static const String assetsSearchIcon = "assets/icons/search.svg";
+  static const String assetsHomeLogo = "assets/images/home_logo.png";
+  static const String assetsBoyAvatar = "assets/images/boy_avatar.png";
+  static const String assetsGirlAvatar = "assets/images/girl_avatar.png";
+  static const String assetsHomeIcon = "assets/icons/home.svg";
+  static const String assetsHomeActiveIcon = "assets/icons/home_active.svg";
+  static const String assetsSearchNavBarIcon =
+      "assets/icons/search_nav_bar.svg";
+  static const String assetsSearchNavBarActiveIcon =
+      "assets/icons/search_nav_bar_active.svg";
+  static const String assetsCalendarIcon = "assets/icons/calendar.svg";
+  static const String assetsCalendarActiveIcon =
+      "assets/icons/calendar_active.svg";
+  static const String assetsMessagesIcon = "assets/icons/message.svg";
+  static const String assetsMessagesActiveIcon =
+      "assets/icons/message_active.svg";
+  static const String assetsMoreIcon = "assets/icons/more.svg";
+  static const String assetsMoreActiveIcon = "assets/icons/more_active.svg";
+  static const String assetsTaskIcon = "assets/icons/task_icon.svg";
+  static const String assetsTimeIcon = "assets/icons/time_icon.svg";
+  static const String assetsBlueArrowBackIcon =
+      "assets/icons/blue_arrow_back.svg";
+  static const String assetsGeneralPsychiatryIcon =
+      "assets/icons/general_psychiatry.svg";
+  static const String assetsMentalDisordersIcon =
+      "assets/icons/mental_disorders.svg";
+  static const String assetsAddictionTreatmentIcon =
+      "assets/icons/addiction_treatment.svg";
+  static const String assetsChildrenAndTeenagersIcon =
+      "assets/icons/children_and_teenagers.svg";
+  static const String assetsFamilyTherapyIcon =
+      "assets/icons/family_therapy.svg";
+  static const String assetsCognitiveBehavioralIcon =
+      "assets/icons/cognitive_behavioral.svg";
+  static const String assetsGrayLogo = "assets/images/gray_logo.svg";
+  static const String assetsOnlineIcon = "assets/icons/online_icon.svg";
+  static const String assetsTimerIcon = "assets/icons/timer_icon.svg";
+  static const String assetsDateIcon = "assets/icons/date_icon.svg";
+  static const String assetsAppointmentsIcon =
+      "assets/icons/appointments_icon.svg";
+  static const String assetsChatIcon = "assets/icons/chat_icon.svg";
+  static const String assetsExperienceIcon = "assets/icons/experience_icon.svg";
+  static const String assetsStarRateIcon = "assets/icons/star_rate_icon.svg";
+  static const String assetsSeeMoreIcon = "assets/icons/see_more_icon.svg";
 }
