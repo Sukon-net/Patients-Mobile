@@ -40,7 +40,8 @@ abstract class LocaleKeys {
   static const gender = 'gender';
   static const male = 'male';
   static const female = 'female';
-  static const age = 'age';
+  static const date_of_birth = 'date_of_birth';
+  static const date_of_birth_hint = 'date_of_birth_hint';
   static const phone_number = 'phone_number';
   static const create_account = 'create_account';
   static const invalid_name_format = 'invalid_name_format';

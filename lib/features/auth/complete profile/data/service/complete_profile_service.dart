@@ -1,22 +1,26 @@
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/networking/failures.dart';
-import 'package:clients/features/auth/model/authed_user.dart';
+import 'package:clients/features/auth/model/authed_user/authed_user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../../model/complete_profile_request.dart';
+
 class CompleteProfileService {
   final Dio _dio;
+
   const CompleteProfileService(this._dio);
 
-  Future<Either<AuthedUser, BackendFailure>> completeProfile(String firstName,
-      String lastName, String email, String phoneNumber, String gender) async {
+  Future<Either<AuthedUser, BackendFailure>> completeProfile(
+      CompleteProfileRequest compProfileReq) async {
     try {
       final response = await _dio.post(ApiConstants.updateProfile, data: {
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'mobile': phoneNumber,
-        'gender': gender,
+        'firstName': compProfileReq.firstName,
+        'lastName': compProfileReq.lastName,
+        'email': compProfileReq.email,
+        'date_of_birth': compProfileReq.dateOfBirth,
+        'mobile': compProfileReq.phoneNumber,
+        'gender': compProfileReq.gender.toString(),
         '_method': 'put',
       });
       return left(AuthedUser.fromJson(response.data));

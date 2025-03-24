@@ -3,7 +3,6 @@ import 'package:clients/core/routing/app_router.dart';
 import 'package:clients/core/routing/navigator_service.dart';
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
@@ -24,13 +23,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: context.supportedLocales,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: Routes.onboarding,
+      initialRoute: Routes.completeProfile,
       theme: _buildAppThemeData(context),
       onGenerateTitle: (context) => context.tr(LocaleKeys.app_name),
       debugShowCheckedModeBanner: FlavorConfig.isDevelopment(),
-      home: const Scaffold(
-        body: OnboardingScreen(),
-      ),
     );
   }
 }

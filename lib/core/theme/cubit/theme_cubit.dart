@@ -1,14 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:clients/core/theme/app_theme.dart';
-import 'package:clients/core/utils/shared_preferences/shared_preferences_helper.dart';
-import 'package:clients/core/utils/shared_preferences/shared_preferences_keys.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../storage/shared_preferences/shared_preferences_helper.dart';
+import '../../storage/shared_preferences/shared_preferences_keys.dart';
 
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
   final SharedPreferencesHelper _sharedPreferencesHelper;
+
   ThemeCubit(this._sharedPreferencesHelper)
       : super(const ThemeState(AppTheme(isDarkTheme: false)));
 

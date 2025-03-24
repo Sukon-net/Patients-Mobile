@@ -38,7 +38,6 @@ class PhoneNumberFormField extends StatelessWidget {
           child: PhoneFormField(
             controller: controller,
             cursorColor: context.colors.primaryTextColor,
-            initialValue: const PhoneNumber(isoCode: IsoCode.EG, nsn: ''),
             validator: PhoneValidator.compose([
               //PhoneValidator.required(context),
               PhoneValidator.validMobile(context, errorText: errorText)

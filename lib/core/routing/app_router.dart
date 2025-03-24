@@ -39,7 +39,7 @@ class AppRouter {
       case Routes.completeProfile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => CompleteProfileCubit(),
+            create: (BuildContext context) => CompleteProfileCubit(sl()),
             child: const CompleteProfileScreen(),
           ),
         );

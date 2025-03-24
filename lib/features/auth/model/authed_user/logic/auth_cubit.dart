@@ -1,4 +1,4 @@
-import 'package:clients/features/auth/model/authed_user.dart';
+import 'package:clients/features/auth/model/authed_user/authed_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,10 +8,12 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthState());
 
   void authenticateUser(AuthedUser authedUser) {
-    emit(state.copyWith(
-      status: AuthStatus.authenticated,
-      authedUser: authedUser,
-    ));
+    emit(
+      state.copyWith(
+        status: AuthStatus.authenticated,
+        authedUser: authedUser,
+      ),
+    );
   }
 
   void logout() {

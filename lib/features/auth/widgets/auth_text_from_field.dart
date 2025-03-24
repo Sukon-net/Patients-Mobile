@@ -16,6 +16,8 @@ class AuthTextFromField extends StatelessWidget {
     this.keyboardType,
     this.autoFillHints,
     this.enabled = true,
+    this.showDisabledState = false,
+    this.initialValue,
   });
 
   final String label;
@@ -27,6 +29,8 @@ class AuthTextFromField extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final List<String>? autoFillHints;
   final bool enabled;
+  final bool showDisabledState;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +47,25 @@ class AuthTextFromField extends StatelessWidget {
           ),
         ),
         TextFormField(
+          initialValue: initialValue,
           enabled: enabled,
           controller: controller,
           keyboardType: keyboardType,
           cursorColor: context.colors.primaryTextColor,
           cursorErrorColor: context.colors.primaryTextColor,
           autofillHints: autoFillHints,
+          style: TextStyles.size14Weight400.copyWith(
+            color: showDisabledState
+                ? context.colors.accentTextColor
+                : context.colors.primaryTextColor,
+          ),
           decoration: InputDecoration(
             filled: true,
             fillColor: errorText != null
                 ? context.colors.errorAccentColor
-                : enabled
-                    ? context.colors.primaryBackgroundColor
-                    : context.colors.disabledBackgroundColor,
+                : showDisabledState
+                    ? context.colors.disabledBackgroundColor
+                    : context.colors.primaryBackgroundColor,
 
             ///Default State///
             enabledBorder: OutlineInputBorder(
