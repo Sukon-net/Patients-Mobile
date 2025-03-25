@@ -1,10 +1,19 @@
+import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/storage/secure_storage/secure_storage_helper.dart';
+import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
+import 'package:clients/features/model/user.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    final authCubit = sl<AuthCubit>();
+    final isGuest = authCubit.currentUser == User.guest;
+    if (isGuest) {
+      handler.next(options);
+      return;
+    }
     final String? token = await SecureStorageHelper.getAccessToken();
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
@@ -14,7 +23,8 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    //TODO if error 401 unauthorized => return to login
-    if (err.response?.statusCode == 401) {}
+    if (err.response?.statusCode == 401) {
+      sl<AuthCubit>().logout();
+    }
   }
 }

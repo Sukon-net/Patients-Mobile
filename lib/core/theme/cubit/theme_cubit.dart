@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../storage/shared_preferences/shared_preferences_helper.dart';
-import '../../storage/shared_preferences/shared_preferences_keys.dart';
 
 part 'theme_state.dart';
 

@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+part 'shared_preferences_keys.dart';
+
 class SharedPreferencesHelper {
   final SharedPreferences _sharedPreferences;
   const SharedPreferencesHelper(this._sharedPreferences);

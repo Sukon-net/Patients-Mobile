@@ -18,6 +18,7 @@ class AuthTextFromField extends StatelessWidget {
     this.enabled = true,
     this.showDisabledState = false,
     this.initialValue,
+    this.validator,
   });
 
   final String label;
@@ -31,6 +32,7 @@ class AuthTextFromField extends StatelessWidget {
   final bool enabled;
   final bool showDisabledState;
   final String? initialValue;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +49,10 @@ class AuthTextFromField extends StatelessWidget {
           ),
         ),
         TextFormField(
+          validator: validator,
           initialValue: initialValue,
           enabled: enabled,
+          autovalidateMode: AutovalidateMode.onUnfocus,
           controller: controller,
           keyboardType: keyboardType,
           cursorColor: context.colors.primaryTextColor,

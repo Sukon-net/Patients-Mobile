@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/utils/validators.dart';
 import 'package:clients/features/auth/complete%20profile/data/repository/complete_profile_repository.dart';
-import 'package:clients/features/auth/complete%20profile/model/complete_profile_request.dart';
+import 'package:clients/features/auth/complete%20profile/data/model/complete_profile_request.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

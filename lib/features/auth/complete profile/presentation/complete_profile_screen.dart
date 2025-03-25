@@ -4,12 +4,13 @@ import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
+import 'package:clients/core/utils/validators.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
+import 'package:clients/features/auth/complete%20profile/data/model/complete_profile_request.dart';
 import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
-import 'package:clients/features/auth/complete%20profile/model/complete_profile_request.dart';
-import 'package:clients/features/auth/complete%20profile/widgets/gender_selector.dart';
-import 'package:clients/features/auth/complete%20profile/widgets/phone_number.dart';
+import 'package:clients/features/auth/complete%20profile/presentation/widgets/gender_selector.dart';
+import 'package:clients/features/auth/complete%20profile/presentation/widgets/phone_number.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
 import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,11 +33,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController =
-      TextEditingController(text: sl<AuthCubit>().state.authedUser?.user.email);
+      TextEditingController(text: sl<AuthCubit>().currentUser?.email);
+  final TextEditingController dateOfBirthController = TextEditingController();
   DateTime? dateOfBirth;
   final PhoneController phoneController = PhoneController(
       initialValue: const PhoneNumber(isoCode: IsoCode.EG, nsn: ''));
   Gender? gender;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -71,6 +74,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
+    dateOfBirthController.dispose();
+    _formKey.currentState?.dispose();
     super.dispose();
   }
 
@@ -96,6 +101,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 top: 16.h,
               ),
               child: Form(
+                key: _formKey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,9 +125,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         label: context.tr(LocaleKeys.first_name),
                         hint: context.tr(LocaleKeys.required),
                         controller: firstNameController,
-                        errorText: state is CompleteProfileError
-                            ? state.firstNameErrorMessage
-                            : null,
+                        validator: (value) {
+                          if (!Validators.isValidName(value ?? '')) {
+                            return context.tr(LocaleKeys.invalid_name_format);
+                          }
+                          return null;
+                        },
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -129,9 +138,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           label: context.tr(LocaleKeys.last_name),
                           hint: context.tr(LocaleKeys.required),
                           controller: lastNameController,
-                          errorText: state is CompleteProfileError
-                              ? state.lastNameErrorMessage
-                              : null,
+                          validator: (value) {
+                            if (!Validators.isValidName(value ?? '')) {
+                              return context.tr(LocaleKeys.invalid_name_format);
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -150,18 +162,28 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           });
                         },
                         currentSelection: gender,
+                        validator: (value) {
+                          if (value == null) {
+                            return context.tr(LocaleKeys.required);
+                          }
+                          return null;
+                        },
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 16.h),
                         child: GestureDetector(
                           onTap: _showTimePicker,
                           child: AuthTextFromField(
+                            controller: dateOfBirthController,
                             label: context.tr(LocaleKeys.date_of_birth),
                             hint: context.tr(LocaleKeys.date_of_birth_hint),
                             enabled: false,
-                            initialValue: dateOfBirth != null
-                                ? DateFormat('dd/MM/yyyy').format(dateOfBirth!)
-                                : null,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return context.tr(LocaleKeys.required);
+                              }
+                              return null;
+                            },
                           ),
                         ),
                       ),
@@ -169,9 +191,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         controller: phoneController,
                         label: context.tr(LocaleKeys.phone_number),
                         hint: '(000)-000-00000',
-                        errorText: state is CompleteProfileError
-                            ? state.phoneErrorMessage
-                            : null,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 16.h, bottom: 41.h),
@@ -182,9 +201,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           enabled: false,
                           keyboardType: TextInputType.emailAddress,
                           showDisabledState: true,
-                          errorText: state is CompleteProfileError
-                              ? state.emailErrorMessage
-                              : null,
+                          validator: (value) {
+                            if (!Validators.isValidEmail(value ?? '')) {
+                              return context
+                                  .tr(LocaleKeys.invalid_email_format);
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -192,19 +215,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         child: PrimaryFilledButton(
                           text: context.tr(LocaleKeys.create_account),
                           onClick: () {
-                            context
-                                .read<CompleteProfileCubit>()
-                                .onCreateAccSubmit(
-                                  CompleteProfileRequest(
-                                    firstName: firstNameController.text,
-                                    lastName: lastNameController.text,
-                                    email: emailController.text,
-                                    phoneNumber:
-                                        phoneController.value.toString(),
-                                    dateOfBirth: dateOfBirth,
-                                    gender: gender,
-                                  ),
-                                );
+                            if (_formKey.currentState?.validate() ?? false) {
+                              context
+                                  .read<CompleteProfileCubit>()
+                                  .onCreateAccSubmit(
+                                    CompleteProfileRequest(
+                                      firstName: firstNameController.text,
+                                      lastName: lastNameController.text,
+                                      email: emailController.text,
+                                      phoneNumber:
+                                          phoneController.value.toString(),
+                                      dateOfBirth: dateOfBirth,
+                                      gender: gender,
+                                    ),
+                                  );
+                            }
                           },
                         ),
                       )
@@ -220,7 +245,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   }
 
   void _showTimePicker() async {
-    final dataFormatter = DateFormat('dd/MM/yyyy');
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 100, now.month, now.day);
     final lastDate = DateTime.now();
@@ -233,6 +257,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     if (pickedDate != null) {
       setState(() {
         dateOfBirth = pickedDate;
+        dateOfBirthController.text =
+            DateFormat('dd/MM/yyyy').format(dateOfBirth!);
       });
     }
   }

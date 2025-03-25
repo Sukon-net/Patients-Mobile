@@ -4,7 +4,7 @@ import 'package:clients/features/auth/model/authed_user/authed_user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../model/complete_profile_request.dart';
+import '../model/complete_profile_request.dart';
 
 class CompleteProfileService {
   final Dio _dio;

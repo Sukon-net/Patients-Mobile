@@ -1,4 +1,4 @@
-part of '../presentation/otp_screen.dart';
+part of '../otp_screen.dart';
 
 class _OtpWidget extends StatelessWidget {
   final void Function(String) onCompleted;

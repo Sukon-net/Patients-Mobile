@@ -2,7 +2,7 @@ import 'package:clients/core/networking/failures.dart';
 import 'package:clients/features/auth/model/authed_user/authed_user.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../model/complete_profile_request.dart';
+import '../model/complete_profile_request.dart';
 import '../service/complete_profile_service.dart';
 
 abstract class CompleteProfileRepository {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
-import '../../../../core/theme/text_styles.dart';
+import '../../../../../core/theme/text_styles.dart';
 
 class PhoneNumberFormField extends StatelessWidget {
   final String label;
@@ -39,9 +39,10 @@ class PhoneNumberFormField extends StatelessWidget {
             controller: controller,
             cursorColor: context.colors.primaryTextColor,
             validator: PhoneValidator.compose([
-              //PhoneValidator.required(context),
+              PhoneValidator.required(context),
               PhoneValidator.validMobile(context, errorText: errorText)
             ]),
+            autovalidateMode: AutovalidateMode.onUnfocus,
             decoration: InputDecoration(
               filled: true,
               fillColor: errorText != null

@@ -5,6 +5,7 @@ import 'package:clients/features/auth/complete%20profile/data/repository/complet
 import 'package:clients/features/auth/complete%20profile/data/service/complete_profile_service.dart';
 import 'package:clients/features/auth/login/data/datasource/login_service.dart';
 import 'package:clients/features/auth/login/data/repository/login_repository.dart';
+import 'package:clients/features/auth/model/authed_user/data/repository/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +24,8 @@ Future<void> initDI() async {
   sl.registerLazySingleton(() => DioFactory.getDio());
 
   // Auth
-  sl.registerLazySingleton(() => AuthCubit());
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton(() => AuthCubit(sl()));
 
   //Login
   sl.registerLazySingleton(() => LoginService(dio: sl()));
