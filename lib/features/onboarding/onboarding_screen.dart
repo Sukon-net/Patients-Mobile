@@ -91,7 +91,6 @@ class OnboardingScreen extends StatelessWidget {
                     ],
                   ),
                   TextButton(
-                    // TODO: when continue as a guest pressed
                     onPressed: () {
                       sl<AuthCubit>().continueAsGuest();
                     },

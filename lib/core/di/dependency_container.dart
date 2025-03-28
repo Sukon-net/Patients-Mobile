@@ -24,7 +24,8 @@ Future<void> initDI() async {
   sl.registerLazySingleton(() => DioFactory.getDio());
 
   // Auth
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(sl(), sl()));
   sl.registerLazySingleton(() => AuthCubit(sl()));
 
   //Login
