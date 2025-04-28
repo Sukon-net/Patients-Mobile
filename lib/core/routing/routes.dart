@@ -6,5 +6,6 @@ class Routes {
   static const String login = '/login';
   static const String otp = '/otp';
   static const String completeProfile = '/completeProfile';
+  static const String doctorInfo = '/home/doctorInfo';
   static const String loading = '/loading';
 }

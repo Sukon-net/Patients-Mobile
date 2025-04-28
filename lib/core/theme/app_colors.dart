@@ -26,6 +26,12 @@ abstract class AppColors {
   abstract final Color backgroundCategoryIconColor;
   abstract final Color secondaryCTABackgroundColor;
   abstract final Color blackWith10Opacity;
+  abstract final Color addToFavBackground;
+  abstract final Color addToFavBorder;
+  abstract final Color yellowStarColor;
+  abstract final Color unRatedStarColor;
+  abstract final Color readHeartColor;
+  abstract final Color grayColor;
   abstract final List<Color> adGradientColors;
 }
 
@@ -110,6 +116,24 @@ class LightAppColors extends AppColors {
 
   @override
   final Color blackWith10Opacity = const Color(0x1A000000);
+
+  @override
+  final Color addToFavBackground = const Color(0xFFEEF7F9);
+
+  @override
+  final Color addToFavBorder = const Color(0xFFE0E2E3);
+
+  @override
+  final Color yellowStarColor = const Color(0xFFFFC233);
+
+  @override
+  final Color unRatedStarColor = const Color(0xFFDDDDDD);
+
+  @override
+  final Color readHeartColor = const Color(0xFFFF6462);
+
+  @override
+  final Color grayColor = const Color(0xFFAAAAAA);
 }
 
 class DarkAppColors extends AppColors {
@@ -193,4 +217,22 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color blackWith10Opacity = const Color(0x1A000000);
+
+  @override
+  final Color addToFavBackground = const Color(0xFFEEF7F9);
+
+  @override
+  final Color addToFavBorder = const Color(0xFFE0E2E3);
+
+  @override
+  final Color yellowStarColor = const Color(0xFFFFC233);
+
+  @override
+  final Color unRatedStarColor = const Color(0xFFDDDDDD);
+
+  @override
+  final Color readHeartColor = const Color(0xFFFF6462);
+
+  @override
+  final Color grayColor = const Color(0xFFAAAAAA);
 }

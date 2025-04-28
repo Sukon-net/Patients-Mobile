@@ -12,13 +12,13 @@ import 'package:clients/features/auth/complete%20profile/logic/complete_profile_
 import 'package:clients/features/auth/complete%20profile/presentation/widgets/gender_selector.dart';
 import 'package:clients/features/auth/complete%20profile/presentation/widgets/phone_number.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
-import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
+import '../../../../core/constants/assets.dart';
 import '../../../model/user.dart';
 import '../../model/authed_user/logic/auth_cubit.dart';
 

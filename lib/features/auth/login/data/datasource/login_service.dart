@@ -11,8 +11,11 @@ class LoginService {
 
   Future<Either<String, BackendFailure>> sendEmail(String email) async {
     try {
-      final response =
-          await _dio.post(ApiConstants.login, data: {"email": email});
+      final response = await _dio.post(
+        ApiConstants.login,
+        data: {"email": email},
+        queryParameters: {"type": "Patient"},
+      );
       if (response.statusCode == 200) return left("");
       if (response.statusCode == 422) {
         return right(InvalidEmailFailure());

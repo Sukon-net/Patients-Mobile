@@ -26,10 +26,8 @@ class Assets {
   static const String assetsGirlAvatar = "assets/images/girl_avatar.png";
   static const String assetsHomeIcon = "assets/icons/home.svg";
   static const String assetsHomeActiveIcon = "assets/icons/home_active.svg";
-  static const String assetsSearchNavBarIcon =
-      "assets/icons/search_nav_bar.svg";
-  static const String assetsSearchNavBarActiveIcon =
-      "assets/icons/search_nav_bar_active.svg";
+  static const String assetsTasksIcon = "assets/icons/tasks.svg";
+  static const String assetsTasksActiveIcon = "assets/icons/tasks_active.svg";
   static const String assetsCalendarIcon = "assets/icons/calendar.svg";
   static const String assetsCalendarActiveIcon =
       "assets/icons/calendar_active.svg";
@@ -64,4 +62,8 @@ class Assets {
   static const String assetsExperienceIcon = "assets/icons/experience_icon.svg";
   static const String assetsStarRateIcon = "assets/icons/star_rate_icon.svg";
   static const String assetsSeeMoreIcon = "assets/icons/see_more_icon.svg";
+  static const String assetsFilledFavHeartIcon =
+      "assets/icons/filled_heart.svg";
+  static const String assetsHeartIcon = "assets/icons/heart.svg";
+  static const String assetsStarIcon = "assets/icons/star.svg";
 }

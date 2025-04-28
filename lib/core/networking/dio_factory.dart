@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/routing/navigator_service.dart';
 import 'package:clients/core/utils/auth_interceptor.dart';
 import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -23,12 +28,14 @@ class DioFactory {
           baseUrl: ApiConstants.baseUrl,
           headers: {
             'x-api-key': dotenv.env['API_KEY'],
-            'Accept-Language': NavigatorService.context.locale,
+            HttpHeaders.acceptLanguageHeader: NavigatorService.context.locale,
+            HttpHeaders.acceptHeader: "application/json"
           },
         ),
       );
       _addAuthInterceptor();
       _addLoggingInterceptor();
+      // _addCacheInterceptor();
     }
     return _dio!;
   }
@@ -44,6 +51,19 @@ class DioFactory {
         compact: true,
       ),
     );
+  }
+
+  static void _addCacheInterceptor() async {
+    final directory = await getApplicationCacheDirectory();
+    final cacheOptions = CacheOptions(
+      store: HiveCacheStore(directory.path),
+      policy: CachePolicy.request,
+      hitCacheOnErrorExcept: [401, 403],
+      priority: CachePriority.normal,
+      maxStale: const Duration(days: 7),
+    );
+
+    _dio?.interceptors.add(DioCacheInterceptor(options: cacheOptions));
   }
 
   static void _addAuthInterceptor() {

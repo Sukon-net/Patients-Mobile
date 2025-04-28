@@ -53,8 +53,8 @@ abstract class LocaleKeys {
   static const find_what_you_want = 'find_what_you_want';
   static const companion_of_health = 'companion_of_health';
   static const update = 'update';
-  static const today_s_tasks = 'today\'s_tasks';
-  static const today_s_appointments = 'today\'s_appointments';
+  static const today_s_tasks = 'today_s_tasks';
+  static const today_s_appointments = 'today_s_appointments';
   static const appointments = 'appointments';
   static const weekly_achievement = 'weekly_achievement';
   static const tasks_of_the_week = 'tasks_of_the_week';
@@ -69,11 +69,19 @@ abstract class LocaleKeys {
   static const our_top_rated_partners = 'our_top_rated_partners';
   static const view_details = 'view_details';
   static const home = 'home';
-  static const search = 'search';
+  static const your_tasks = 'your_tasks';
   static const calendar = 'calendar';
   static const messages = 'messages';
   static const more = 'more';
   static const back_slash = 'back_slash';
   static const appointment = 'appointment';
   static const year = 'year';
+  static const unauthorized = 'unauthorized';
+  static const doctor_details = 'doctor_details';
+  static const opinions = 'opinions';
+  static const description = 'description';
+  static const read_more = 'read_more';
+  static const read_less = 'read_less';
+  static const popular_specializations = 'popular_specializations';
+  static const make_an_appointment = 'make_an_appointment';
 }
