@@ -1,4 +1,5 @@
 import 'package:clients/core/routing/routes.dart';
+import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
 import 'package:clients/features/auth/OTP/presentation/otp_screen.dart';
 import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
@@ -41,17 +42,14 @@ class AppRouter {
       case Routes.completeProfile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => CompleteProfileCubit(),
+            create: (BuildContext context) => CompleteProfileCubit(sl()),
             child: const CompleteProfileScreen(),
           ),
         );
       case Routes.home:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (BuildContext context) => HomeCubit(),
-            child: const HomeScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => Container());
+      case Routes.loading:
+        return MaterialPageRoute(builder: (_) => const LoadingScreen());
       default:
         return _buildInvalidRoute(settings);
     }

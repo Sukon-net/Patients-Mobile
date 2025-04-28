@@ -1,5 +1,6 @@
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/routing/navigator_service.dart';
+import 'package:clients/core/utils/auth_interceptor.dart';
 import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -26,6 +27,7 @@ class DioFactory {
           },
         ),
       );
+      _addAuthInterceptor();
       _addLoggingInterceptor();
     }
     return _dio!;
@@ -41,6 +43,12 @@ class DioFactory {
         error: true,
         compact: true,
       ),
+    );
+  }
+
+  static void _addAuthInterceptor() {
+    _dio?.interceptors.add(
+      AuthInterceptor(),
     );
   }
 }

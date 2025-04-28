@@ -1,4 +1,5 @@
 import 'package:clients/core/constants/assets.dart';
+import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
@@ -7,6 +8,7 @@ import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/core/widgets/social_media_button.dart';
+import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -89,8 +91,9 @@ class OnboardingScreen extends StatelessWidget {
                     ],
                   ),
                   TextButton(
-                    // TODO: when continue as a guest pressed
-                    onPressed: () {},
+                    onPressed: () {
+                      sl<AuthCubit>().continueAsGuest();
+                    },
                     child: Text(
                       context.tr(LocaleKeys.continue_as_a_guest),
                       style: TextStyles.size16Weight500.copyWith(

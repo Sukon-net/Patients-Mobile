@@ -1,6 +1,4 @@
-import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
-import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
@@ -15,7 +13,7 @@ import 'package:pinput/pinput.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 import '../../../../core/utils/toastifications.dart';
 
-part '../widgets/otp_widget.dart';
+part 'widgets/otp_widget.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -45,9 +43,6 @@ class _OtpScreenState extends State<OtpScreen> {
       body: BlocConsumer<OtpCubit, OtpState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
-          if (state.status == OtpStatus.success) {
-            context.pushReplacementNamed(Routes.completeProfile);
-          }
           if (state.status == OtpStatus.error) {
             Toastifications.show(
               context: context,

@@ -26,3 +26,7 @@ final class InvalidOtpFailure extends BackendFailure {
   InvalidOtpFailure([String? msg])
       : super(message: msg ?? LocaleKeys.verification_code_is_wrong.tr());
 }
+
+final class UnauthorizedFailure extends BackendFailure {
+  UnauthorizedFailure([String? msg]) : super(message: msg ?? 'Unauthorized');
+}

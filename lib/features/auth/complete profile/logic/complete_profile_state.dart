@@ -18,12 +18,14 @@ final class CompleteProfileError extends CompleteProfileState {
   final String? lastNameErrorMessage;
   final String? emailErrorMessage;
   final String? phoneErrorMessage;
+  final String? errorMessage;
 
   const CompleteProfileError({
     this.firstNameErrorMessage,
     this.lastNameErrorMessage,
     this.emailErrorMessage,
     this.phoneErrorMessage,
+    this.errorMessage,
   });
 
   @override
@@ -31,7 +33,8 @@ final class CompleteProfileError extends CompleteProfileState {
         firstNameErrorMessage,
         lastNameErrorMessage,
         emailErrorMessage,
-        phoneErrorMessage
+        phoneErrorMessage,
+        errorMessage,
       ];
 }
 

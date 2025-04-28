@@ -1,6 +1,6 @@
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/networking/failures.dart';
-import 'package:clients/features/auth/model/authed_user.dart';
+import 'package:clients/features/auth/model/authed_user/authed_user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
