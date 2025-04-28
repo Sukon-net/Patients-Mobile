@@ -4,17 +4,19 @@ import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
+import 'package:clients/core/widgets/top_app_bar.dart';
 import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
 import 'package:clients/features/auth/complete%20profile/widgets/gender_selector.dart';
 import 'package:clients/features/auth/complete%20profile/widgets/phone_number.dart';
 import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
-import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/constants/assets.dart';
 import '../../../model/user.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
@@ -70,7 +72,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TopAppBar(),
+      appBar: TopAppBar(
+        widget: SvgPicture.asset(Assets.assetsSvgLogoBlue),
+      ),
       body: BlocBuilder<CompleteProfileCubit, CompleteProfileState>(
         builder: (context, state) {
           if (state is CompleteProfileLoading) {
@@ -176,6 +180,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             );
                       },
                       isActive: state is CompProfileButtonEnabled,
+                      borderRadius: 100.r,
                     ),
                   )
                 ],

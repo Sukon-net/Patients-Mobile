@@ -1,17 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'appointment.g.dart';
+
+@JsonSerializable()
 class Appointment {
-  final String doctorName;
-  final String sessionType;
-  final String therapyType;
+  final String day;
+  @JsonValue("start_time")
   final String startTime;
+  @JsonValue("end_time")
   final String endTime;
-  final String dayTime;
 
   Appointment({
-    required this.doctorName,
-    required this.sessionType,
-    required this.therapyType,
+    required this.day,
     required this.startTime,
     required this.endTime,
-    required this.dayTime,
   });
+
+  factory Appointment.fromJson(Map<String, dynamic> json) =>
+      _$AppointmentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AppointmentToJson(this);
 }

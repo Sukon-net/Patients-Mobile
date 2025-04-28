@@ -8,11 +8,13 @@ class PrimaryFilledButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onClick,
+    required this.borderRadius,
     this.isActive = true,
   });
 
   final String text;
   final bool isActive;
+  final double borderRadius;
   final void Function()? onClick;
 
   @override
@@ -25,7 +27,7 @@ class PrimaryFilledButton extends StatelessWidget {
           backgroundColor: context.colors.primaryCTAColor,
           disabledBackgroundColor: context.colors.disabledPrimaryCTAColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100.r),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           padding: EdgeInsets.symmetric(vertical: 16.h),
         ),

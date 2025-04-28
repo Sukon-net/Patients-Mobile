@@ -68,6 +68,7 @@ class OnboardingScreen extends StatelessWidget {
                     onClick: () {
                       context.pushNamed(Routes.login);
                     },
+                    borderRadius: 100.r,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 12.h),

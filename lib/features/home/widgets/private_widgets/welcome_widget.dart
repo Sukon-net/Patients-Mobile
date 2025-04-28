@@ -4,13 +4,13 @@ class _WelcomeWidget extends StatelessWidget {
   const _WelcomeWidget({
     super.key,
     required this.name,
+    required this.imgUrl,
     required this.onNotificationClicked,
-    required this.gender,
   });
 
   final String name;
+  final String imgUrl;
   final void Function() onNotificationClicked;
-  final Gender gender;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,8 @@ class _WelcomeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomAvatar(
-          imageUrl: '',
-          size: 61.r,
-          borderColor: context.colors.imgBorderColor,
-          gender: gender,
-          backgroundColor: context.colors.borderColor,
+          imageUrl: imgUrl,
+          radius: 28.r,
         ),
         Expanded(
           child: Padding(

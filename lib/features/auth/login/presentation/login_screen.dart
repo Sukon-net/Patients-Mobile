@@ -7,14 +7,16 @@ import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/core/widgets/social_media_button.dart';
+import 'package:clients/core/widgets/top_app_bar.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/widgets/auth_text_from_field.dart';
-import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/constants/assets.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -29,7 +31,9 @@ class LoginScreen extends StatelessWidget {
     final borderColor = context.colors.errorColor;
 
     return Scaffold(
-      appBar: const TopAppBar(),
+      appBar: TopAppBar(
+        widget: SvgPicture.asset(Assets.assetsSvgLogoBlue),
+      ),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
@@ -117,6 +121,7 @@ class LoginScreen extends StatelessWidget {
                     context.read<LoginCubit>().onSendVerificationCodeClicked();
                   },
                   isActive: state is LoginButtonEnabled,
+                  borderRadius: 100.r,
                 ),
               ),
             ],

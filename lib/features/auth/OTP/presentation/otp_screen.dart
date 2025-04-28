@@ -3,15 +3,17 @@ import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
+import 'package:clients/core/widgets/top_app_bar.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
-import 'package:clients/features/auth/widgets/top_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../../core/constants/assets.dart';
 import '../../../../core/l10n/generated/locale_keys.g.dart';
 import '../../../../core/utils/toastifications.dart';
 
@@ -41,7 +43,9 @@ class _OtpScreenState extends State<OtpScreen> {
     final borderColor = context.colors.errorColor;
 
     return Scaffold(
-      appBar: const TopAppBar(),
+      appBar: TopAppBar(
+        widget: SvgPicture.asset(Assets.assetsSvgLogoBlue),
+      ),
       body: BlocConsumer<OtpCubit, OtpState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
@@ -159,6 +163,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         .read<OtpCubit>()
                         .onConfirmCodeSubmit(otp: _controller.text);
                   },
+                  borderRadius: 100.r,
                 ),
               )
             ],
