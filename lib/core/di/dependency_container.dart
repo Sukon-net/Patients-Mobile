@@ -5,18 +5,18 @@ import 'package:clients/features/auth/complete%20profile/data/repository/complet
 import 'package:clients/features/auth/complete%20profile/data/service/complete_profile_service.dart';
 import 'package:clients/features/auth/login/data/datasource/login_service.dart';
 import 'package:clients/features/auth/login/data/repository/login_repository.dart';
+import 'package:clients/features/auth/model/authed_user/data/datasource/auth_service.dart';
+import 'package:clients/features/auth/model/authed_user/data/repository/auth_repository.dart';
 import 'package:clients/features/home/data/datasource/doctors_service.dart';
 import 'package:clients/features/home/data/datasource/specializations_service.dart';
 import 'package:clients/features/home/data/repository/doctors_repository.dart';
 import 'package:clients/features/home/data/repository/specializations_repository.dart';
-import 'package:clients/features/auth/model/authed_user/data/repository/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/model/authed_user/logic/auth_cubit.dart';
 import '../../features/doctor_info/data/datasource/doctor_info_service.dart';
 import '../../features/doctor_info/data/repository/doctor_info_repository.dart';
-
-import '../../features/auth/model/authed_user/logic/auth_cubit.dart';
 import '../storage/shared_preferences/shared_preferences_helper.dart';
 
 final GetIt sl = GetIt.instance;
@@ -31,6 +31,7 @@ Future<void> initDI() async {
   sl.registerLazySingleton(() => DioFactory.getDio());
 
   // Auth
+  sl.registerLazySingleton<AuthServices>(() => AuthServices(sl()));
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(sl(), sl()));
   sl.registerLazySingleton(() => AuthCubit(sl()));

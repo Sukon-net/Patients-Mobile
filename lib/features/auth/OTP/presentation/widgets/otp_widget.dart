@@ -21,6 +21,9 @@ class _OtpWidget extends StatelessWidget {
       onCompleted: onCompleted,
       onChanged: onChanged,
       length: 4,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
       forceErrorState: errorMessage != null,
       errorText: errorMessage,
       defaultPinTheme: PinTheme(

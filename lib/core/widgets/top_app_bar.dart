@@ -1,3 +1,4 @@
+import 'package:clients/core/routing/navigator_service.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,30 +19,31 @@ class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(8.r),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 48.w,
-                    height: 48.h,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                        side: BorderSide(color: context.colors.borderColor),
+              if (NavigatorService.navigatorKey.currentState?.canPop() ?? false)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8.r),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 48.w,
+                      height: 48.h,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                          side: BorderSide(color: context.colors.borderColor),
+                        ),
                       ),
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward_sharp,
-                      textDirection: TextDirection.rtl,
-                      color: context.colors.primaryTextColor,
+                      child: Icon(
+                        Icons.arrow_forward_sharp,
+                        textDirection: TextDirection.rtl,
+                        color: context.colors.primaryTextColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
               Center(child: widget),
             ],
           ),

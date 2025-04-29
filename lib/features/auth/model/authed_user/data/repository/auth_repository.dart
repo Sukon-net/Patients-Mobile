@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clients/core/storage/secure_storage/secure_storage_helper.dart';
 import 'package:clients/core/storage/shared_preferences/shared_preferences_helper.dart';
 import 'package:clients/features/auth/model/authed_user/authed_user.dart';
@@ -25,7 +27,7 @@ class AuthRepositoryImpl extends AuthRepository {
     await SecureStorageHelper.storeToken(accessToken: authedUser.token);
     await _sharedPreferencesHelper.set(
       SharedPreferencesKeys.authedUser,
-      authedUser.user.toJson(),
+      jsonEncode(authedUser.user.toJson()),
     );
     return authedUser;
   }

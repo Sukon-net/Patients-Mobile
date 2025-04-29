@@ -82,7 +82,3 @@ final class BadCertificateError extends BackendFailure {
 final class ConnectionError extends BackendFailure {
   ConnectionError([String? msg]) : super(message: msg ?? "Connection Error");
 }
-
-final class UnauthorizedFailure extends BackendFailure {
-  UnauthorizedFailure([String? msg]) : super(message: msg ?? 'Unauthorized');
-}

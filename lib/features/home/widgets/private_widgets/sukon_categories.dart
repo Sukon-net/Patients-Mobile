@@ -1,7 +1,7 @@
 part of '../../presentation/home_screen.dart';
 
 class _SukonCategories extends StatelessWidget {
-  const _SukonCategories({super.key, required this.onSukonCategoriesClicked});
+  const _SukonCategories({required this.onSukonCategoriesClicked});
 
   final void Function() onSukonCategoriesClicked;
 

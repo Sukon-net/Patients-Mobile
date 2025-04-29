@@ -63,6 +63,9 @@ class AuthTextFromField extends StatelessWidget {
                 ? context.colors.accentTextColor
                 : context.colors.primaryTextColor,
           ),
+          onTapOutside: (value) {
+            FocusScope.of(context).unfocus();
+          },
           decoration: InputDecoration(
             filled: true,
             fillColor: errorText != null

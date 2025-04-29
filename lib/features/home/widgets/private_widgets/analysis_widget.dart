@@ -2,7 +2,6 @@ part of '../../presentation/home_screen.dart';
 
 class _AnalysisWidget extends StatelessWidget {
   const _AnalysisWidget({
-    super.key,
     required this.onUpdateClicked,
     required this.dateTime,
     required this.achievedTasksOfDay,

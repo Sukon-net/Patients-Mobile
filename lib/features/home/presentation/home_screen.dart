@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //Dummy Top Rated
   final List<Doctor> _topRates = List.generate(
     5,
-    (index) => Doctor(
+    (index) => const Doctor(
       id: 1,
       firstName: 'احمد',
       lastName: 'حمدي',
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 _UpcomingAppointments(
-                  doctor: Doctor(
+                  doctor: const Doctor(
                     id: 2,
                     firstName: "firstName",
                     lastName: "lastName",

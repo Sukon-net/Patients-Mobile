@@ -1,4 +1,5 @@
 import 'package:clients/core/di/dependency_container.dart';
+import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/storage/secure_storage/secure_storage_helper.dart';
 import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
 import 'package:clients/features/model/user.dart';
@@ -15,7 +16,9 @@ class AuthInterceptor extends Interceptor {
       return;
     }
     final String? token = await SecureStorageHelper.getAccessToken();
-    if (token != null) {
+    if (token != null &&
+        ![ApiConstants.verifyOTP, ApiConstants.register]
+            .contains(options.path)) {
       options.headers['Authorization'] = 'Bearer $token';
     }
     handler.next(options);

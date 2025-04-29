@@ -91,6 +91,8 @@ class User extends Equatable {
 }
 
 enum Gender {
+  @JsonValue('male')
   male,
+  @JsonValue('female')
   female,
 }

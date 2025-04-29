@@ -1,3 +1,4 @@
+import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/routing/routes.dart';
@@ -7,6 +8,7 @@ import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/utils/validators.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
+import 'package:clients/core/widgets/top_app_bar.dart';
 import 'package:clients/features/auth/complete%20profile/data/model/complete_profile_request.dart';
 import 'package:clients/features/auth/complete%20profile/logic/complete_profile_cubit.dart';
 import 'package:clients/features/auth/complete%20profile/presentation/widgets/gender_selector.dart';
@@ -16,9 +18,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
-import '../../../../core/constants/assets.dart';
 import '../../../model/user.dart';
 import '../../model/authed_user/logic/auth_cubit.dart';
 
@@ -88,7 +90,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         }
       },
       child: Scaffold(
-        appBar: const TopAppBar(),
+        appBar: TopAppBar(
+          widget: SvgPicture.asset(Assets.assetsSvgLogoBlue),
+        ),
         body: BlocBuilder<CompleteProfileCubit, CompleteProfileState>(
           builder: (context, state) {
             if (state is CompleteProfileLoading) {
@@ -213,6 +217,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 24.h),
                         child: PrimaryFilledButton(
+                          borderRadius: 100.r,
                           text: context.tr(LocaleKeys.create_account),
                           onClick: () {
                             if (_formKey.currentState?.validate() ?? false) {
@@ -224,7 +229,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                       lastName: lastNameController.text,
                                       email: emailController.text,
                                       phoneNumber:
-                                          phoneController.value.toString(),
+                                          phoneController.value.international,
                                       dateOfBirth: dateOfBirth,
                                       gender: gender,
                                     ),

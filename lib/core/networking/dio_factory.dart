@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:clients/core/networking/api_constants.dart';
@@ -28,14 +29,14 @@ class DioFactory {
           baseUrl: ApiConstants.baseUrl,
           headers: {
             'x-api-key': dotenv.env['API_KEY'],
-            HttpHeaders.acceptLanguageHeader: NavigatorService.context.locale,
-            HttpHeaders.acceptHeader: "application/json"
+            HttpHeaders.acceptHeader: "application/json",
           },
         ),
       );
       _addAuthInterceptor();
-      _addLoggingInterceptor();
+      _addLocaleInterceptor();
       // _addCacheInterceptor();
+      _addLoggingInterceptor();
     }
     return _dio!;
   }
@@ -49,6 +50,22 @@ class DioFactory {
         responseHeader: true,
         error: true,
         compact: true,
+      ),
+    );
+  }
+
+  static void _addLocaleInterceptor() {
+    _dio?.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          try {
+            options.headers[HttpHeaders.acceptLanguageHeader] =
+                NavigatorService.context.locale;
+          } catch (e) {
+            log(e.toString());
+          }
+          return handler.next(options);
+        },
       ),
     );
   }

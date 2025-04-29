@@ -97,7 +97,7 @@ class DoctorInfoScreen extends StatelessWidget {
                                     bottom: 11.h,
                                   ),
                                   child: Text(
-                                    doctorInfo.role!,
+                                    doctorInfo.role,
                                     style: TextStyles.size12Weight400.copyWith(
                                       color: context.colors.accentTextColor,
                                     ),

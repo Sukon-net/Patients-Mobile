@@ -5,11 +5,16 @@ part 'complete_profile_request.g.dart';
 
 @JsonSerializable()
 class CompleteProfileRequest {
+  @JsonKey(name: 'first_name')
   final String firstName;
+  @JsonKey(name: 'last_name')
   final String lastName;
   final String email;
+  @JsonKey(name: 'date_of_birth')
   final DateTime? dateOfBirth;
+  @JsonKey(name: 'mobile')
   final String phoneNumber;
+  @JsonKey(name: 'gender')
   final Gender? gender;
 
   CompleteProfileRequest({

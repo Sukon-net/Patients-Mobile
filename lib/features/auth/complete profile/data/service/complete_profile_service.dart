@@ -14,15 +14,16 @@ class CompleteProfileService {
   Future<Either<AuthedUser, BackendFailure>> completeProfile(
       CompleteProfileRequest compProfileReq) async {
     try {
-      final response = await _dio.post(ApiConstants.updateProfile, data: {
-        'firstName': compProfileReq.firstName,
-        'lastName': compProfileReq.lastName,
-        'email': compProfileReq.email,
-        'date_of_birth': compProfileReq.dateOfBirth,
-        'mobile': compProfileReq.phoneNumber,
-        'gender': compProfileReq.gender.toString(),
-        '_method': 'put',
-      });
+      final response = await _dio.post(
+        ApiConstants.updateProfile,
+        options: Options(
+          contentType: 'multipart/form-data',
+        ),
+        data: FormData.fromMap(compProfileReq.toJson()
+          ..addAll({
+            '_method': 'put',
+          })),
+      );
       return left(AuthedUser.fromJson(response.data));
     } on DioException catch (e) {
       if (e.response != null) {

@@ -2,7 +2,6 @@ part of '../../presentation/home_screen.dart';
 
 class _UpcomingAppointments extends StatelessWidget {
   const _UpcomingAppointments({
-    super.key,
     required this.doctor,
     required this.onViewDetailsClicked,
     required this.onSeeMoreIconClicked,

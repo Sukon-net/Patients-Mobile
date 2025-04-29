@@ -52,7 +52,7 @@ class DoctorCard extends StatelessWidget {
                             maxLines: 1,
                           ),
                           Text(
-                            doctor.role!,
+                            doctor.role,
                             style: TextStyles.size12Weight400.copyWith(
                               color: context.colors.accentTextColor,
                             ),

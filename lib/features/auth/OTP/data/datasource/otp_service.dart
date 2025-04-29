@@ -11,11 +11,14 @@ class OtpService {
 
   Future<Either<String, BackendFailure>> resendOtp(String email) async {
     try {
-      final response = await _dio.post(ApiConstants.resendOTP, data: {
-        'is_changed': false,
-        'type': 'Patient',
-        'email': email,
-      });
+      final response = await _dio.post(
+        ApiConstants.resendOTP,
+        data: {
+          'is_changed': false,
+          'type': 'Patient',
+          'email': email,
+        },
+      );
       if (response.statusCode == 200) return left('');
       if (response.statusCode == 422) {
         return right(InvalidOtpFailure());
@@ -34,7 +37,7 @@ class OtpService {
         ApiConstants.verifyOTP,
         data: {
           'code': otp,
-          'is_changed': 0,
+          'is_changed': false,
           'type': 'Patient',
           'email': email,
         },

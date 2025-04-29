@@ -2,7 +2,6 @@ part of '../../presentation/home_screen.dart';
 
 class _WelcomeWidget extends StatelessWidget {
   const _WelcomeWidget({
-    super.key,
     required this.name,
     required this.imgUrl,
     required this.onNotificationClicked,
