@@ -23,7 +23,7 @@ abstract class AppColors {
   abstract final Color secondaryBackgroundColor;
   abstract final Color primaryProgressColor;
   abstract final Color secondaryProgressColor;
-  abstract final Color backgroundCategoryIconColor;
+  abstract final Color backgroundSpecializationIconColor;
   abstract final Color secondaryCTABackgroundColor;
   abstract final Color blackWith10Opacity;
   abstract final Color addToFavBackground;
@@ -103,7 +103,7 @@ class LightAppColors extends AppColors {
   final Color secondaryProgressColor = const Color(0x3B14A5F8);
 
   @override
-  final Color backgroundCategoryIconColor = const Color(0xFFF7F7F8);
+  final Color backgroundSpecializationIconColor = const Color(0xFFF7F7F8);
 
   @override
   final List<Color> adGradientColors = [
@@ -204,7 +204,7 @@ class DarkAppColors extends AppColors {
   final Color secondaryProgressColor = const Color(0x3B14A5F8);
 
   @override
-  final Color backgroundCategoryIconColor = const Color(0xFFF7F7F8);
+  final Color backgroundSpecializationIconColor = const Color(0xFFF7F7F8);
 
   @override
   final List<Color> adGradientColors = [

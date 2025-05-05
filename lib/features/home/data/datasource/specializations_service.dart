@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:clients/core/flavors/flavor_config.dart';
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/networking/failures.dart';
 import 'package:clients/core/utils/try_api_request.dart';
@@ -16,10 +13,8 @@ class SpecializationsService {
   Future<Either<BackendFailure, List<Specialization>>> getSpecializations() {
     return tryApiRequest(() async {
       final response = await _dio.get(ApiConstants.getSpecializations);
-      if (FlavorConfig.isDevelopment()) {
-        log("get specializations data source: ${response.extra}");
-      }
-      final List<Specialization> dataList = response.data['data']['data'];
+      print('🟢 result from API: $response');
+      final dataList = response.data['data']['data'] as List;
       final specializationsList = dataList
           .map((e) => Specialization.fromJson(e as Map<String, dynamic>))
           .toList();

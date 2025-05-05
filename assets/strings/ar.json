@@ -57,7 +57,7 @@
   "appointments": "مواعيد",
   "weekly_achievement": "الإنجاز الأسبوعي",
   "tasks_of_the_week": "مهام الإسبوع",
-  "categories_of_sukon": "أقسام سكون",
+  "specializations_of_sukon": "أقسام سكون",
   "general_psychiatry": "الطب النفسي العام",
   "mental_disorders": "اضطرابات نفسية",
   "addiction_treatment": "علاج الإدمان",
@@ -81,6 +81,10 @@
   "description": "الوصف",
   "read_more": "قراءة المزيد",
   "read_less": "قراءة أقل",
+  "view_all": "عرض الكل",
   "popular_specializations": "أشهر التخصصات",
-  "make_an_appointment": "تحديد ميعاد"
+  "make_an_appointment": "تحديد ميعاد",
+  "all": "الكل",
+  "error_when_load_specialization": "حدث خطأ أثناء تحميل التخصصات",
+  "error_when_load_doctors_specialized": "لا يوجد اطباء لعرضهم لهذا التخصص حاليا"
 }

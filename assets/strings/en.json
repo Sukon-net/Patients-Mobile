@@ -57,7 +57,7 @@
   "appointments": "Appointments",
   "weekly_achievement": "Weekly Achievement",
   "tasks_of_the_week": "Tasks of the week",
-  "categories_of_sukon": "Categories of Sukon",
+  "specializations_of_sukon": "Sukon Specializations",
   "general_psychiatry": "General Psychiatry",
   "mental_disorders": "Mental Disorders",
   "addiction_treatment": "Addiction Treatment",
@@ -81,6 +81,10 @@
   "description": "Description",
   "read_more": "Read more",
   "read_less": "Read less",
+  "view_all": "View all",
   "popular_specializations": "Popular Specializations",
-  "make_an_appointment": "Make an Appointment"
+  "make_an_appointment": "Make an Appointment",
+  "all": "All",
+  "error_when_load_specialization": "An error occurred while loading the specializations",
+  "error_when_load_doctors_specialized": "There are no doctors to display for this specialty currently."
 }

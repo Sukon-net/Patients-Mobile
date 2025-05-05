@@ -13,6 +13,8 @@ import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/specializations_filter/logic/specializations_filter_cubit.dart';
+import '../../features/specializations_filter/presentation/specializations_filter_screen.dart';
 import '../di/dependency_container.dart';
 
 class AppRouter {
@@ -50,7 +52,8 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (BuildContext context) => HomeCubit(),
+            create: (BuildContext context) =>
+                HomeCubit(sl())..getSpecializations(),
             child: const HomeScreen(),
           ),
         );
@@ -61,6 +64,18 @@ class AppRouter {
             create: (BuildContext context) =>
                 DoctorInfoCubit(sl())..getDoctorInfo(doctorId),
             child: const DoctorInfoScreen(),
+          ),
+        );
+      case Routes.specializationsFilter:
+        final screenArguments =
+            arguments as SpecializationsFilterScreenArguments;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => SpecializationsFilterCubit(
+                screenArguments.specializationId, sl()),
+            child: SpecializationsFilterScreen(
+              specializations: screenArguments.specializations,
+            ),
           ),
         );
       default:

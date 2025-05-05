@@ -35,7 +35,7 @@ class UpcomingAppCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
-          color: context.colors.backgroundCategoryIconColor,
+          color: context.colors.backgroundSpecializationIconColor,
         ),
       ),
       child: Padding(
@@ -103,7 +103,7 @@ class UpcomingAppCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(
-                      color: context.colors.backgroundCategoryIconColor,
+                      color: context.colors.backgroundSpecializationIconColor,
                     ),
                   ),
                   child: IconButton(

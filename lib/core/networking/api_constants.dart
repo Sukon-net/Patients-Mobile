@@ -12,8 +12,10 @@ class ApiConstants {
   static const String canChangeEmail = "auth/can-change-email";
   static const String changeEmail = "auth/change-email";
   static const String viewProfile = "auth/view-profile";
-  static const String getDoctors = "patient-dashboard/doctors/index";
   static const String getSpecializations = "specializations/index";
+
+  // Filtered Doctors according to Specializations
+  static const String getAllDoctors = "patient-dashboard/doctors/index";
 
   static String getDoctorInfo(int id) => "patient-dashboard/doctors/show/$id";
 }

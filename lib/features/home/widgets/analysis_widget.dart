@@ -1,4 +1,4 @@
-part of '../../presentation/home_screen.dart';
+part of '../presentation/home_screen.dart';
 
 class _AnalysisWidget extends StatelessWidget {
   const _AnalysisWidget({
