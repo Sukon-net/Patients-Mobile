@@ -27,17 +27,33 @@ class SpecializationsFilterScreenArguments {
       {required this.specializationId, required this.specializations});
 }
 
-class SpecializationsFilterScreen extends StatelessWidget {
-  SpecializationsFilterScreen({super.key, required this.specializations});
+class SpecializationsFilterScreen extends StatefulWidget {
+  const SpecializationsFilterScreen({super.key, required this.specializations});
 
   final List<Specialization> specializations;
+
+  @override
+  State<SpecializationsFilterScreen> createState() =>
+      _SpecializationsFilterScreenState();
+}
+
+class _SpecializationsFilterScreenState
+    extends State<SpecializationsFilterScreen> {
   final ItemScrollController _scrollController = ItemScrollController();
-  final ItemPositionsListener _positionsListener =
-      ItemPositionsListener.create();
-  final ScrollOffsetController _scrollOffsetController =
-      ScrollOffsetController();
-  final ScrollOffsetListener _scrollOffsetListener =
-      ScrollOffsetListener.create();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final state = context.read<SpecializationsFilterCubit>().state;
+      if (state.selectedIndex >= 0 && _scrollController.isAttached) {
+        _scrollController.jumpTo(
+          index: state.selectedIndex,
+          alignment: 0.0,
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,17 +91,14 @@ class SpecializationsFilterScreen extends StatelessWidget {
                     height: 80.h,
                     child: ScrollablePositionedList.separated(
                         itemScrollController: _scrollController,
-                        itemPositionsListener: _positionsListener,
-                        scrollOffsetController: _scrollOffsetController,
-                        scrollOffsetListener: _scrollOffsetListener,
                         scrollDirection: Axis.horizontal,
-                        itemCount: specializations.length + 1,
+                        itemCount: widget.specializations.length + 1,
                         separatorBuilder: (_, __) => HorizontalSpacer(8.w),
                         itemBuilder: (context, index) {
                           final isAll = index == 0;
                           final name = isAll
                               ? context.tr(LocaleKeys.all)
-                              : specializations[index - 1].name;
+                              : widget.specializations[index - 1].name;
                           return SpecializationChip(
                               name: name,
                               isSelected: state.selectedIndex == index,
@@ -93,10 +106,14 @@ class SpecializationsFilterScreen extends StatelessWidget {
                                 context
                                     .read<SpecializationsFilterCubit>()
                                     .changeSelectedIndex(
-                                      isAll ? 0 : specializations[index - 1].id,
+                                      isAll
+                                          ? 0
+                                          : widget
+                                              .specializations[index - 1].id,
                                       isAll
                                           ? null
-                                          : specializations[index - 1].name,
+                                          : widget
+                                              .specializations[index - 1].name,
                                     );
                               });
                         }),

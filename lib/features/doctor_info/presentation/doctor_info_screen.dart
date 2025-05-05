@@ -97,7 +97,7 @@ class DoctorInfoScreen extends StatelessWidget {
                                     bottom: 11.h,
                                   ),
                                   child: Text(
-                                    doctorInfo.role!,
+                                    doctorInfo.role,
                                     style: TextStyles.size12Weight400.copyWith(
                                       color: context.colors.accentTextColor,
                                     ),
@@ -179,20 +179,13 @@ class DoctorInfoScreen extends StatelessWidget {
                             color: context.colors.primaryTextColor,
                           ),
                         ),
-                        //TODO: edit it with real data
                         Padding(
                           padding: EdgeInsetsDirectional.only(top: 16.h),
-                          child: const PopularSpeWidget(
-                            specializations: [
-                              "الامراض النفسيه",
-                              "الامراض العصبيه",
-                              "علاج الارق",
-                              "علاج الادمان",
-                              "الطب النفسي العام",
-                              "علاج الاضطراب",
-                              "الطب النفسي العام",
-                              "الطب النفسي العام",
-                            ],
+                          child: PopularSpeWidget(
+                            specializations: List.generate(
+                              doctorInfo.specializations.length,
+                              (index) => doctorInfo.specializations[index].name,
+                            ),
                           ),
                         )
                       ],
