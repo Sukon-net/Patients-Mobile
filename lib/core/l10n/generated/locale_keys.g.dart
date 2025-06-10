@@ -58,7 +58,7 @@ abstract class LocaleKeys {
   static const appointments = 'appointments';
   static const weekly_achievement = 'weekly_achievement';
   static const tasks_of_the_week = 'tasks_of_the_week';
-  static const categories_of_sukon = 'categories_of_sukon';
+  static const specializations_of_sukon = 'specializations_of_sukon';
   static const general_psychiatry = 'general_psychiatry';
   static const mental_disorders = 'mental_disorders';
   static const addiction_treatment = 'addiction_treatment';
@@ -82,6 +82,24 @@ abstract class LocaleKeys {
   static const description = 'description';
   static const read_more = 'read_more';
   static const read_less = 'read_less';
+  static const view_all = 'view_all';
   static const popular_specializations = 'popular_specializations';
   static const make_an_appointment = 'make_an_appointment';
+  static const all = 'all';
+  static const error_when_load_specialization =
+      'error_when_load_specialization';
+  static const error_when_load_doctors_specialized = 'error_when_load_doctors_specialized';
+  static const error_when_load_top_rated_doctors = 'error_when_load_top_rated_doctors';
+  static const request_an_appointment = 'request_an_appointment';
+  static const choose_an_appointment = 'choose_an_appointment';
+  static const session_duration = 'session_duration';
+  static const minute = 'minute';
+  static const available_slots = 'available_slots';
+  static const complaint = 'complaint';
+  static const book_an_appointment = 'book_an_appointment';
+  static const starting_from = 'starting_from';
+  static const egp = 'egp';
+  static const not_available_days_message = "not_available_days_message";
+  static const not_available_slots_message = "not_available_slots_message";
+  static const choose = "choose";
 }

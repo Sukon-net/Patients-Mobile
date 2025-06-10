@@ -2,8 +2,8 @@ import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ShimmerCircle extends StatelessWidget {
-  const ShimmerCircle({
+class CircleShimmer extends StatelessWidget {
+  const CircleShimmer({
     super.key,
     required this.size,
   });

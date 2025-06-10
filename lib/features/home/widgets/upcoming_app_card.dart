@@ -35,7 +35,7 @@ class UpcomingAppCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
-          color: context.colors.backgroundCategoryIconColor,
+          color: context.colors.backgroundSpecializationIconColor,
         ),
       ),
       child: Padding(
@@ -66,11 +66,11 @@ class UpcomingAppCard extends StatelessWidget {
                   CustomIcon(
                       iconPath: Assets.assetsTimerIcon,
                       label:
-                          "${doctor.availableSlots![0].startTime}-${doctor.availableSlots![0].endTime}"),
+                          "${doctor.availableSlotsCount}-${doctor.availableSlotsCount}"),
                   VerticalDividerWidget(24.h),
                   CustomIcon(
                       iconPath: Assets.assetsDateIcon,
-                      label: doctor.availableSlots![0].day),
+                      label: "${doctor.availableSlotsCount}"),
                 ],
               ),
             ),
@@ -103,7 +103,7 @@ class UpcomingAppCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(
-                      color: context.colors.backgroundCategoryIconColor,
+                      color: context.colors.backgroundSpecializationIconColor,
                     ),
                   ),
                   child: IconButton(

@@ -6,6 +6,8 @@ class Routes {
   static const String login = '/login';
   static const String otp = '/otp';
   static const String completeProfile = '/completeProfile';
-  static const String doctorInfo = '/home/doctorInfo';
+  static const String doctorInfo = '/doctorInfo';
+  static const String specializationsFilter = '/home/specializationsFilter';
+  static const String bookSession = '/bookSession';
   static const String loading = '/loading';
 }

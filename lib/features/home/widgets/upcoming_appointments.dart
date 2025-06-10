@@ -1,4 +1,4 @@
-part of '../../presentation/home_screen.dart';
+part of '../presentation/home_screen.dart';
 
 class _UpcomingAppointments extends StatelessWidget {
   const _UpcomingAppointments({
@@ -19,16 +19,16 @@ class _UpcomingAppointments extends StatelessWidget {
           padding: EdgeInsets.only(top: 12.h),
           child: SizedBox(
             height: 185.h,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => UpcomingAppCard(
-                doctor: doctor,
-                onViewDetailsClicked: onViewDetailsClicked,
-                onSeeMoreIconClicked: onSeeMoreIconClicked,
-              ),
-              separatorBuilder: (context, index) => HorizontalSpacer(12.w),
-              itemCount: 5,
-            ),
+            // child: ListView.separated(
+            //   scrollDirection: Axis.horizontal,
+            //   itemBuilder: (context, index) => UpcomingAppCard(
+            //     doctor: doctor,
+            //     onViewDetailsClicked: onViewDetailsClicked,
+            //     onSeeMoreIconClicked: onSeeMoreIconClicked,
+            //   ),
+            //   separatorBuilder: (context, index) => HorizontalSpacer(12.w),
+            //   itemCount: 5,
+            // ),
           ),
         ),
       ],

@@ -62,7 +62,8 @@ final class ServerError extends BackendFailure {
 }
 
 final class CancelError extends BackendFailure {
-  CancelError([String? msg]) : super(message: msg ?? "Cancel Error");
+  CancelError([String? msg])
+      : super(message: msg ?? LocaleKeys.no_internet_connection.tr());
 }
 
 final class ReceiveTimeoutError extends BackendFailure {

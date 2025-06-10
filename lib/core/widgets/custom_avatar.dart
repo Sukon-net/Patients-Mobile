@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/core/widgets/shimmer_circle.dart';
+import 'package:clients/core/widgets/shimmers/circle_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,16 +29,16 @@ class CustomAvatar extends StatelessWidget {
             width: size,
             height: size,
           )
-        : Image.network(
-            imageUrl!,
+        : CachedNetworkImage(
+            imageUrl: imageUrl!,
+            cacheKey: imageUrl,
             fit: BoxFit.cover,
             width: size,
             height: size,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return ShimmerCircle(size: size);
+            progressIndicatorBuilder: (context, child, loadingProgress) {
+              return CircleShimmer(size: size);
             },
-            errorBuilder: (context, error, stackTrace) {
+            errorWidget: (context, error, stackTrace) {
               return SvgPicture.asset(
                 Assets.assetsSvgSukonWBlueBackground,
                 fit: BoxFit.cover,

@@ -23,6 +23,9 @@ class SearchTextFormField extends StatelessWidget {
       keyboardType: TextInputType.text,
       cursorColor: context.colors.primaryTextColor,
       cursorErrorColor: context.colors.primaryTextColor,
+      onTapOutside: (_) {
+        FocusScope.of(context).unfocus();
+      },
       decoration: InputDecoration(
         prefixIcon: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
