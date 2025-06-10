@@ -14,7 +14,7 @@ class Doctor {
   final String? title;
   final String? avatar;
   final String? bio;
-  final List<Specialization> specializations;
+  final List<Specialization>? specializations;
   @JsonKey(name: "session_usd_price")
   final double? sessionUSDPrice;
   @JsonKey(name: "session_egp_price")

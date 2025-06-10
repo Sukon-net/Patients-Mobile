@@ -1,38 +1,47 @@
 part of 'home_cubit.dart';
 
-enum HomeStatus { loading, error, success }
+enum TopRatedDocStatus { loading, error, success }
 
 enum SpecializationsStatus { loading, success, error }
 
 class HomeState extends Equatable {
-  final HomeStatus status;
+  final TopRatedDocStatus topRatedDocStatus;
   final SpecializationsStatus specializationsStatus;
   final String errorMessage;
   final List<Specialization>? specializations;
+  final List<Doctor>? topRatedDoctors;
 
   const HomeState({
     this.specializationsStatus = SpecializationsStatus.loading,
-    this.status = HomeStatus.loading,
+    this.topRatedDocStatus = TopRatedDocStatus.loading,
     this.errorMessage = "",
     this.specializations,
+    this.topRatedDoctors,
   });
 
   @override
-  List<Object?> get props =>
-      [status, errorMessage, specializations, specializationsStatus];
+  List<Object?> get props => [
+        topRatedDocStatus,
+        topRatedDoctors,
+        specializationsStatus,
+        specializations,
+        errorMessage,
+      ];
 
   HomeState copyWith({
-    HomeStatus? status,
+    TopRatedDocStatus? topRatedDocStatus,
     SpecializationsStatus? specializationsStatus,
     String? errorMessage,
     List<Specialization>? specializations,
+    List<Doctor>? topRatedDoctors,
   }) {
     return HomeState(
-      status: status ?? this.status,
+      topRatedDocStatus: topRatedDocStatus ?? this.topRatedDocStatus,
       specializationsStatus:
           specializationsStatus ?? this.specializationsStatus,
       errorMessage: errorMessage ?? this.errorMessage,
       specializations: specializations ?? this.specializations,
+      topRatedDoctors: topRatedDoctors ?? this.topRatedDoctors,
     );
   }
 }

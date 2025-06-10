@@ -88,12 +88,9 @@ class DoctorCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsetsDirectional.symmetric(
                           vertical: 4.h,
-                          horizontal: 12.h,
+                          horizontal: 8.h,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color: context.colors.secondaryCTABackgroundColor,
-                          ),
                           color: context.colors.disabledBackgroundColor,
                           borderRadius: BorderRadius.circular(50.r),
                         ),

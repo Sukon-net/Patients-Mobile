@@ -12,11 +12,11 @@ import 'package:clients/core/widgets/spacers.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
 import 'package:clients/features/home/model/appointment.dart';
 import 'package:clients/features/home/model/doctor.dart';
-import 'package:clients/features/home/model/specialization.dart';
 import 'package:clients/features/home/widgets/ad_area.dart';
 import 'package:clients/features/home/widgets/analysis_card.dart';
 import 'package:clients/features/home/widgets/search_text_form_field.dart';
 import 'package:clients/features/home/widgets/sukon_specialization_loading.dart';
+import 'package:clients/features/home/widgets/topRatedDocLoading.dart';
 import 'package:clients/features/home/widgets/upcoming_app_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -63,37 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 
-  //Dummy Top Rated
-  final List<Doctor> _topRates = List.generate(
-    5,
-    (index) => Doctor(
-      id: 1,
-      firstName: 'احمد',
-      lastName: 'حمدي',
-      role: '$index',
-      avatar: '',
-      yearsOfExperience: 12,
-      bio: '',
-      specializations: [],
-      sessionUSDPrice: 2,
-      sessionEGPPrice: 3,
-      availableSlotsCount: 2,
-      title: 'د/',
-    ),
-  );
-
-  //Dummy Specialization
-  final List<Specialization> _dummySpecialization = List.generate(
-    6,
-    (index) {
-      if (index == 4) {
-        return Specialization(id: 8, name: LocaleKeys.general_psychiatry.tr());
-      }
-      return Specialization(
-          id: index + 1, name: LocaleKeys.general_psychiatry.tr());
-    },
-  );
-
   @override
   Widget build(BuildContext context) {
     final backgroundColor = context.colors.errorAccentColor;
@@ -103,7 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
-          if (state.specializationsStatus == SpecializationsStatus.error) {
+          if (state.specializationsStatus == SpecializationsStatus.error ||
+              state.topRatedDocStatus == TopRatedDocStatus.error) {
             Toastifications.show(
               context: context,
               message: state.errorMessage,
@@ -246,40 +216,67 @@ class _HomeScreenState extends State<HomeScreen> {
                     // ),
                     Padding(
                       padding: EdgeInsets.only(top: 24.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         children: [
-                          Text(
-                            LocaleKeys.our_top_rated_partners.tr(),
-                            style: TextStyles.size20Weight600.copyWith(
-                              color: context.colors.primaryTextColor,
-                            ),
-                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                LocaleKeys.our_top_rated_partners.tr(),
+                                style: TextStyles.size20Weight600.copyWith(
+                                  color: context.colors.primaryTextColor,
+                                ),
+                              ),
 
-                          //TODO: we see more top rated clicked
-                          BlueArrowBack(onClicked: () {}),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 12.h, bottom: 16.h),
-                      child: SizedBox(
-                        height: 140.h,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => DoctorCard(
-                            doctor: _topRates[index],
-                            width: 300.w,
-                            onTab: () {
-                              //TODO edit arguments => doctor id
-                              context.pushNamed(Routes.doctorInfo,
-                                  arguments: 7);
-                            },
+                              // TODO: we see more top rated clicked
+                              BlueArrowBack(onClicked: () {}),
+                            ],
                           ),
-                          separatorBuilder: (context, index) =>
-                              HorizontalSpacer(12.w),
-                          itemCount: _topRates.length,
-                        ),
+                          if (state.topRatedDocStatus ==
+                              TopRatedDocStatus.error)
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                top: 12.h,
+                                bottom: 16.h,
+                              ),
+                              child: CustomErrorWidget(
+                                width: double.infinity,
+                                height: 140.h,
+                                text: context.tr(LocaleKeys
+                                    .error_when_load_top_rated_doctors),
+                              ),
+                            )
+                          else if (state.topRatedDocStatus ==
+                              TopRatedDocStatus.success)
+                            Padding(
+                              padding: EdgeInsets.only(top: 12.h, bottom: 16.h),
+                              child: SizedBox(
+                                height: 140.h,
+                                child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) => DoctorCard(
+                                    doctor: state.topRatedDoctors![index],
+                                    width: 320.w,
+                                    onTab: () {
+                                      context.pushNamed(
+                                        Routes.doctorInfo,
+                                        arguments:
+                                            state.topRatedDoctors![index].id,
+                                      );
+                                    },
+                                  ),
+                                  separatorBuilder: (context, index) =>
+                                      HorizontalSpacer(12.w),
+                                  itemCount: state.topRatedDoctors!.length,
+                                ),
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: EdgeInsets.only(top: 12.h, bottom: 16.h),
+                              child: const TopRatedDocLoading(),
+                            )
+                        ],
                       ),
                     ),
                   ],

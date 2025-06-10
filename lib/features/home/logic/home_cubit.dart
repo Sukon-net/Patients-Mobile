@@ -1,4 +1,5 @@
-import 'package:clients/features/home/data/repository/specializations_repository.dart';
+import 'package:clients/features/home/data/repository/home_repository.dart';
+import 'package:clients/features/home/model/doctor.dart';
 import 'package:clients/features/home/model/specialization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,16 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._specializationsRepository) : super(const HomeState());
+  HomeCubit(this._repository) : super(const HomeState());
 
-  final SpecializationsRepository _specializationsRepository;
+  final HomeRepository _repository;
 
   Future<void> getSpecializations() async {
     emit(state.copyWith(specializationsStatus: SpecializationsStatus.loading));
-    final result = await _specializationsRepository.getSpecializations();
+    final result = await _repository.getSpecializations();
     result.fold(
       (error) {
-        print("🔴 Error emitted: ${error.message}");
         emit(state.copyWith(
           specializationsStatus: SpecializationsStatus.error,
           errorMessage:
@@ -23,10 +23,32 @@ class HomeCubit extends Cubit<HomeState> {
         ));
       },
       (specializations) {
-        print("🟢 Success emitted with ${specializations.length} items");
         emit(state.copyWith(
           specializationsStatus: SpecializationsStatus.success,
           specializations: specializations,
+        ));
+      },
+    );
+  }
+
+  Future<void> getTopRatedDoctors() async {
+    emit(state.copyWith(topRatedDocStatus: TopRatedDocStatus.loading));
+    final result = await _repository.getTopRatedDoctors();
+    print("🩵 result: ${result}");
+    result.fold(
+      (error) {
+        print("🔴 Error emitted: ${error.message}");
+        emit(state.copyWith(
+          topRatedDocStatus: TopRatedDocStatus.error,
+          errorMessage:
+              error.message.isNotEmpty ? error.message : "Unknown Error",
+        ));
+      },
+      (topRatedDocs) {
+        print("🟢 Success emitted with ${topRatedDocs.length} items");
+        emit(state.copyWith(
+          topRatedDocStatus: TopRatedDocStatus.success,
+          topRatedDoctors: topRatedDocs,
         ));
       },
     );

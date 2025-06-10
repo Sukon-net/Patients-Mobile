@@ -15,8 +15,8 @@ Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       bio: json['bio'] as String?,
       avatar: json['avatar'] as String? ?? '',
       availableSlotsCount: (json['available_slots_count'] as num?)?.toInt(),
-      specializations: (json['specializations'] as List<dynamic>)
-          .map((e) => Specialization.fromJson(e as Map<String, dynamic>))
+      specializations: (json['specializations'] as List<dynamic>?)
+          ?.map((e) => Specialization.fromJson(e as Map<String, dynamic>))
           .toList(),
       yearsOfExperience: json['years_of_experience'] == null
           ? 0

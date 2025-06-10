@@ -87,8 +87,8 @@ abstract class LocaleKeys {
   static const all = 'all';
   static const error_when_load_specialization =
       'error_when_load_specialization';
-  static const error_when_load_doctors_specialized =
-      'error_when_load_doctors_specialized';
+  static const error_when_load_doctors_specialized = 'error_when_load_doctors_specialized';
+  static const error_when_load_top_rated_doctors = 'error_when_load_top_rated_doctors';
   static const request_an_appointment = 'request_an_appointment';
   static const choose_an_appointment = 'choose_an_appointment';
   static const session_duration = 'session_duration';

@@ -7,8 +7,8 @@ import 'package:clients/features/auth/login/data/datasource/login_service.dart';
 import 'package:clients/features/auth/login/data/repository/login_repository.dart';
 import 'package:clients/features/book_session/data/datasource/book_session_service.dart';
 import 'package:clients/features/book_session/data/repository/book_session_repo.dart';
-import 'package:clients/features/home/data/datasource/specializations_service.dart';
-import 'package:clients/features/home/data/repository/specializations_repository.dart';
+import 'package:clients/features/home/data/datasource/home_service.dart';
+import 'package:clients/features/home/data/repository/home_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,9 +42,9 @@ Future<void> initDI() async {
       () => OtpRepositoryImpl(otpService: sl()));
 
   //Home -> Specializations
-  sl.registerLazySingleton(() => SpecializationsService(dio: sl()));
-  sl.registerLazySingleton<SpecializationsRepository>(
-      () => SpecializationsRepositoryImpl(specializationsService: sl()));
+  sl.registerLazySingleton(() => HomeService(dio: sl()));
+  sl.registerLazySingleton<HomeRepository>(
+      () => HomeRepositoryImpl(homeService: sl()));
 
   //DoctorInfo
   sl.registerLazySingleton(() => DoctorInfoService(dio: sl()));

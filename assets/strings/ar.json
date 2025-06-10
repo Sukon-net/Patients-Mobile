@@ -101,6 +101,7 @@
   "all": "الكل",
   "error_when_load_specialization": "حدث خطأ أثناء تحميل التخصصات",
   "error_when_load_doctors_specialized": "لا يوجد اطباء لعرضهم لهذا التخصص حاليا",
+  "error_when_load_top_rated_doctors": "حدث خطأ أثناء تحميل الأطباء الأعلى تقييمََا.\nيرجى المحاولة مرة أخرى لاحقًا",
   "request_an_appointment": "طلب حجز ميعاد",
   "choose_an_appointment": "اختيار ميعاد",
   "session_duration": "مدة الجلسة",

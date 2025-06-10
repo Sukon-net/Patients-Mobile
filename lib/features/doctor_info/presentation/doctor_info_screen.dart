@@ -181,15 +181,17 @@ class DoctorInfoScreen extends StatelessWidget {
                             color: context.colors.primaryTextColor,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(top: 16.h),
-                          child: PopularSpeWidget(
-                            specializations: List.generate(
-                              doctorInfo.specializations.length,
-                              (index) => doctorInfo.specializations[index].name,
+                        if (doctorInfo.specializations != null)
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(top: 16.h),
+                            child: PopularSpeWidget(
+                              specializations: List.generate(
+                                doctorInfo.specializations!.length,
+                                (index) =>
+                                    doctorInfo.specializations![index].name,
+                              ),
                             ),
-                          ),
-                        )
+                          )
                       ],
                     ),
                   ),

@@ -101,6 +101,7 @@
   "all": "All",
   "error_when_load_specialization": "An error occurred while loading the specializations",
   "error_when_load_doctors_specialized": "There are no doctors to display for this specialty currently.",
+  "error_when_load_top_rated_doctors": "An error occurred while loading the top-rated doctors.\nPlease try again later.",
   "request_an_appointment": "Session Booking",
   "choose_an_appointment": "Choose an appointment",
   "session_duration": "Session duration",
