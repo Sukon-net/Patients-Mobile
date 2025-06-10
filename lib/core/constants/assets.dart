@@ -66,4 +66,10 @@ class Assets {
       "assets/icons/filled_heart.svg";
   static const String assetsHeartIcon = "assets/icons/heart.svg";
   static const String assetsStarIcon = "assets/icons/star.svg";
+  static const String assetsDocCardBackgroundTop =
+      "assets/images/doc_card_background_top.svg";
+  static const String assetsDocCardBackgroundBottom =
+      "assets/images/doc_card_background_bottom.svg";
+  static const String assetsBottomArrowIcon =
+      "assets/icons/bottom_arrow_icon.svg";
 }

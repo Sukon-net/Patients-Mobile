@@ -59,21 +59,40 @@ class _AnalysisWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                FilledButton.icon(
-                  onPressed: onUpdateClicked,
-                  label: Text(
-                    LocaleKeys.update.tr(),
-                    style: TextStyles.size14Weight400.copyWith(
-                      color: context.colors.onPrimaryCTAColor,
+                InkWell(
+                  borderRadius: BorderRadius.circular(50.r),
+                  onTap: onUpdateClicked,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.r),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 10.h, sigmaX: 10.w),
+                      child: Container(
+                        padding: EdgeInsetsDirectional.symmetric(
+                          vertical: 8.h,
+                          horizontal: 16.h,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.r),
+                          color: context.colors.whiteWith40Opacity,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.refresh,
+                              color: context.colors.onPrimaryCTAColor,
+                              size: 20.r,
+                            ),
+                            HorizontalSpacer(4.w),
+                            Text(
+                              LocaleKeys.update.tr(),
+                              style: TextStyles.size14Weight400.copyWith(
+                                color: context.colors.onPrimaryCTAColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  icon: Icon(
-                    Icons.refresh,
-                    color: context.colors.onPrimaryCTAColor,
-                  ),
-                  iconAlignment: IconAlignment.start,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: const Color(0x66FFFFFF),
                   ),
                 ),
               ],

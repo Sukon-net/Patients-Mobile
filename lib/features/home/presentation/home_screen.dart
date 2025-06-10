@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:clients/core/constants/assets.dart';
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/utils/helpers.dart';
+import 'package:clients/core/widgets/blue_arrow_back.dart';
 import 'package:clients/core/widgets/custom_avatar.dart';
 import 'package:clients/core/widgets/spacers.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
@@ -69,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
       lastName: 'حمدي',
       role: '$index',
       avatar: '',
-      yearOfExperience: '12',
+      yearsOfExperience: 12,
       bio: '',
       specializations: [],
       sessionUSDPrice: 2,
       sessionEGPPrice: 3,
-      availableSlots: [],
+      availableSlotsCount: 2,
       title: 'د/',
     ),
   );
@@ -155,26 +158,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: context.colors.primaryTextColor,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: state.specializations != null &&
-                                        state.specializations!.isNotEmpty
-                                    ? () {
-                                        context.pushNamed(
-                                          Routes.specializationsFilter,
-                                          arguments:
-                                              SpecializationsFilterScreenArguments(
-                                            specializationId: 0,
-                                            specializations:
-                                                state.specializations!,
-                                          ),
-                                        );
-                                      }
-                                    : null,
-                                icon: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: context.colors.primaryCTAColor,
-                                  size: 20.r,
-                                ),
+                              BlueArrowBack(
+                                onClicked: () {
+                                  state.specializations != null &&
+                                          state.specializations!.isNotEmpty
+                                      ? () {
+                                          context.pushNamed(
+                                            Routes.specializationsFilter,
+                                            arguments:
+                                                SpecializationsFilterScreenArguments(
+                                              specializationId: 0,
+                                              specializations:
+                                                  state.specializations!,
+                                            ),
+                                          );
+                                        }
+                                      : null;
+                                },
                               ),
                             ],
                           ),
@@ -220,15 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: context.colors.primaryTextColor,
                             ),
                           ),
-                          IconButton(
-                            //TODO: we see more appointments clicked
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: context.colors.primaryCTAColor,
-                              size: 20.r,
-                            ),
-                          ),
+
+                          //TODO: we see more appointments clicked
+                          BlueArrowBack(onClicked: () {}),
                         ],
                       ),
                     ),
@@ -261,22 +255,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: context.colors.primaryTextColor,
                             ),
                           ),
-                          IconButton(
-                            //TODO: we see more top rated clicked
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: context.colors.primaryCTAColor,
-                              size: 20.r,
-                            ),
-                          ),
+
+                          //TODO: we see more top rated clicked
+                          BlueArrowBack(onClicked: () {}),
                         ],
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 12.h, bottom: 16.h),
                       child: SizedBox(
-                        height: 126.h,
+                        height: 140.h,
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => DoctorCard(

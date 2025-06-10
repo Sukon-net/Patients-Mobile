@@ -8,4 +8,5 @@ class Routes {
   static const String completeProfile = '/completeProfile';
   static const String doctorInfo = '/doctorInfo';
   static const String specializationsFilter = '/home/specializationsFilter';
+  static const String bookSession = '/bookSession';
 }

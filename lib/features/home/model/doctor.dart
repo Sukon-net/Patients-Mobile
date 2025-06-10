@@ -1,4 +1,3 @@
-import 'package:clients/features/home/model/appointment.dart';
 import 'package:clients/features/home/model/specialization.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -20,28 +19,27 @@ class Doctor {
   final double? sessionUSDPrice;
   @JsonKey(name: "session_egp_price")
   final double? sessionEGPPrice;
-  @JsonKey(name: "available_slots")
-  final List<Appointment>? availableSlots;
+  @JsonKey(name: "available_slots_count")
+  final int? availableSlotsCount;
   final int comment;
+  @JsonKey(name: "average_rating")
   final double? rating;
-  final int? ratingCount;
-  @JsonKey(name: "years_of_experience")
-  final String yearOfExperience;
+  @JsonKey(name: "years_of_experience", fromJson: _stringToInt)
+  final int yearsOfExperience;
 
   const Doctor({
     required this.id,
     required this.firstName,
     required this.lastName,
     required this.role,
-    this.title,
+    this.title = '',
     this.bio,
     this.avatar = '',
-    this.availableSlots,
+    this.availableSlotsCount,
     required this.specializations,
-    this.yearOfExperience = "0",
-    this.sessionUSDPrice,
-    this.sessionEGPPrice,
-    this.ratingCount,
+    this.yearsOfExperience = 0,
+    this.sessionUSDPrice = 0.0,
+    this.sessionEGPPrice = 0.0,
     this.comment = 0,
     this.rating = 0,
   });
@@ -49,4 +47,6 @@ class Doctor {
   factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
   Map<String, dynamic> toJson() => _$DoctorToJson(this);
+
+  static int _stringToInt(dynamic value) => int.tryParse(value.toString()) ?? 0;
 }

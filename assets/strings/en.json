@@ -73,8 +73,22 @@
   "messages": "Messages",
   "more": "More",
   "back_slash": "\\",
-  "appointment": "slot",
-  "year": "year",
+  "appointment": {
+    "zero": "No slots",
+    "one": "1 slot",
+    "two": "2 slots",
+    "few": "{} slots",
+    "many": "{} slots",
+    "other": "{} slots"
+  },
+  "year": {
+    "zero": "No years",
+    "one": "1 year",
+    "two": "2 years",
+    "few": "{} years",
+    "many": "{} years",
+    "other": "{} years"
+  },
   "unauthorized": "Please login to continue",
   "doctor_details": "Doctor Details",
   "opinions": "Opinions",
@@ -86,5 +100,17 @@
   "make_an_appointment": "Make an Appointment",
   "all": "All",
   "error_when_load_specialization": "An error occurred while loading the specializations",
-  "error_when_load_doctors_specialized": "There are no doctors to display for this specialty currently."
+  "error_when_load_doctors_specialized": "There are no doctors to display for this specialty currently.",
+  "request_an_appointment": "Session Booking",
+  "choose_an_appointment": "Choose an appointment",
+  "session_duration": "Session duration",
+  "minute": "Minutes",
+  "available_slots": "Available slots",
+  "complaint": "Complaint",
+  "book_an_appointment": "Book an Appointment",
+  "starting_from": "From",
+  "egp": "EGP",
+  "not_available_days_message": "There are currently no available times for this doctor. Feel free to try again later or explore other doctors from our team",
+  "not_available_slots_message": "The doctor has no available appointments for the selected date and duration.\nPlease try a different time.",
+  "choose": "Choose"
 }

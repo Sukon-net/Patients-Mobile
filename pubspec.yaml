@@ -38,6 +38,9 @@ dependencies:
   see_more: ^0.0.5
   cached_network_image: ^3.4.1
   scrollable_positioned_list: ^0.3.8
+  persistent_bottom_nav_bar_v2: ^5.4.0
+  dropdown_button2: ^2.3.9
+  skeletonizer: ^1.4.3
 
 dev_dependencies:
   build_runner: ^2.4.14

@@ -32,6 +32,10 @@ abstract class AppColors {
   abstract final Color unRatedStarColor;
   abstract final Color readHeartColor;
   abstract final Color grayColor;
+  abstract final Color whiteWith40Opacity;
+  abstract final Color subTitleGray;
+  abstract final Color inactiveCalenderCard;
+
   abstract final List<Color> adGradientColors;
 }
 
@@ -46,7 +50,7 @@ class LightAppColors extends AppColors {
   final Color secondaryCTAColor = const Color(0xFFFFFFFF);
 
   @override
-  final Color onSecondaryCTAColor = const Color(0xFF343434);
+  final Color onSecondaryCTAColor = const Color(0xFF404040);
 
   @override
   final Color primaryBackgroundColor = const Color(0xFFFFFFFF);
@@ -134,6 +138,15 @@ class LightAppColors extends AppColors {
 
   @override
   final Color grayColor = const Color(0xFFAAAAAA);
+
+  @override
+  final Color whiteWith40Opacity = const Color(0x66FFFFFF);
+
+  @override
+  final Color subTitleGray = const Color(0xFF808080);
+
+  @override
+  final Color inactiveCalenderCard = const Color(0xFFF9F9F9);
 }
 
 class DarkAppColors extends AppColors {
@@ -147,7 +160,7 @@ class DarkAppColors extends AppColors {
   final Color secondaryCTAColor = const Color(0xFFFFFFFF);
 
   @override
-  final Color onSecondaryCTAColor = const Color(0xFF343434);
+  final Color onSecondaryCTAColor = const Color(0xFF404040);
 
   @override
   final Color primaryBackgroundColor = const Color(0xFFFFFFFF);
@@ -235,4 +248,13 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color grayColor = const Color(0xFFAAAAAA);
+
+  @override
+  final Color whiteWith40Opacity = const Color(0x66FFFFFF);
+
+  @override
+  final Color subTitleGray = const Color(0xFF808080);
+
+  @override
+  final Color inactiveCalenderCard = const Color(0xFFF9F9F9);
 }

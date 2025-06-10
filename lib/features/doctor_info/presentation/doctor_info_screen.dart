@@ -1,5 +1,7 @@
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
+import 'package:clients/core/utils/extensions/context_routing_extensions.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/utils/extensions/num_duration_extensions.dart';
 import 'package:clients/core/widgets/add_to_favourite.dart';
@@ -129,7 +131,7 @@ class DoctorInfoScreen extends StatelessWidget {
                               CustomIcon(
                                 iconPath: Assets.assetsAppointmentsIcon,
                                 label:
-                                    "${doctorInfo.availableSlots!.length} ${LocaleKeys.appointment.tr()}",
+                                    "${doctorInfo.availableSlotsCount} ${LocaleKeys.appointment.tr()}",
                               ),
                               VerticalDividerWidget(24.h),
                               CustomIcon(
@@ -140,7 +142,7 @@ class DoctorInfoScreen extends StatelessWidget {
                               CustomIcon(
                                 iconPath: Assets.assetsExperienceIcon,
                                 label:
-                                    "${doctorInfo.yearOfExperience} ${LocaleKeys.year.tr()}",
+                                    "${doctorInfo.yearsOfExperience} ${LocaleKeys.year.tr()}",
                               ),
                             ],
                           ),
@@ -199,8 +201,12 @@ class DoctorInfoScreen extends StatelessWidget {
                   child: PrimaryFilledButton(
                     text: context.tr(LocaleKeys.make_an_appointment),
                     borderRadius: 16.r,
-                    //TODO: when make an appointment button clicked
-                    onClick: () {},
+                    onClick: () {
+                      context.pushNamed(
+                        Routes.bookSession,
+                        arguments: state.doctor,
+                      );
+                    },
                   ),
                 ),
               ],

@@ -89,4 +89,16 @@ abstract class LocaleKeys {
       'error_when_load_specialization';
   static const error_when_load_doctors_specialized =
       'error_when_load_doctors_specialized';
+  static const request_an_appointment = 'request_an_appointment';
+  static const choose_an_appointment = 'choose_an_appointment';
+  static const session_duration = 'session_duration';
+  static const minute = 'minute';
+  static const available_slots = 'available_slots';
+  static const complaint = 'complaint';
+  static const book_an_appointment = 'book_an_appointment';
+  static const starting_from = 'starting_from';
+  static const egp = 'egp';
+  static const not_available_days_message = "not_available_days_message";
+  static const not_available_slots_message = "not_available_slots_message";
+  static const choose = "choose";
 }

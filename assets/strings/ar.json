@@ -73,8 +73,22 @@
   "messages": "الرسائل",
   "more": "المزيد",
   "back_slash": "/",
-  "appointment": "ميعاد",
-  "year": "سنة",
+  "appointment": {
+    "zero": "لا يوجد مواعيد",
+    "one": "ميعاد واحد",
+    "two": "ميعادان",
+    "few": "{} مواعيد",
+    "many": "{} مواعيد",
+    "other": "{} مواعيد"
+  },
+  "year": {
+    "zero": "لا يوجد سنوات",
+    "one": "سنة واحدة",
+    "two": "سنتان",
+    "few": "{} سنوات",
+    "many": "{} سنوات",
+    "other": "{} سنوات"
+  },
   "unauthorized": "يجب تسجيل الدخول أولًا",
   "doctor_details": "تفاصيل عن الدكتور",
   "opinions": "آراء",
@@ -86,5 +100,17 @@
   "make_an_appointment": "تحديد ميعاد",
   "all": "الكل",
   "error_when_load_specialization": "حدث خطأ أثناء تحميل التخصصات",
-  "error_when_load_doctors_specialized": "لا يوجد اطباء لعرضهم لهذا التخصص حاليا"
+  "error_when_load_doctors_specialized": "لا يوجد اطباء لعرضهم لهذا التخصص حاليا",
+  "request_an_appointment": "طلب حجز ميعاد",
+  "choose_an_appointment": "اختيار ميعاد",
+  "session_duration": "مدة الجلسة",
+  "minute": "دقيقة",
+  "available_slots": "المواعيد المتاحة",
+  "complaint": "الشكوى",
+  "book_an_appointment": "حجز ميعاد",
+  "starting_from": "يبدأ من",
+  "egp": "ج.م",
+  "not_available_days_message": "حالياً لا توجد مواعيد متاحة مع هذا الطبيب، يمكنك المحاولة لاحقًا أو اختيار طبيب آخر من فريقنا المميز",
+  "not_available_slots_message": "لا توجد مواعيد متاحة للطبيب في التاريخ والمدة المحددين.\nيُرجى تجربة وقت آخر.",
+  "choose": "اختر"
 }

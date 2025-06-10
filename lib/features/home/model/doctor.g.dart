@@ -11,21 +11,20 @@ Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
       role: json['role'] as String,
-      title: json['title'] as String?,
+      title: json['title'] as String? ?? '',
       bio: json['bio'] as String?,
       avatar: json['avatar'] as String? ?? '',
-      availableSlots: (json['available_slots'] as List<dynamic>?)
-          ?.map((e) => Appointment.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      availableSlotsCount: (json['available_slots_count'] as num?)?.toInt(),
       specializations: (json['specializations'] as List<dynamic>)
           .map((e) => Specialization.fromJson(e as Map<String, dynamic>))
           .toList(),
-      yearOfExperience: json['years_of_experience'] as String? ?? "0",
-      sessionUSDPrice: (json['session_usd_price'] as num?)?.toDouble(),
-      sessionEGPPrice: (json['session_egp_price'] as num?)?.toDouble(),
-      ratingCount: (json['ratingCount'] as num?)?.toInt(),
+      yearsOfExperience: json['years_of_experience'] == null
+          ? 0
+          : Doctor._stringToInt(json['years_of_experience']),
+      sessionUSDPrice: (json['session_usd_price'] as num?)?.toDouble() ?? 0.0,
+      sessionEGPPrice: (json['session_egp_price'] as num?)?.toDouble() ?? 0.0,
       comment: (json['comment'] as num?)?.toInt() ?? 0,
-      rating: (json['rating'] as num?)?.toDouble() ?? 0,
+      rating: (json['average_rating'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
@@ -39,9 +38,8 @@ Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
       'specializations': instance.specializations,
       'session_usd_price': instance.sessionUSDPrice,
       'session_egp_price': instance.sessionEGPPrice,
-      'available_slots': instance.availableSlots,
+      'available_slots_count': instance.availableSlotsCount,
       'comment': instance.comment,
-      'rating': instance.rating,
-      'ratingCount': instance.ratingCount,
-      'years_of_experience': instance.yearOfExperience,
+      'average_rating': instance.rating,
+      'years_of_experience': instance.yearsOfExperience,
     };

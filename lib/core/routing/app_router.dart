@@ -5,6 +5,8 @@ import 'package:clients/features/auth/complete%20profile/logic/complete_profile_
 import 'package:clients/features/auth/complete%20profile/presentation/complete_profile_screen.dart';
 import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/login/presentation/login_screen.dart';
+import 'package:clients/features/book_session/logic/book_session_cubit.dart';
+import 'package:clients/features/book_session/presentation/book_session_screen.dart';
 import 'package:clients/features/doctor_info/logic/doctor_info_cubit.dart';
 import 'package:clients/features/doctor_info/presentation/doctor_info_screen.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
@@ -13,6 +15,7 @@ import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/home/model/doctor.dart';
 import '../../features/specializations_filter/logic/specializations_filter_cubit.dart';
 import '../../features/specializations_filter/presentation/specializations_filter_screen.dart';
 import '../di/dependency_container.dart';
@@ -33,6 +36,8 @@ class AppRouter {
             child: const LoginScreen(),
           ),
         );
+
+      /// need email address as arguments
       case Routes.otp:
         final emailAddress = arguments as String;
         return MaterialPageRoute(
@@ -57,6 +62,8 @@ class AppRouter {
             child: const HomeScreen(),
           ),
         );
+
+      /// need doctor id as arguments
       case Routes.doctorInfo:
         final doctorId = arguments as int;
         return MaterialPageRoute(
@@ -66,6 +73,8 @@ class AppRouter {
             child: const DoctorInfoScreen(),
           ),
         );
+
+      /// need specialization id & specializations as arguments
       case Routes.specializationsFilter:
         final screenArguments =
             arguments as SpecializationsFilterScreenArguments;
@@ -75,6 +84,19 @@ class AppRouter {
                 screenArguments.specializationId, sl()),
             child: SpecializationsFilterScreen(
               specializations: screenArguments.specializations,
+            ),
+          ),
+        );
+
+      /// need doctor as arguments
+      case Routes.bookSession:
+        final doctor = arguments as Doctor;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) =>
+                BookSessionCubit(doctor.id, sl())..getDoctorAvailableDays(),
+            child: BookSessionScreen(
+              doctor: doctor,
             ),
           ),
         );
