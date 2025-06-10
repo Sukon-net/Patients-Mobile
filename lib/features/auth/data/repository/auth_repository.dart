@@ -2,17 +2,16 @@ import 'dart:convert';
 
 import 'package:clients/core/storage/secure_storage/secure_storage_helper.dart';
 import 'package:clients/core/storage/shared_preferences/shared_preferences_helper.dart';
+import 'package:clients/features/auth/data/datasource/auth_service.dart';
 import 'package:clients/features/auth/model/authed_user/authed_user.dart';
-import 'package:clients/features/auth/model/authed_user/data/datasource/auth_service.dart';
+import 'package:clients/features/model/user.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 abstract class AuthRepository {
-  Future<AuthedUser> storeUser(AuthedUser authedUser);
-
-  Future<AuthedUser> getUser();
-
+  Future<void> storeUser(AuthedUser authedUser);
+  Future<User?> getUser();
+  Future<bool> isAuthenticated();
   Future<void> logout();
-
   Future<void> fetchAndCacheUser();
 }
 
@@ -33,19 +32,31 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<AuthedUser> getUser() async {
+  Future<User?> getUser() async {
     final user = await _authServices.getUser();
     return user.fold(
       (backendUser) async {
         await storeUser(backendUser);
-        return backendUser;
+        return backendUser.user;
       },
       (_) async {
         final cachedUser = await _sharedPreferencesHelper
-            .get<Map<String, dynamic>>(SharedPreferencesKeys.authedUser);
-        return AuthedUser.fromJson(cachedUser);
+            .get(SharedPreferencesKeys.authedUser);
+        if (cachedUser != null) {
+          return User.fromJson(jsonDecode(cachedUser));
+        }
+        return null;
       },
     );
+  }
+
+  @override
+  Future<bool> isAuthenticated() async {
+    final token = await SecureStorageHelper.getAccessToken();
+    if (token == null) {
+      return false;
+    }
+    return true;
   }
 
   @override

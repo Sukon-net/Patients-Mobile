@@ -1,7 +1,7 @@
 import 'package:clients/core/di/dependency_container.dart';
 import 'package:clients/core/networking/api_constants.dart';
 import 'package:clients/core/storage/secure_storage/secure_storage_helper.dart';
-import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:clients/features/model/user.dart';
 import 'package:dio/dio.dart';
 

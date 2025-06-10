@@ -21,7 +21,10 @@ class DoctorInfoService {
         if (FlavorConfig.isDevelopment()) {
           log("get doctor info data source: ${response.extra}");
         }
-        return Doctor.fromJson(response.data['data']);
+        return Doctor.fromJson(response.data['data']
+          ..addAll({
+            "id": doctorId,
+          }));
       },
     );
   }

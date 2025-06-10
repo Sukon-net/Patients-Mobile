@@ -4,7 +4,7 @@ import 'package:clients/core/routing/navigator_service.dart';
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/utils/extensions/context_extension.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
-import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is Authenticated && !state.hasCompletedSignup) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
+          // TODO: Add complete profile screen
+          NavigatorService.pushNamedAndRemoveUntil(Routes.home);
         } else if (state is Authenticated && state.hasCompletedSignup) {
           NavigatorService.pushNamedAndRemoveUntil(Routes.home);
         } else if (state is Guest) {
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: context.supportedLocales,
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: Routes.onboarding,
+        initialRoute: Routes.loading,
         theme: _buildAppThemeData(context),
         onGenerateTitle: (context) => context.tr(LocaleKeys.app_name),
         debugShowCheckedModeBanner: FlavorConfig.isDevelopment(),

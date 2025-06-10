@@ -9,6 +9,7 @@ import 'package:clients/core/utils/helpers.dart';
 import 'package:clients/core/widgets/blue_arrow_back.dart';
 import 'package:clients/core/widgets/custom_avatar.dart';
 import 'package:clients/core/widgets/spacers.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
 import 'package:clients/features/home/model/appointment.dart';
 import 'package:clients/features/home/model/doctor.dart';
@@ -93,10 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 16.h),
-                      //TODO: add img and handel on notification clicked
                       child: _WelcomeWidget(
-                        name: 'نادين',
-                        imgUrl: "",
+                        name: context.read<AuthCubit>().currentUser?.firstName,
+                        imgUrl: context.read<AuthCubit>().currentUser?.avatar,
                         onNotificationClicked: () {},
                       ),
                     ),

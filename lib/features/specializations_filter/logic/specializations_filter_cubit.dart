@@ -37,7 +37,10 @@ class SpecializationsFilterCubit extends Cubit<SpecializationsFilterState> {
   }
 
   void changeSelectedIndex(int index, [String? specialization]) {
-    emit(state.copyWith(selectedIndex: index));
+    emit(state.copyWith(
+      selectedIndex: index,
+      status: SpecializationsFilterStatus.loading,
+    ));
     if (index == 0) {
       getDoctors();
     } else {

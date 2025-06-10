@@ -7,8 +7,8 @@ class _WelcomeWidget extends StatelessWidget {
     required this.onNotificationClicked,
   });
 
-  final String name;
-  final String imgUrl;
+  final String? name;
+  final String? imgUrl;
   final void Function() onNotificationClicked;
 
   @override
@@ -34,7 +34,7 @@ class _WelcomeWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  name + LocaleKeys.how_are_you.tr(),
+                  "${name ?? ""}${name != null ? ", " : " "}${LocaleKeys.how_are_you.tr()}",
                   style: TextStyles.size20Weight600.copyWith(
                     color: context.colors.primaryTextColor,
                   ),

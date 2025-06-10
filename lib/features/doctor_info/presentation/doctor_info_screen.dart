@@ -106,7 +106,7 @@ class DoctorInfoScreen extends StatelessWidget {
                                   ),
                                 ),
                                 RatingWidget(
-                                  ratingValue: 3.5,
+                                  ratingValue: doctorInfo.rating ?? 0,
                                 ),
                               ],
                             ),
@@ -130,8 +130,8 @@ class DoctorInfoScreen extends StatelessWidget {
                             children: [
                               CustomIcon(
                                 iconPath: Assets.assetsAppointmentsIcon,
-                                label:
-                                    "${doctorInfo.availableSlotsCount} ${LocaleKeys.appointment.tr()}",
+                                label: LocaleKeys.appointment.plural(
+                                    doctorInfo.availableSlotsCount ?? 0),
                               ),
                               VerticalDividerWidget(24.h),
                               CustomIcon(
@@ -141,40 +141,42 @@ class DoctorInfoScreen extends StatelessWidget {
                               VerticalDividerWidget(24.h),
                               CustomIcon(
                                 iconPath: Assets.assetsExperienceIcon,
-                                label:
-                                    "${doctorInfo.yearsOfExperience} ${LocaleKeys.year.tr()}",
+                                label: LocaleKeys.year
+                                    .plural(doctorInfo.yearsOfExperience),
                               ),
                             ],
                           ),
                         ),
-                        Text(
-                          context.tr(LocaleKeys.description),
-                          style: TextStyles.size16Weight500.copyWith(
-                            color: context.colors.primaryTextColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            top: 4.h,
-                            bottom: 24.h,
-                          ),
-                          child: SeeMoreWidget(
-                            doctorInfo.bio!,
-                            textStyle: TextStyles.size14Weight400.copyWith(
-                              color: context.colors.subTextColor,
+                        if (doctorInfo.bio != null) ...[
+                          Text(
+                            context.tr(LocaleKeys.description),
+                            style: TextStyles.size16Weight500.copyWith(
+                              color: context.colors.primaryTextColor,
                             ),
-                            seeMoreText: context.tr(LocaleKeys.read_more),
-                            seeMoreStyle: TextStyles.size14Weight400.copyWith(
-                              color: context.colors.primaryCTAColor,
-                            ),
-                            seeLessText: context.tr(LocaleKeys.read_less),
-                            seeLessStyle: TextStyles.size14Weight400.copyWith(
-                              color: context.colors.primaryCTAColor,
-                            ),
-                            animationDuration: 200.ms,
-                            trimLength: 140,
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(
+                              top: 4.h,
+                              bottom: 24.h,
+                            ),
+                            child: SeeMoreWidget(
+                              doctorInfo.bio!,
+                              textStyle: TextStyles.size14Weight400.copyWith(
+                                color: context.colors.subTextColor,
+                              ),
+                              seeMoreText: context.tr(LocaleKeys.read_more),
+                              seeMoreStyle: TextStyles.size14Weight400.copyWith(
+                                color: context.colors.primaryCTAColor,
+                              ),
+                              seeLessText: context.tr(LocaleKeys.read_less),
+                              seeLessStyle: TextStyles.size14Weight400.copyWith(
+                                color: context.colors.primaryCTAColor,
+                              ),
+                              animationDuration: 200.ms,
+                              trimLength: 140,
+                            ),
+                          ),
+                        ],
                         Text(
                           context.tr(LocaleKeys.popular_specializations),
                           style: TextStyles.size16Weight500.copyWith(

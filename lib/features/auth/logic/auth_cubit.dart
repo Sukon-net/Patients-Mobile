@@ -1,5 +1,5 @@
+import 'package:clients/features/auth/data/repository/auth_repository.dart';
 import 'package:clients/features/auth/model/authed_user/authed_user.dart';
-import 'package:clients/features/auth/model/authed_user/data/repository/auth_repository.dart';
 import 'package:clients/features/model/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +9,9 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
 
-  AuthCubit(this._authRepository) : super(const AuthLoading());
+  AuthCubit(this._authRepository) : super(const AuthLoading()) {
+    checkAuth();
+  }
 
   User? get currentUser {
     if (state is Authenticated) {
@@ -18,6 +20,20 @@ class AuthCubit extends Cubit<AuthState> {
       return User.guest;
     } else {
       return null;
+    }
+  }
+
+  void checkAuth() async {
+    final isAuthenticated = await _authRepository.isAuthenticated();
+    if (isAuthenticated) {
+      final user = await _authRepository.getUser();
+      if (user != null) {
+        emit(Authenticated(user: user));
+      } else {
+        emit(const Unauthenticated());
+      }
+    } else {
+      emit(const Unauthenticated());
     }
   }
 

@@ -6,7 +6,7 @@ import 'package:clients/features/auth/OTP/data/repository/otp_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/authed_user/logic/auth_cubit.dart';
+import '../../logic/auth_cubit.dart';
 
 part 'otp_state.dart';
 

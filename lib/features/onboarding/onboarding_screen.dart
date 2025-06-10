@@ -8,7 +8,7 @@ import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/or_divider.dart';
 import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/core/widgets/social_media_button.dart';
-import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

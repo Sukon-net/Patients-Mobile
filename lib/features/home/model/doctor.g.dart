@@ -9,7 +9,7 @@ part of 'doctor.dart';
 Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       id: (json['id'] as num).toInt(),
       firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
+      lastName: json['last_name'] as String? ?? '',
       role: json['role'] as String,
       title: json['title'] as String? ?? '',
       bio: json['bio'] as String?,
@@ -21,8 +21,12 @@ Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       yearsOfExperience: json['years_of_experience'] == null
           ? 0
           : Doctor._stringToInt(json['years_of_experience']),
-      sessionUSDPrice: (json['session_usd_price'] as num?)?.toDouble() ?? 0.0,
-      sessionEGPPrice: (json['session_egp_price'] as num?)?.toDouble() ?? 0.0,
+      sessionUSDPrice: json['session_usd_price'] == null
+          ? 0.0
+          : Doctor._stringToDouble(json['session_usd_price']),
+      sessionEGPPrice: json['session_egp_price'] == null
+          ? 0.0
+          : Doctor._stringToDouble(json['session_egp_price']),
       comment: (json['comment'] as num?)?.toInt() ?? 0,
       rating: (json['average_rating'] as num?)?.toDouble() ?? 0,
     );

@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../core/l10n/generated/locale_keys.g.dart';
 import '../../../core/routing/routes.dart';
@@ -39,22 +38,6 @@ class SpecializationsFilterScreen extends StatefulWidget {
 
 class _SpecializationsFilterScreenState
     extends State<SpecializationsFilterScreen> {
-  final ItemScrollController _scrollController = ItemScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final state = context.read<SpecializationsFilterCubit>().state;
-      if (state.selectedIndex >= 0 && _scrollController.isAttached) {
-        _scrollController.jumpTo(
-          index: state.selectedIndex,
-          alignment: 0.0,
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final backgroundColor = context.colors.errorAccentColor;
@@ -70,8 +53,7 @@ class _SpecializationsFilterScreenState
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+      body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -79,19 +61,11 @@ class _SpecializationsFilterScreenState
                 buildWhen: (previous, current) =>
                     previous.selectedIndex != current.selectedIndex,
                 builder: (context, state) {
-                  if (state.selectedIndex >= 0 &&
-                      _scrollController.isAttached) {
-                    _scrollController.jumpTo(
-                      index: state.selectedIndex,
-                      alignment: 0.0,
-                    );
-                  }
-
                   return SizedBox(
                     height: 80.h,
-                    child: ScrollablePositionedList.separated(
-                        itemScrollController: _scrollController,
+                    child: ListView.separated(
                         scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
                         itemCount: widget.specializations.length + 1,
                         separatorBuilder: (_, __) => HorizontalSpacer(8.w),
                         itemBuilder: (context, index) {
@@ -137,21 +111,20 @@ class _SpecializationsFilterScreenState
                   final doctors = state.doctors;
 
                   if (state.status == SpecializationsFilterStatus.loading) {
-                    List.generate(
-                      3,
-                      (index) => Padding(
-                        padding: EdgeInsetsDirectional.only(bottom: 16.h),
-                        child: BoxShimmer(
-                          width: double.infinity,
-                          height: 126.h,
-                          borderRadius: 12.r,
-                        ),
+                    return ListView.separated(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      itemCount: 3,
+                      separatorBuilder: (_, __) => VerticalSpacer(16.h),
+                      itemBuilder: (context, index) => BoxShimmer(
+                        width: double.infinity,
+                        height: 126.h,
+                        borderRadius: 12.r,
                       ),
                     );
                   }
                   if (state.status == SpecializationsFilterStatus.success) {
                     if (doctors == null || doctors.isEmpty) {
-                      CustomErrorWidget(
+                      return CustomErrorWidget(
                         width: 200.h,
                         height: 250.h,
                         text: context

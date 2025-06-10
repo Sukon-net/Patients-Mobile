@@ -1,5 +1,5 @@
 import 'package:clients/core/networking/failures.dart';
-import 'package:clients/features/auth/model/authed_user/logic/auth_cubit.dart';
+import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 

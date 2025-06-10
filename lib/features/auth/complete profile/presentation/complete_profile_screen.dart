@@ -22,7 +22,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 import '../../../model/user.dart';
-import '../../model/authed_user/logic/auth_cubit.dart';
+import '../../logic/auth_cubit.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});

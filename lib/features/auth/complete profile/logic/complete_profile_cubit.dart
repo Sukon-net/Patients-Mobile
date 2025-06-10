@@ -9,7 +9,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/dependency_container.dart';
-import '../../model/authed_user/logic/auth_cubit.dart';
+import '../../logic/auth_cubit.dart';
 
 part 'complete_profile_state.dart';
 

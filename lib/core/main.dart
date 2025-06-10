@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../features/auth/model/authed_user/logic/auth_cubit.dart';
+import '../features/auth/logic/auth_cubit.dart';
 
 void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();

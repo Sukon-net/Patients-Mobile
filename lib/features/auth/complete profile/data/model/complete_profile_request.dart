@@ -26,8 +26,13 @@ class CompleteProfileRequest {
     required this.gender,
   });
 
-  factory CompleteProfileRequest.fromJson(Map<String, dynamic> json) =>
-      _$CompleteProfileRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CompleteProfileRequestToJson(this);
+  Map<String, dynamic> toJson() => {
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
+        'date_of_birth': dateOfBirth?.toIso8601String().split('T')[0],
+        'mobile': phoneNumber,
+        'gender': gender?.name,
+        '_method': 'put',
+      };
 }

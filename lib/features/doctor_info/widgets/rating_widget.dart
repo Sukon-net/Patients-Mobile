@@ -34,6 +34,7 @@ class _RatingWidgetState extends State<RatingWidget> {
           itemSize: 16.r,
           unratedColor: context.colors.unRatedStarColor,
           textDirection: TextDirection.ltr,
+          ignoreGestures: true,
           allowHalfRating: true,
           minRating: 1,
           direction: Axis.horizontal,

@@ -17,12 +17,9 @@ class CompleteProfileService {
       final response = await _dio.post(
         ApiConstants.updateProfile,
         options: Options(
-          contentType: 'multipart/form-data',
+          contentType: Headers.multipartFormDataContentType,
         ),
-        data: FormData.fromMap(compProfileReq.toJson()
-          ..addAll({
-            '_method': 'put',
-          })),
+        data: FormData.fromMap(compProfileReq.toJson()),
       );
       return left(AuthedUser.fromJson(response.data));
     } on DioException catch (e) {
