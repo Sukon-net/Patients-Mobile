@@ -9,6 +9,7 @@ class ApiConstants {
   static const String verifyOTP = "auth/verify-otp";
   static const String resendOTP = "auth/resend-otp";
   static const String updateProfile = "auth/update-profile";
+  static const String completeRegistration = "auth/complete-registration";
   static const String canChangeEmail = "auth/can-change-email";
   static const String changeEmail = "auth/change-email";
   static const String viewProfile = "auth/view-profile";

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       listener: (context, state) {
         if (state is Authenticated && !state.hasCompletedSignup) {
           // TODO: Add complete profile screen
-          NavigatorService.pushNamedAndRemoveUntil(Routes.home);
+          NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
         } else if (state is Authenticated && state.hasCompletedSignup) {
           NavigatorService.pushNamedAndRemoveUntil(Routes.home);
         } else if (state is Guest) {

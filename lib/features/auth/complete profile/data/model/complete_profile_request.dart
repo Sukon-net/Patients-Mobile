@@ -33,6 +33,5 @@ class CompleteProfileRequest {
         'date_of_birth': dateOfBirth?.toIso8601String().split('T')[0],
         'mobile': phoneNumber,
         'gender': gender?.name,
-        '_method': 'put',
       };
 }

@@ -39,7 +39,7 @@ dependencies:
   persistent_bottom_nav_bar_v2: ^5.4.0
   dropdown_button2: ^2.3.9
   skeletonizer: ^1.4.3
-  flutter_secure_storage: ^4.2.1
+  flutter_secure_storage: ^9.2.4
   linear_progress_bar: ^1.2.0
   connectivity_plus: ^6.1.4
 

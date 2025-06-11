@@ -9,6 +9,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 abstract class AuthRepository {
   Future<void> storeUser(AuthedUser authedUser);
+  Future<void> updateUser(User user);
   Future<User?> getUser();
   Future<bool> isAuthenticated();
   Future<void> logout();
@@ -29,6 +30,14 @@ class AuthRepositoryImpl extends AuthRepository {
       jsonEncode(authedUser.user.toJson()),
     );
     return authedUser;
+  }
+
+  @override
+  Future<void> updateUser(User user) async {
+    await _sharedPreferencesHelper.set(
+      SharedPreferencesKeys.authedUser,
+      jsonEncode(user.toJson()),
+    );
   }
 
   @override

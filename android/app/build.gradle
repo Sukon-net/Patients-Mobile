@@ -9,7 +9,6 @@ plugins {
 }
 
 android {
-    namespace = "net.sukon.clients"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "25.1.8937393"
 
@@ -37,10 +36,12 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
+            namespace = "net.sukon.clients"
         }
         create("development") {
             dimension = "default"
             applicationIdSuffix = ".dev"
+            namespace = "net.sukon.clients.dev"
         }
     }
 
