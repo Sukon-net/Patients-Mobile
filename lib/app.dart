@@ -19,20 +19,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is Authenticated && !state.hasCompletedSignup) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
-        } else if (state is Authenticated && state.hasCompletedSignup) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.home);
-        } else if (state is Guest) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.home);
-        } else if (state is Unauthenticated) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
-        } else if (state is AuthLoading) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.loading);
-        } else if (state is AuthError) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
-          context.showSnackBar(message: state.message);
-        }
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          if (state is Authenticated && !state.hasCompletedSignup) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
+          } else if (state is Authenticated && state.hasCompletedSignup) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.home);
+          } else if (state is Guest) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.home);
+          } else if (state is Unauthenticated) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
+          } else if (state is AuthLoading) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.loading);
+          } else if (state is AuthError) {
+            NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
+            context.showSnackBar(message: state.message);
+          }
+        });
       },
       child: MaterialApp(
         navigatorKey: NavigatorService.navigatorKey,
