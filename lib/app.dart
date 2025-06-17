@@ -20,18 +20,17 @@ class MyApp extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is Authenticated && !state.hasCompletedSignup) {
-          // TODO: Add complete profile screen
           NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
         } else if (state is Authenticated && state.hasCompletedSignup) {
           NavigatorService.pushNamedAndRemoveUntil(Routes.home);
         } else if (state is Guest) {
           NavigatorService.pushNamedAndRemoveUntil(Routes.home);
         } else if (state is Unauthenticated) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.login);
+          NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
         } else if (state is AuthLoading) {
           NavigatorService.pushNamedAndRemoveUntil(Routes.loading);
         } else if (state is AuthError) {
-          NavigatorService.pushNamedAndRemoveUntil(Routes.login);
+          NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
           context.showSnackBar(message: state.message);
         }
       },
