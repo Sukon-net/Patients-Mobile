@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        void callback() {
           if (state is Authenticated && !state.hasCompletedSignup) {
             NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
           } else if (state is Authenticated && state.hasCompletedSignup) {
@@ -34,7 +34,15 @@ class MyApp extends StatelessWidget {
             NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
             context.showSnackBar(message: state.message);
           }
-        });
+        }
+
+        if (NavigatorService.navigatorKey.currentState != null) {
+          callback();
+        } else {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            callback();
+          });
+        }
       },
       child: MaterialApp(
         navigatorKey: NavigatorService.navigatorKey,
