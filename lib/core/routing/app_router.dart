@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/widgets/loading_widget.dart';
 import 'package:clients/features/auth/OTP/logic/otp_cubit.dart';
@@ -26,16 +28,21 @@ class AppRouter {
 
   static Route generateRoute(RouteSettings settings) {
     final arguments = settings.arguments;
+    log("App Router: ${settings.name}");
 
     switch (settings.name) {
       case Routes.onboarding:
-        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+        return MaterialPageRoute(
+          builder: (_) => const OnboardingScreen(),
+          settings: settings,
+        );
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (BuildContext context) => LoginCubit(sl()),
             child: const LoginScreen(),
           ),
+          settings: settings,
         );
 
       /// need email address as arguments
@@ -47,6 +54,7 @@ class AppRouter {
                 OtpCubit(sl(), emailAddress)..startTimer(),
             child: const OtpScreen(),
           ),
+          settings: settings,
         );
       case Routes.completeProfile:
         return MaterialPageRoute(
@@ -54,6 +62,7 @@ class AppRouter {
             create: (BuildContext context) => CompleteProfileCubit(sl()),
             child: const CompleteProfileScreen(),
           ),
+          settings: settings,
         );
       case Routes.home:
         return MaterialPageRoute(
@@ -63,6 +72,7 @@ class AppRouter {
               ..getTopRatedDoctors(),
             child: const HomeScreen(),
           ),
+          settings: settings,
         );
 
       /// need doctor id as arguments
@@ -74,6 +84,7 @@ class AppRouter {
                 DoctorInfoCubit(sl())..getDoctorInfo(doctorId),
             child: const DoctorInfoScreen(),
           ),
+          settings: settings,
         );
 
       /// need specialization id & specializations as arguments
@@ -88,6 +99,7 @@ class AppRouter {
               specializations: screenArguments.specializations,
             ),
           ),
+          settings: settings,
         );
 
       /// need doctor as arguments
@@ -101,21 +113,28 @@ class AppRouter {
               doctor: doctor,
             ),
           ),
+          settings: settings,
         );
       case Routes.loading:
-        return MaterialPageRoute(builder: (_) => const LoadingScreen());
+        return MaterialPageRoute(
+          builder: (_) => const LoadingScreen(),
+          settings: settings,
+        );
       default:
         return _buildInvalidRoute(settings);
     }
   }
 
   static MaterialPageRoute _buildInvalidRoute(RouteSettings settings) {
-    return MaterialPageRoute(builder: (_) {
-      return Scaffold(
-        body: Center(
-          child: Text('No route defined for ${settings.name}'),
-        ),
-      );
-    });
+    return MaterialPageRoute(
+      builder: (_) {
+        return Scaffold(
+          body: Center(
+            child: Text('No route defined for ${settings.name}'),
+          ),
+        );
+      },
+      settings: settings,
+    );
   }
 }
