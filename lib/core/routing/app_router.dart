@@ -69,7 +69,8 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (BuildContext context) => HomeCubit(sl())
               ..getSpecializations()
-              ..getTopRatedDoctors(),
+              ..getTopRatedDoctors()
+              ..getAppointments(),
             child: const HomeScreen(),
           ),
           settings: settings,

@@ -11,14 +11,12 @@ import 'package:clients/core/widgets/custom_avatar.dart';
 import 'package:clients/core/widgets/spacers.dart';
 import 'package:clients/features/auth/logic/auth_cubit.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
-import 'package:clients/features/home/model/appointment.dart';
-import 'package:clients/features/home/model/doctor.dart';
 import 'package:clients/features/home/widgets/ad_area.dart';
 import 'package:clients/features/home/widgets/analysis_card.dart';
 import 'package:clients/features/home/widgets/search_text_form_field.dart';
 import 'package:clients/features/home/widgets/sukon_specialization_loading.dart';
-import 'package:clients/features/home/widgets/topRatedDocLoading.dart';
-import 'package:clients/features/home/widgets/upcoming_app_card.dart';
+import 'package:clients/features/home/widgets/horizontal_cards_loading.dart';
+import 'package:clients/features/home/widgets/appointment_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +30,6 @@ import '../../specializations_filter/presentation/specializations_filter_screen.
 import '../widgets/sukon_specialization.dart';
 
 part '../widgets/analysis_widget.dart';
-part '../widgets/upcoming_appointments.dart';
 part '../widgets/welcome_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,19 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  //Dummy Appointment
-  final List<Appointment> _appointments = List.generate(
-    5,
-    (index) => Appointment(
-      //     doctorName: "دكتور احمد حمدي",
-      //     sessionType: "اونلاين",
-      //    therapyType: "الجلسة الاسبوعية للأسرة",
-      startTime: "09:15",
-      endTime: "10:10",
-      day: "15/05/23",
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     final backgroundColor = context.colors.errorAccentColor;
@@ -74,7 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.specializationsStatus == SpecializationsStatus.error ||
-              state.topRatedDocStatus == TopRatedDocStatus.error) {
+              state.topRatedDocStatus == TopRatedDocStatus.error ||
+              state.appointmentsStatus == AppointmentsStatus.error) {
             Toastifications.show(
               context: context,
               message: state.errorMessage,
@@ -180,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 159.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 24.h),
+                      padding: EdgeInsets.only(top: 24.h, bottom: 8.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -196,24 +181,54 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    // _UpcomingAppointments(
-                    //   doctor: Doctor(
-                    //     id: 2,
-                    //     firstName: "firstName",
-                    //     lastName: "lastName",
-                    //     avatar: "avatar",
-                    //     yearOfExperience: "yearOfExperiance",
-                    //     bio: "bio",
-                    //     specializations: [],
-                    //     sessionUSDPrice: 0,
-                    //     sessionEGPPrice: 0,
-                    //     availableSlots: [],
-                    //     role: 'دكتور',
-                    //     title: 'د/',
-                    //   ),
-                    //   onViewDetailsClicked: () {},
-                    //   onSeeMoreIconClicked: () {},
-                    // ),
+                    if (state.appointmentsStatus == AppointmentsStatus.success)
+                      if (state.appointments != null &&
+                          state.appointments!.isNotEmpty)
+                        SizedBox(
+                          height: 200.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => AppointmentCard(
+                              appointment: state.appointments![index],
+                              onViewDetailsClicked: () {},
+                              onSeeMoreIconClicked: () {},
+                              width: 280.w,
+                            ),
+                            separatorBuilder: (context, index) =>
+                                HorizontalSpacer(12.w),
+                            itemCount: state.appointments?.length ?? 0,
+                          ),
+                        )
+                      else
+                        Container(
+                          height: 180.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: context.colors.secondaryCTABackgroundColor,
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: Center(
+                            child: Text(
+                              context.tr(LocaleKeys.no_appointments_found),
+                              style: TextStyles.size16Weight500.copyWith(
+                                color: context.colors.primaryCTAColor,
+                              ),
+                            ),
+                          ),
+                        )
+                    else if (state.appointmentsStatus ==
+                        AppointmentsStatus.error)
+                      CustomErrorWidget(
+                        width: double.infinity,
+                        height: 200.h,
+                        text:
+                            context.tr(LocaleKeys.error_when_load_appointments),
+                      )
+                    else
+                      HorizonalCardsLoading(
+                        height: 190.h,
+                        width: 260.w,
+                      ),
                     Padding(
                       padding: EdgeInsets.only(top: 24.h),
                       child: Column(
@@ -274,7 +289,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           else
                             Padding(
                               padding: EdgeInsets.only(top: 12.h, bottom: 16.h),
-                              child: const TopRatedDocLoading(),
+                              child: HorizonalCardsLoading(
+                                height: 130.h,
+                                width: 300.w,
+                              ),
                             )
                         ],
                       ),

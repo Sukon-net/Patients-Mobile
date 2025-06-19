@@ -114,5 +114,7 @@
   "egp": "EGP",
   "not_available_days_message": "There are currently no available times for this doctor. Feel free to try again later or explore other doctors from our team",
   "not_available_slots_message": "The doctor has no available appointments for the selected date and duration.\nPlease try a different time.",
-  "choose": "Choose"
+  "choose": "Choose",
+  "error_when_load_appointments": "An error occurred while loading the appointments.\nPlease try again later.",
+  "no_appointments_found": "No appointments found"
 }

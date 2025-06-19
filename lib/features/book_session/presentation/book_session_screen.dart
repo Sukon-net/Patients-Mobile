@@ -14,7 +14,7 @@ import 'package:clients/features/book_session/presentation/widgets/custom_availa
 import 'package:clients/features/book_session/presentation/widgets/custom_calender.dart';
 import 'package:clients/features/book_session/presentation/widgets/custom_dropdown_button.dart';
 import 'package:clients/features/book_session/presentation/widgets/loading_available_slots.dart';
-import 'package:clients/features/home/widgets/upcoming_app_card.dart';
+import 'package:clients/features/home/widgets/appointment_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

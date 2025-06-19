@@ -15,7 +15,7 @@ import '../../../core/widgets/custom_error_widget.dart';
 import '../../../core/widgets/shimmers/box_shimmer.dart';
 import '../../../core/widgets/top_app_bar.dart';
 import '../../home/model/specialization.dart';
-import '../../home/widgets/upcoming_app_card.dart';
+import '../../home/widgets/appointment_card.dart';
 import '../logic/specializations_filter_cubit.dart';
 
 class SpecializationsFilterScreenArguments {

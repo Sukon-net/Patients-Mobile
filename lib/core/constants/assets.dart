@@ -61,7 +61,6 @@ class Assets {
   static const String assetsChatIcon = "assets/icons/chat_icon.svg";
   static const String assetsExperienceIcon = "assets/icons/experience_icon.svg";
   static const String assetsStarRateIcon = "assets/icons/star_rate_icon.svg";
-  static const String assetsSeeMoreIcon = "assets/icons/see_more_icon.svg";
   static const String assetsFilledFavHeartIcon =
       "assets/icons/filled_heart.svg";
   static const String assetsHeartIcon = "assets/icons/heart.svg";

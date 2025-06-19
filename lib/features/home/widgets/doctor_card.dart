@@ -1,4 +1,4 @@
-part of 'upcoming_app_card.dart';
+part of 'appointment_card.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({

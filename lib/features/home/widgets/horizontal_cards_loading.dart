@@ -4,19 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/widgets/shimmers/box_shimmer.dart';
 import '../../../core/widgets/spacers.dart';
 
-class TopRatedDocLoading extends StatelessWidget {
-  const TopRatedDocLoading({super.key});
+class HorizonalCardsLoading extends StatelessWidget {
+  const HorizonalCardsLoading(
+      {super.key, required this.height, required this.width});
+
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 140.h,
+      height: height,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return BoxShimmer(
-            width: 300.w,
-            height: 130.h,
+            width: width,
+            height: height,
             borderRadius: 12.r,
           );
         },

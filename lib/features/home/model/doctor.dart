@@ -51,4 +51,7 @@ class Doctor {
   static int _stringToInt(dynamic value) => int.tryParse(value.toString()) ?? 0;
   static double _stringToDouble(dynamic value) =>
       double.tryParse(value.toString()) ?? 0.0;
+
+  String get fullName => "$firstName $lastName";
+  String get fullNameWithTitle => "$title $fullName";
 }

@@ -1,4 +1,5 @@
 import 'package:clients/features/home/data/repository/home_repository.dart';
+import 'package:clients/features/home/model/appointment.dart';
 import 'package:clients/features/home/model/doctor.dart';
 import 'package:clients/features/home/model/specialization.dart';
 import 'package:equatable/equatable.dart';
@@ -49,6 +50,26 @@ class HomeCubit extends Cubit<HomeState> {
         emit(state.copyWith(
           topRatedDocStatus: TopRatedDocStatus.success,
           topRatedDoctors: topRatedDocs,
+        ));
+      },
+    );
+  }
+
+  Future<void> getAppointments() async {
+    emit(state.copyWith(appointmentsStatus: AppointmentsStatus.loading));
+    final result = await _repository.getAppointments();
+    result.fold(
+      (error) {
+        emit(state.copyWith(
+          appointmentsStatus: AppointmentsStatus.error,
+          errorMessage:
+              error.message.isNotEmpty ? error.message : "Unknown Error",
+        ));
+      },
+      (appointments) {
+        emit(state.copyWith(
+          appointmentsStatus: AppointmentsStatus.success,
+          appointments: appointments,
         ));
       },
     );

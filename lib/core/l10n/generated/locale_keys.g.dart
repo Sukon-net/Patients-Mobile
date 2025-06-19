@@ -88,8 +88,10 @@ abstract class LocaleKeys {
   static const all = 'all';
   static const error_when_load_specialization =
       'error_when_load_specialization';
-  static const error_when_load_doctors_specialized = 'error_when_load_doctors_specialized';
-  static const error_when_load_top_rated_doctors = 'error_when_load_top_rated_doctors';
+  static const error_when_load_doctors_specialized =
+      'error_when_load_doctors_specialized';
+  static const error_when_load_top_rated_doctors =
+      'error_when_load_top_rated_doctors';
   static const request_an_appointment = 'request_an_appointment';
   static const choose_an_appointment = 'choose_an_appointment';
   static const session_duration = 'session_duration';
@@ -102,4 +104,6 @@ abstract class LocaleKeys {
   static const not_available_days_message = "not_available_days_message";
   static const not_available_slots_message = "not_available_slots_message";
   static const choose = "choose";
+  static const error_when_load_appointments = "error_when_load_appointments";
+  static const no_appointments_found = "no_appointments_found";
 }
