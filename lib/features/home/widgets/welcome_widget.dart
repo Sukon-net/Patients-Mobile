@@ -33,10 +33,13 @@ class _WelcomeWidget extends StatelessWidget {
                     color: context.colors.accentTextColor,
                   ),
                 ),
-                Text(
-                  "${name ?? ""}${name != null ? ", " : " "}${LocaleKeys.how_are_you.tr()}",
-                  style: TextStyles.size20Weight600.copyWith(
-                    color: context.colors.primaryTextColor,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    "${name ?? ""}${name != null ? ", " : " "}${LocaleKeys.how_are_you.tr()}",
+                    style: TextStyles.size20Weight600.copyWith(
+                      color: context.colors.primaryTextColor,
+                    ),
                   ),
                 ),
               ],

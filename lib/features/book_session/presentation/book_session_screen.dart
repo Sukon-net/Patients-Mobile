@@ -274,10 +274,13 @@ class BookSessionScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(top: 16.h),
-                  child: Text(
-                    "${doctor.sessionEGPPrice} ${context.tr(LocaleKeys.egp)} ${context.tr(LocaleKeys.back_slash)} 30 ${context.tr(LocaleKeys.minute)}   |   ${doctor.sessionEGPPrice} ${context.tr(LocaleKeys.egp)} ${context.tr(LocaleKeys.back_slash)} 60 ${context.tr(LocaleKeys.minute)}",
-                    style: TextStyles.size14Weight500.copyWith(
-                      color: context.colors.primaryTextColor,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "${doctor.sessionEGPPrice} ${context.tr(LocaleKeys.egp)} ${context.tr(LocaleKeys.back_slash)} 30 ${context.tr(LocaleKeys.minute)}   |   ${doctor.sessionEGPPrice! * 2} ${context.tr(LocaleKeys.egp)} ${context.tr(LocaleKeys.back_slash)} 60 ${context.tr(LocaleKeys.minute)}",
+                      style: TextStyles.size14Weight500.copyWith(
+                        color: context.colors.primaryTextColor,
+                      ),
                     ),
                   ),
                 ),
