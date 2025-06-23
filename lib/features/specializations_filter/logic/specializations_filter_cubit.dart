@@ -1,4 +1,5 @@
 import 'package:clients/features/home/model/doctor.dart';
+import 'package:clients/features/home/model/specialization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,9 +8,23 @@ import '../data/repository/specializations_filter_repo.dart';
 part 'specializations_filter_state.dart';
 
 class SpecializationsFilterCubit extends Cubit<SpecializationsFilterState> {
-  SpecializationsFilterCubit(this.specializationId, this._filterRepo)
+  SpecializationsFilterCubit(this.specializationId, this._filterRepo,
+      {List<Specialization>? specializations})
       : super(const SpecializationsFilterState()) {
-    changeSelectedIndex(specializationId);
+    if (specializationId > 0 && specializations != null) {
+      final selectedSpecialization = specializations.firstWhere(
+        (spec) => spec.id == specializationId,
+        orElse: () => Specialization(id: 0, name: ""),
+      );
+
+      if (selectedSpecialization.id > 0) {
+        changeSelectedIndex(specializationId, selectedSpecialization.name);
+      } else {
+        changeSelectedIndex(specializationId);
+      }
+    } else {
+      changeSelectedIndex(specializationId);
+    }
   }
 
   final int specializationId;

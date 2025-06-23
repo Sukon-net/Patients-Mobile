@@ -86,7 +86,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     return BlocListener<CompleteProfileCubit, CompleteProfileState>(
       listener: (context, state) {
         if (state is CompleteProfileSuccess) {
-          context.pushReplacementNamed(Routes.home);
+          context.pushReplacementNamed(Routes.mainLayout);
         }
       },
       child: Scaffold(

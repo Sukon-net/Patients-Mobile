@@ -37,11 +37,16 @@ class HomeService {
     });
   }
 
-  Future<Either<BackendFailure, List<Appointment>>> getAppointments() {
+  Future<Either<BackendFailure, List<Appointment>>> getUpcomingAppointments() {
     return tryApiRequest(() async {
-      final response = await _dio.get(ApiConstants.getAppointments);
+      final response = await _dio.get(
+        ApiConstants.getAppointments,
+        queryParameters: {"type": "upcoming,ongoing"},
+      );
       final dataList = response.data['data']['data'] as List;
-      final appointmentsList = dataList.map((e) => Appointment.fromJson(e as Map<String, dynamic>)).toList();
+      final appointmentsList = dataList
+          .map((e) => Appointment.fromJson(e as Map<String, dynamic>))
+          .toList();
       return appointmentsList;
     });
   }

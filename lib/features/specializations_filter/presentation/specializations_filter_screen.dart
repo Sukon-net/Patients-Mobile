@@ -125,7 +125,7 @@ class _SpecializationsFilterScreenState
                   if (state.status == SpecializationsFilterStatus.success) {
                     if (doctors == null || doctors.isEmpty) {
                       return CustomErrorWidget(
-                        width: 200.h,
+                        width: double.infinity,
                         height: 250.h,
                         text: context
                             .tr(LocaleKeys.error_when_load_doctors_specialized),

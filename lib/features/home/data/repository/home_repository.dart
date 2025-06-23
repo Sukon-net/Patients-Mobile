@@ -10,7 +10,7 @@ abstract class HomeRepository {
 
   Future<Either<BackendFailure, List<Doctor>>> getTopRatedDoctors();
 
-  Future<Either<BackendFailure, List<Appointment>>> getAppointments();
+  Future<Either<BackendFailure, List<Appointment>>> getUpcomingAppointments();
 }
 
 class HomeRepositoryImpl extends HomeRepository {
@@ -30,7 +30,7 @@ class HomeRepositoryImpl extends HomeRepository {
   }
 
   @override
-  Future<Either<BackendFailure, List<Appointment>>> getAppointments() {
-    return _service.getAppointments();
+  Future<Either<BackendFailure, List<Appointment>>> getUpcomingAppointments() {
+    return _service.getUpcomingAppointments();
   }
 }

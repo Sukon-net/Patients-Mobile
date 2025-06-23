@@ -14,6 +14,9 @@ import 'package:clients/features/doctor_info/logic/doctor_info_cubit.dart';
 import 'package:clients/features/doctor_info/presentation/doctor_info_screen.dart';
 import 'package:clients/features/home/logic/home_cubit.dart';
 import 'package:clients/features/home/presentation/home_screen.dart';
+import 'package:clients/features/main_layout.dart';
+import 'package:clients/features/my_appointments/logic/my_appointments_cubit.dart';
+import 'package:clients/features/my_appointments/presentation/my_appointments_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +39,7 @@ class AppRouter {
           builder: (_) => const OnboardingScreen(),
           settings: settings,
         );
+
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -56,6 +60,7 @@ class AppRouter {
           ),
           settings: settings,
         );
+
       case Routes.completeProfile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -64,15 +69,10 @@ class AppRouter {
           ),
           settings: settings,
         );
-      case Routes.home:
+
+      case Routes.mainLayout:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (BuildContext context) => HomeCubit(sl())
-              ..getSpecializations()
-              ..getTopRatedDoctors()
-              ..getAppointments(),
-            child: const HomeScreen(),
-          ),
+          builder: (_) => const MainLayout(),
           settings: settings,
         );
 
@@ -95,7 +95,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (BuildContext context) => SpecializationsFilterCubit(
-                screenArguments.specializationId, sl()),
+                screenArguments.specializationId, sl(),
+                specializations: screenArguments.specializations),
             child: SpecializationsFilterScreen(
               specializations: screenArguments.specializations,
             ),
@@ -121,6 +122,7 @@ class AppRouter {
           builder: (_) => const LoadingScreen(),
           settings: settings,
         );
+
       default:
         return _buildInvalidRoute(settings);
     }

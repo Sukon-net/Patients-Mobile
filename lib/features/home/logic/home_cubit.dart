@@ -13,10 +13,15 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepository _repository;
 
   Future<void> getSpecializations() async {
+    if (isClosed) return;
     emit(state.copyWith(specializationsStatus: SpecializationsStatus.loading));
+
     final result = await _repository.getSpecializations();
+
+    if (isClosed) return;
     result.fold(
       (error) {
+        if (isClosed) return;
         emit(state.copyWith(
           specializationsStatus: SpecializationsStatus.error,
           errorMessage:
@@ -24,6 +29,7 @@ class HomeCubit extends Cubit<HomeState> {
         ));
       },
       (specializations) {
+        if (isClosed) return;
         emit(state.copyWith(
           specializationsStatus: SpecializationsStatus.success,
           specializations: specializations,
@@ -33,12 +39,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getTopRatedDoctors() async {
+    if (isClosed) return;
     emit(state.copyWith(topRatedDocStatus: TopRatedDocStatus.loading));
+
     final result = await _repository.getTopRatedDoctors();
-    print("🩵 result: ${result}");
+
+    if (isClosed) return;
     result.fold(
       (error) {
-        print("🔴 Error emitted: ${error.message}");
+        if (isClosed) return;
         emit(state.copyWith(
           topRatedDocStatus: TopRatedDocStatus.error,
           errorMessage:
@@ -46,7 +55,7 @@ class HomeCubit extends Cubit<HomeState> {
         ));
       },
       (topRatedDocs) {
-        print("🟢 Success emitted with ${topRatedDocs.length} items");
+        if (isClosed) return;
         emit(state.copyWith(
           topRatedDocStatus: TopRatedDocStatus.success,
           topRatedDoctors: topRatedDocs,
@@ -55,11 +64,16 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  Future<void> getAppointments() async {
+  Future<void> getUpcomingAppointments() async {
+    if (isClosed) return;
     emit(state.copyWith(appointmentsStatus: AppointmentsStatus.loading));
-    final result = await _repository.getAppointments();
+
+    final result = await _repository.getUpcomingAppointments();
+
+    if (isClosed) return;
     result.fold(
       (error) {
+        if (isClosed) return;
         emit(state.copyWith(
           appointmentsStatus: AppointmentsStatus.error,
           errorMessage:
@@ -67,6 +81,7 @@ class HomeCubit extends Cubit<HomeState> {
         ));
       },
       (appointments) {
+        if (isClosed) return;
         emit(state.copyWith(
           appointmentsStatus: AppointmentsStatus.success,
           appointments: appointments,

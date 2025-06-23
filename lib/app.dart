@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
           if (state is Authenticated && !state.hasCompletedSignup) {
             NavigatorService.pushNamedAndRemoveUntil(Routes.completeProfile);
           } else if (state is Authenticated && state.hasCompletedSignup) {
-            NavigatorService.pushNamedAndRemoveUntil(Routes.home);
+            NavigatorService.pushNamedAndRemoveUntil(Routes.mainLayout);
           } else if (state is Guest) {
-            NavigatorService.pushNamedAndRemoveUntil(Routes.home);
+            NavigatorService.pushNamedAndRemoveUntil(Routes.mainLayout);
           } else if (state is Unauthenticated) {
             NavigatorService.pushNamedAndRemoveUntil(Routes.onboarding);
           } else if (state is AuthLoading) {
