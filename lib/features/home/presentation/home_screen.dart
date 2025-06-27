@@ -190,7 +190,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, index) => AppointmentCard(
                               appointment: state.appointments![index],
                               onViewDetailsClicked: () {},
-                              onSeeMoreIconClicked: () {},
                               width: 280.w,
                             ),
                             separatorBuilder: (context, index) =>

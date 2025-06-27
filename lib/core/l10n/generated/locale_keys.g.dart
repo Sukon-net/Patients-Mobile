@@ -106,4 +106,14 @@ abstract class LocaleKeys {
   static const choose = "choose";
   static const error_when_load_appointments = "error_when_load_appointments";
   static const no_appointments_found = "no_appointments_found";
+  static const my_appointments = "my_appointments";
+  static const you_have = "you_have";
+  static const ongoing = "ongoing";
+  static const upcoming = "upcoming";
+  static const completed = "completed";
+  static const pending = "pending";
+  static const online = "online";
+  static const join_now = "join_now";
+  static const cancel = "cancel";
+  static const comment = "comment";
 }

@@ -20,109 +20,238 @@ class AppointmentCard extends StatelessWidget {
   const AppointmentCard({
     super.key,
     required this.appointment,
-    required this.onViewDetailsClicked,
-    required this.onSeeMoreIconClicked,
     this.width,
+    this.isMyAPPointmentsCard = false,
+    this.onViewDetailsClicked,
   });
 
   final Appointment appointment;
   final double? width;
-  final void Function() onViewDetailsClicked;
-  final void Function() onSeeMoreIconClicked;
+  final bool? isMyAPPointmentsCard;
+  final void Function()? onViewDetailsClicked;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width ?? double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
       decoration: BoxDecoration(
+        color: context.colors.appCardBackground,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
-          color: context.colors.backgroundSpecializationIconColor,
+          color: appointment.status == AppointmentsStatus.ongoing
+              ? context.colors.primaryCTAColor
+              : context.colors.appCardBorder,
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            appointment.doctor.fullNameWithTitle,
-            style: TextStyles.size12Weight400.copyWith(
-              color: context.colors.accentTextColor,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+            decoration: BoxDecoration(
+              color: context.colors.primaryBackgroundColor,
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(
+                color: context.colors.disabledBackgroundColor,
+              ),
             ),
-          ),
-          Text(
-            //TODO: add session specialization
-            appointment.doctor.role,
-            style: TextStyles.size16Weight500.copyWith(
-              color: context.colors.primaryTextColor,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.h),
-            child: Row(
+            child: Column(
+              spacing: 16.h,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CustomIcon(
-                  iconPath: Assets.assetsOnlineIcon,
-                  //TODO: add session type
-                  label: "online",
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          appointment.doctor.fullNameWithTitle,
+                          style: TextStyles.size12Weight400.copyWith(
+                            color: context.colors.accentTextColor,
+                          ),
+                        ),
+                        Text(
+                          //TODO: add session tittle
+                          appointment.doctor.role,
+                          style: TextStyles.size16Weight500.copyWith(
+                            color: context.colors.primaryTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (isMyAPPointmentsCard == true)
+                      Container(
+                        padding: EdgeInsetsDirectional.symmetric(
+                          horizontal: 9.w,
+                          vertical: 8.h,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.r),
+                          border: Border.all(
+                            color: appointment.status.color,
+                          ),
+                        ),
+                        child: Row(
+                          spacing: 7.w,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.circle_sharp,
+                              color: appointment.status.color,
+                              size: 8.r,
+                            ),
+                            Text(
+                              appointment.status.name.tr(),
+                              style: TextStyles.size12Weight600.copyWith(
+                                color: appointment.status.color,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                  ],
                 ),
-                VerticalDividerWidget(24.h),
-                CustomIcon(
-                  iconPath: Assets.assetsTimerIcon,
-                  label:
-                      "${appointment.startTime.toString()}-${appointment.endTimeString}",
-                ),
-                VerticalDividerWidget(24.h),
-                CustomIcon(
-                  iconPath: Assets.assetsDateIcon,
-                  label: appointment.date.toString(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomIcon(
+                      iconPath: Assets.assetsOnlineIcon,
+                      label: context.tr(LocaleKeys.online),
+                    ),
+                    VerticalDividerWidget(24.h),
+                    CustomIcon(
+                      iconPath: Assets.assetsTimerIcon,
+                      label:
+                          "${appointment.startTime.toString()}-${appointment.endTimeString}",
+                    ),
+                    VerticalDividerWidget(24.h),
+                    CustomIcon(
+                      iconPath: Assets.assetsDateIcon,
+                      label: appointment.date.toString(),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FilledButton(
-                onPressed: onViewDetailsClicked,
-                style: FilledButton.styleFrom(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 50.w,
-                    vertical: 10.h,
-                  ),
-                  backgroundColor: context.colors.secondaryCTABackgroundColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
+          VerticalSpacer(12.h),
+          if (isMyAPPointmentsCard == false)
+            FilledButton(
+              onPressed: onViewDetailsClicked,
+              style: FilledButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 50.w,
+                  vertical: 10.h,
                 ),
-                child: Text(
-                  LocaleKeys.view_details.tr(),
-                  style: TextStyles.size14Weight500.copyWith(
-                    color: context.colors.primaryCTAColor,
-                  ),
+                backgroundColor: context.colors.secondaryCTABackgroundColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
               ),
-              Container(
-                width: 42.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
-                  border: Border.all(
-                    color: context.colors.backgroundSpecializationIconColor,
-                  ),
+              child: Text(
+                LocaleKeys.view_details.tr(),
+                style: TextStyles.size14Weight500.copyWith(
+                  color: context.colors.primaryCTAColor,
                 ),
-                child: IconButton(
-                  onPressed: onSeeMoreIconClicked,
-                  icon: Icon(
-                    Icons.more_horiz,
-                    color: context.colors.primaryCTAColor,
-                  ),
-                ),
-              )
-            ],
-          ),
+              ),
+            )
+          else
+            Builder(
+              builder: (context) {
+                switch (appointment.status) {
+                  case AppointmentsStatus.ongoing:
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        FilledButton(
+                          onPressed: () {},
+                          style: FilledButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 50.w,
+                              vertical: 10.h,
+                            ),
+                            backgroundColor: context.colors.primaryCTAColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: Text(
+                            LocaleKeys.join_now.tr(),
+                            style: TextStyles.size14Weight600.copyWith(
+                              color: context.colors.onPrimaryCTAColor,
+                            ),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 50.w,
+                              vertical: 10.h,
+                            ),
+                            side: BorderSide(
+                              color: context.colors.appCardBackground,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: Text(
+                            LocaleKeys.cancel.tr(),
+                            style: TextStyles.size14Weight600.copyWith(
+                              color: context.colors.primaryCTAColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  case AppointmentsStatus.completed:
+                    return SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(
+                            color: context.colors.primaryCTAColor,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                        ),
+                        child: Text(
+                          LocaleKeys.comment.tr(),
+                          style: TextStyles.size14Weight600.copyWith(
+                            color: context.colors.primaryCTAColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  default:
+                    return SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(
+                            color: context.colors.primaryCTAColor,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                        ),
+                        child: Text(
+                          LocaleKeys.cancel.tr(),
+                          style: TextStyles.size14Weight600.copyWith(
+                            color: context.colors.primaryCTAColor,
+                          ),
+                        ),
+                      ),
+                    );
+                }
+              },
+            ),
         ],
       ),
     );

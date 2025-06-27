@@ -116,5 +116,15 @@
   "not_available_slots_message": "لا توجد مواعيد متاحة للطبيب في التاريخ والمدة المحددين.\nيُرجى تجربة وقت آخر.",
   "choose": "اختر",
   "error_when_load_appointments": "حدث خطأ أثناء تحميل المواعيد.\nيُرجى المحاولة مرة أخرى لاحقًا",
-  "no_appointments_found": "لا يوجد مواعيد"
+  "no_appointments_found": "لا يوجد مواعيد",
+  "my_appointments": "مواعيدي",
+  "you_have":"لديك",
+  "ongoing": "الحالي",
+  "upcoming": "القادم",
+  "completed": "تم الانتهاء",
+  "pending": "قيد الانتظار",
+  "online": "اونلاين",
+  "join_now": "انضم الان",
+  "cancel": "إلغاء",
+  "comment": "كتابة تعليق"
 }

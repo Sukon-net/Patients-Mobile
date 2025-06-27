@@ -116,5 +116,15 @@
   "not_available_slots_message": "The doctor has no available appointments for the selected date and duration.\nPlease try a different time.",
   "choose": "Choose",
   "error_when_load_appointments": "An error occurred while loading the appointments.\nPlease try again later.",
-  "no_appointments_found": "No appointments found"
+  "no_appointments_found": "No appointments found",
+  "my_appointments": "My Appointments",
+  "you_have": "You have",
+  "ongoing": "Ongoing",
+  "upcoming": "Upcoming",
+  "completed": "Completed",
+  "pending": "Pending",
+  "online": "Online",
+  "join_now": "Join now",
+  "cancel": "Cancel",
+  "comment": "Write a comment"
 }

@@ -9,4 +9,14 @@ class Helpers {
         DateFormat('EEEE، d MMMM y', localeString).format(now);
     return formattedDay;
   }
+
+  static List<String> seperateLocalizedPlural(String localizedText) {
+    final regex = RegExp(r'^(\d+)\s+(.*)$');
+    final match = regex.firstMatch(localizedText);
+
+    String numberPart = match?.group(1) ?? '';
+    String textPart = match?.group(2) ?? localizedText;
+
+    return [numberPart, textPart];
+  }
 }

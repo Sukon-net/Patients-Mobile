@@ -1,10 +1,35 @@
 part of 'my_appointments_cubit.dart';
 
-sealed class MyAppointmentsState extends Equatable {
-  const MyAppointmentsState();
-
-  @override
-  List<Object> get props => [];
+enum MyAppointmentsStatus {
+  loading,
+  success,
+  error,
 }
 
-final class MyAppointmentsInitial extends MyAppointmentsState {}
+class MyAppointmentsState extends Equatable {
+  final MyAppointmentsStatus status;
+  final List<Appointment>? appointments;
+  final String errorMessage;
+
+  const MyAppointmentsState({
+    this.status = MyAppointmentsStatus.loading,
+    this.appointments,
+    this.errorMessage = '',
+  });
+
+
+  @override
+  List<Object?> get props => [status, appointments, errorMessage];
+
+  MyAppointmentsState copyWith({
+    MyAppointmentsStatus? status,
+    List<Appointment>? appointments,
+    String? errorMessage,
+  }) {
+    return MyAppointmentsState(
+      status: status ?? this.status,
+      appointments: appointments ?? this.appointments,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
+  }
+}

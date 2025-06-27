@@ -11,6 +11,8 @@ import 'package:clients/features/book_session/data/datasource/book_session_servi
 import 'package:clients/features/book_session/data/repository/book_session_repo.dart';
 import 'package:clients/features/home/data/datasource/home_service.dart';
 import 'package:clients/features/home/data/repository/home_repository.dart';
+import 'package:clients/features/my_appointments/data/datasource/my_appointments_service.dart';
+import 'package:clients/features/my_appointments/data/repository/my_appointments_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,4 +74,9 @@ Future<void> initDI() async {
   sl.registerLazySingleton(() => CompleteProfileService(sl()));
   sl.registerLazySingleton<CompleteProfileRepository>(
       () => CompleteProfileRepositoryImpl(completeProfileService: sl()));
+
+  //MyAppointments
+  sl.registerLazySingleton(() => MyAppointmentsService(dio: sl()));
+  sl.registerLazySingleton<MyAppointmentsRepo>(
+      () => MyAppointmentsRepoImpl(service: sl()));
 }

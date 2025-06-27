@@ -1,3 +1,4 @@
+import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,11 +42,11 @@ class CustomCalender extends StatelessWidget {
   Widget build(BuildContext context) {
     final availableDates = generateAvailableDates(availableDays);
     final locale = context.locale.languageCode;
-
     return SizedBox(
       height: 68.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
         itemCount: availableDates.length,
         separatorBuilder: (BuildContext context, int index) =>
             HorizontalSpacer(8.w),

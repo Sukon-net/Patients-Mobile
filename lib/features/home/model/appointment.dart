@@ -1,5 +1,6 @@
 import 'package:clients/features/home/model/doctor.dart';
 import 'package:clients/features/model/user.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'appointment.g.dart';
@@ -11,7 +12,7 @@ class Appointment {
   @JsonKey(name: "start_time")
   final String startTime;
   final int duration;
-  final Status status;
+  final AppointmentsStatus status;
   final String? complaint;
   final Doctor doctor;
   @JsonKey(name: "patient", readValue: _readPatient)
@@ -52,9 +53,18 @@ class Appointment {
   }
 }
 
-enum Status {
-  pending,
-  confirmed,
-  cancelled,
+enum AppointmentsStatus {
+  upcoming,
+  ongoing,
   completed,
+  confirmed,
+  pending;
+
+  Color get color => switch (this) {
+        upcoming => const Color(0xFFB95812),
+        ongoing => const Color(0xFF14A5F8),
+        completed => const Color(0xFF26A95F),
+        confirmed => const Color(0xFF7047EB),
+        pending => const Color(0xFFFFD800),
+      };
 }

@@ -35,7 +35,8 @@ abstract class AppColors {
   abstract final Color whiteWith40Opacity;
   abstract final Color subTitleGray;
   abstract final Color inactiveCalenderCard;
-
+  abstract final Color appCardBackground;
+  final Color appCardBorder = Color(0x26979798);
   abstract final List<Color> adGradientColors;
 }
 
@@ -108,6 +109,9 @@ class LightAppColors extends AppColors {
 
   @override
   final Color backgroundSpecializationIconColor = const Color(0xFFF7F7F8);
+
+  @override
+  final Color appCardBackground = const Color(0xFFF9F9FA);
 
   @override
   final List<Color> adGradientColors = [
@@ -218,6 +222,9 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color backgroundSpecializationIconColor = const Color(0xFFF7F7F8);
+
+  @override
+  final Color appCardBackground = const Color(0xFFF9F9FA);
 
   @override
   final List<Color> adGradientColors = [

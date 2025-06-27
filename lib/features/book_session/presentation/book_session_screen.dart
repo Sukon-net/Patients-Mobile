@@ -72,7 +72,6 @@ class BookSessionScreen extends StatelessWidget {
 
           return Padding(
             padding: EdgeInsetsDirectional.symmetric(
-              horizontal: 24.w,
               vertical: 16.h,
             ),
             child: Column(
@@ -82,52 +81,61 @@ class BookSessionScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        DoctorCard(
-                          doctor: doctor,
-                          borderColor: context.colors.primaryCTAColor,
-                          showBackground: true,
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                          child: DoctorCard(
+                            doctor: doctor,
+                            borderColor: context.colors.primaryCTAColor,
+                            showBackground: true,
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.only(
                             top: 24.h,
                             bottom: 8.h,
+                            start: 24.w,
+                            end: 24.w,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                context.tr(LocaleKeys.choose_an_appointment),
-                                style: TextStyles.size14Weight500.copyWith(
-                                  color: context.colors.subTitleGray,
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            context.tr(LocaleKeys.choose_an_appointment),
+                            style: TextStyles.size14Weight500.copyWith(
+                              color: context.colors.subTitleGray,
+                            ),
                           ),
                         ),
                         if (state.availableDaysStatus ==
                             AvailableDaysStatues.loading) ...[
-                          Row(
-                            spacing: 16.w,
-                            children: [
-                              ...List.generate(
-                                5,
-                                (index) => BoxShimmer(
-                                  width: 54.w,
-                                  height: 68.h,
-                                  borderRadius: 12.r,
+                          Padding(
+                            padding: EdgeInsetsDirectional.symmetric(
+                                horizontal: 24.w),
+                            child: Row(
+                              spacing: 16.w,
+                              children: [
+                                ...List.generate(
+                                  5,
+                                  (index) => BoxShimmer(
+                                    width: 54.w,
+                                    height: 68.h,
+                                    borderRadius: 12.r,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                         if (state.availableDaysStatus ==
                             AvailableDaysStatues.success) ...[
                           if (availableDays.isEmpty) ...[
-                            CustomErrorWidget(
-                              width: double.infinity,
-                              height: 68.h,
-                              text: context
-                                  .tr(LocaleKeys.not_available_days_message),
+                            Padding(
+                              padding: EdgeInsetsDirectional.symmetric(
+                                  horizontal: 24.w),
+                              child: CustomErrorWidget(
+                                width: double.infinity,
+                                height: 68.h,
+                                text: context
+                                    .tr(LocaleKeys.not_available_days_message),
+                              ),
                             ),
                           ] else ...[
                             CustomCalender(
@@ -150,6 +158,8 @@ class BookSessionScreen extends StatelessWidget {
                           padding: EdgeInsetsDirectional.only(
                             top: 16.h,
                             bottom: 8.h,
+                            start: 24.w,
+                            end: 24.w,
                           ),
                           child: Text(
                             context.tr(LocaleKeys.session_duration),
@@ -158,102 +168,114 @@ class BookSessionScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        CustomDropdownButton(
-                          dropdownValue: dropdownValue,
-                          itemsList: sessionDurationList,
-                          onChange: (String? value) {
-                            if (value != null) {
-                              context
-                                  .read<BookSessionCubit>()
-                                  .onSelectDuration(value);
-                              if (state.selectedDate != null) {
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                          child: CustomDropdownButton(
+                            dropdownValue: dropdownValue,
+                            itemsList: sessionDurationList,
+                            onChange: (String? value) {
+                              if (value != null) {
                                 context
                                     .read<BookSessionCubit>()
-                                    .getDoctorAvailableSlots();
+                                    .onSelectDuration(value);
+                                if (state.selectedDate != null) {
+                                  context
+                                      .read<BookSessionCubit>()
+                                      .getDoctorAvailableSlots();
+                                }
                               }
-                            }
-                          },
+                            },
+                          ),
                         ),
-                        AnimatedSwitcher(
-                          duration: const Duration(seconds: 1),
-                          transitionBuilder:
-                              (Widget child, Animation<double> animation) {
-                            return SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, -0.1),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: animation,
-                                  curve: Curves.easeOut,
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                          child: AnimatedSwitcher(
+                            duration: const Duration(seconds: 1),
+                            transitionBuilder:
+                                (Widget child, Animation<double> animation) {
+                              return SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(0, -0.1),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeOut,
+                                  ),
                                 ),
-                              ),
-                              child: child,
-                            );
-                          },
-                          child: showAvailableSlots
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                        top: 24.h,
-                                        bottom: 8.h,
-                                      ),
-                                      child: Text(
-                                        context.tr(LocaleKeys.available_slots),
-                                        style:
-                                            TextStyles.size14Weight500.copyWith(
-                                          color: context.colors.subTitleGray,
+                                child: child,
+                              );
+                            },
+                            child: showAvailableSlots
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                          top: 24.h,
+                                          bottom: 8.h,
+                                        ),
+                                        child: Text(
+                                          context
+                                              .tr(LocaleKeys.available_slots),
+                                          style: TextStyles.size14Weight500
+                                              .copyWith(
+                                            color: context.colors.subTitleGray,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    if (state.availableSlotsStatus ==
-                                        AvailableSlotsStatues.loading) ...[
-                                      const LoadingAvailableSlots(),
-                                    ],
-                                    if (state.availableSlotsStatus ==
-                                        AvailableSlotsStatues.success) ...[
-                                      if (state.availableSlots!.isEmpty) ...[
-                                        CustomErrorWidget(
-                                          width: double.infinity,
-                                          height: 100.h,
-                                          text: context.tr(
-                                            LocaleKeys
-                                                .not_available_slots_message,
-                                          ),
-                                        )
-                                      ] else ...[
-                                        CustomAvailableSlots(
-                                          availableSlots: List.generate(
-                                            state.availableSlots!.length,
-                                            (index) {
-                                              return state
-                                                  .availableSlots![index]
-                                                  .convertStartTo12Hour();
+                                      if (state.availableSlotsStatus ==
+                                          AvailableSlotsStatues.loading) ...[
+                                        const LoadingAvailableSlots(),
+                                      ],
+                                      if (state.availableSlotsStatus ==
+                                          AvailableSlotsStatues.success) ...[
+                                        if (state.availableSlots!.isEmpty) ...[
+                                          CustomErrorWidget(
+                                            width: double.infinity,
+                                            height: 100.h,
+                                            text: context.tr(
+                                              LocaleKeys
+                                                  .not_available_slots_message,
+                                            ),
+                                          )
+                                        ] else ...[
+                                          CustomAvailableSlots(
+                                            availableSlots: List.generate(
+                                              state.availableSlots!.length,
+                                              (index) {
+                                                return state
+                                                    .availableSlots![index]
+                                                    .convertStartTo12Hour();
+                                              },
+                                            ),
+                                            selectedSlot: state.selectedSlot,
+                                            onSlotSelected: (String? slot) {
+                                              if (slot != null) {
+                                                context
+                                                    .read<BookSessionCubit>()
+                                                    .onSelectSlot(slot);
+                                              }
                                             },
                                           ),
-                                          selectedSlot: state.selectedSlot,
-                                          onSlotSelected: (String? slot) {
-                                            if (slot != null) {
-                                              context
-                                                  .read<BookSessionCubit>()
-                                                  .onSelectSlot(slot);
-                                            }
-                                          },
-                                        ),
+                                        ]
                                       ]
-                                    ]
-                                  ],
-                                )
-                              : SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                ),
+                                    ],
+                                  )
+                                : SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                  ),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.only(
                             top: 20.h,
                             bottom: 8.h,
+                            start: 24.w,
+                            end: 24.w,
                           ),
                           child: Text(
                             context.tr(LocaleKeys.complaint),
@@ -262,18 +284,23 @@ class BookSessionScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        MultilineTextField(
-                          height: 120.h,
-                          controller: context
-                              .read<BookSessionCubit>()
-                              .complainController,
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                          child: MultilineTextField(
+                            height: 120.h,
+                            controller: context
+                                .read<BookSessionCubit>()
+                                .complainController,
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.only(top: 16.h),
+                  padding: EdgeInsetsDirectional.only(
+                      top: 16.h, start: 24.w, end: 24.w),
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
@@ -285,11 +312,14 @@ class BookSessionScreen extends StatelessWidget {
                   ),
                 ),
                 VerticalSpacer(8.h),
-                PrimaryFilledButton(
-                  text: context.tr(LocaleKeys.book_an_appointment),
-                  //TODO: on button clicked
-                  onClick: () {},
-                  borderRadius: 16.r,
+                Padding(
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                  child: PrimaryFilledButton(
+                    text: context.tr(LocaleKeys.book_an_appointment),
+                    //TODO: on button clicked
+                    onClick: () {},
+                    borderRadius: 16.r,
+                  ),
                 )
               ],
             ),

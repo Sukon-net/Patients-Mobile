@@ -71,4 +71,5 @@ class Assets {
       "assets/images/doc_card_background_bottom.svg";
   static const String assetsBottomArrowIcon =
       "assets/icons/bottom_arrow_icon.svg";
+  static const String assetsFilterIcon = "assets/icons/filter_icon.svg";
 }
