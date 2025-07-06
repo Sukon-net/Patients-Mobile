@@ -10,4 +10,6 @@ class Routes {
   static const String doctorInfo = '/doctorInfo';
   static const String specializationsFilter = '/specializationsFilter';
   static const String bookSession = '/bookSession';
+  static const String payment = '/payment';
+  static const String sessionBooked = '/sessionBooked';
 }

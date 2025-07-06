@@ -14,6 +14,13 @@ enum AvailableSlotsStatues {
   error,
 }
 
+enum BookSessionStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
 class BookSessionState extends Equatable {
   const BookSessionState({
     this.availableDaysStatus = AvailableDaysStatues.initial,
@@ -24,6 +31,7 @@ class BookSessionState extends Equatable {
     this.selectedDuration,
     this.availableSlots,
     this.selectedSlot,
+    this.status = BookSessionStatus.initial,
   });
 
   final AvailableDaysStatues availableDaysStatus;
@@ -34,7 +42,7 @@ class BookSessionState extends Equatable {
   final String? selectedDuration;
   final List<TimeRange>? availableSlots;
   final String? selectedSlot;
-
+  final BookSessionStatus status;
   @override
   List<Object?> get props => [
         availableSlotsStatus,
@@ -45,6 +53,7 @@ class BookSessionState extends Equatable {
         selectedDuration,
         availableSlots,
         selectedSlot,
+        status,
       ];
 
   BookSessionState copyWith(
@@ -55,7 +64,8 @@ class BookSessionState extends Equatable {
       DateTime? selectedDate,
       String? selectedDuration,
       List<TimeRange>? availableSlots,
-      String? selectedSlot}) {
+      String? selectedSlot,
+      BookSessionStatus? status}) {
     return BookSessionState(
       availableDaysStatus: availableDaysStatus ?? this.availableDaysStatus,
       availableSlotsStatus: availableSlotsStatus ?? this.availableSlotsStatus,
@@ -65,6 +75,7 @@ class BookSessionState extends Equatable {
       selectedDuration: selectedDuration ?? this.selectedDuration,
       availableSlots: availableSlots ?? this.availableSlots,
       selectedSlot: selectedSlot ?? this.selectedSlot,
+      status: status ?? this.status,
     );
   }
 }

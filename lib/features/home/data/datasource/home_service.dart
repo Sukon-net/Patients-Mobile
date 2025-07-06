@@ -41,7 +41,7 @@ class HomeService {
     return tryApiRequest(() async {
       final response = await _dio.get(
         ApiConstants.getAppointments,
-        queryParameters: {"type": "upcoming,ongoing"},
+        queryParameters: {"type": "confirmed"},
       );
       final dataList = response.data['data']['data'] as List;
       final appointmentsList = dataList

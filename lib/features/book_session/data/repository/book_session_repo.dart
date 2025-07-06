@@ -9,6 +9,9 @@ abstract class BookSessionRepo {
 
   Future<Either<BackendFailure, List<TimeRange>>> getDoctorAvailableSlots(
       int doctorId, String date, String duration);
+
+  Future<Either<BackendFailure, void>> bookSession(
+      int doctorId, String date, String slot, String duration, String complain);
 }
 
 class BookSessionRepoImpl extends BookSessionRepo {
@@ -27,5 +30,11 @@ class BookSessionRepoImpl extends BookSessionRepo {
   Future<Either<BackendFailure, List<String>>> getDoctorsAvailableDays(
       int doctorId) {
     return _service.getDoctorsAvailableDays(doctorId);
+  }
+
+  @override
+  Future<Either<BackendFailure, void>> bookSession(int doctorId, String date,
+      String slot, String duration, String complain) {
+    return _service.bookSession(doctorId, date, slot, duration, complain);
   }
 }

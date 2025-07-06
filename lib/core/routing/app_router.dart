@@ -10,14 +10,13 @@ import 'package:clients/features/auth/login/logic/login_cubit.dart';
 import 'package:clients/features/auth/login/presentation/login_screen.dart';
 import 'package:clients/features/book_session/logic/book_session_cubit.dart';
 import 'package:clients/features/book_session/presentation/book_session_screen.dart';
+import 'package:clients/features/book_session/presentation/session_booked_screen.dart';
 import 'package:clients/features/doctor_info/logic/doctor_info_cubit.dart';
 import 'package:clients/features/doctor_info/presentation/doctor_info_screen.dart';
-import 'package:clients/features/home/logic/home_cubit.dart';
-import 'package:clients/features/home/presentation/home_screen.dart';
 import 'package:clients/features/main_layout.dart';
-import 'package:clients/features/my_appointments/logic/my_appointments_cubit.dart';
-import 'package:clients/features/my_appointments/presentation/my_appointments_screen.dart';
 import 'package:clients/features/onboarding/onboarding_screen.dart';
+import 'package:clients/features/payment/logic/payment_cubit.dart';
+import 'package:clients/features/payment/presentation/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -120,6 +119,22 @@ class AppRouter {
       case Routes.loading:
         return MaterialPageRoute(
           builder: (_) => const LoadingScreen(),
+          settings: settings,
+        );
+
+      case Routes.payment:
+        final paymentArguments = arguments as PaymentScreenArguments;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => PaymentCubit(sl()),
+            child: PaymentScreen(arguments: paymentArguments),
+          ),
+          settings: settings,
+        );
+
+      case Routes.sessionBooked:
+        return MaterialPageRoute(
+          builder: (_) => const SessionBookedScreen(),
           settings: settings,
         );
 

@@ -3,16 +3,17 @@ import 'package:clients/features/auth/OTP/data/datasource/otp_service.dart';
 import 'package:clients/features/auth/OTP/data/repository/otp_repository.dart';
 import 'package:clients/features/auth/complete%20profile/data/repository/complete_profile_repository.dart';
 import 'package:clients/features/auth/complete%20profile/data/service/complete_profile_service.dart';
-import 'package:clients/features/auth/login/data/datasource/login_service.dart';
-import 'package:clients/features/auth/login/data/repository/login_repository.dart';
 import 'package:clients/features/auth/data/datasource/auth_service.dart';
 import 'package:clients/features/auth/data/repository/auth_repository.dart';
+import 'package:clients/features/auth/login/data/datasource/login_service.dart';
+import 'package:clients/features/auth/login/data/repository/login_repository.dart';
 import 'package:clients/features/book_session/data/datasource/book_session_service.dart';
 import 'package:clients/features/book_session/data/repository/book_session_repo.dart';
 import 'package:clients/features/home/data/datasource/home_service.dart';
 import 'package:clients/features/home/data/repository/home_repository.dart';
 import 'package:clients/features/my_appointments/data/datasource/my_appointments_service.dart';
 import 'package:clients/features/my_appointments/data/repository/my_appointments_repo.dart';
+import 'package:clients/features/payment/data/repo/payment_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -79,4 +80,7 @@ Future<void> initDI() async {
   sl.registerLazySingleton(() => MyAppointmentsService(dio: sl()));
   sl.registerLazySingleton<MyAppointmentsRepo>(
       () => MyAppointmentsRepoImpl(service: sl()));
+
+  //Payment
+  sl.registerLazySingleton<PaymentRepo>(() => PaymentRepoImpl(sl()));
 }

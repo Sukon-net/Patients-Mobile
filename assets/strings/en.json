@@ -126,5 +126,13 @@
   "online": "Online",
   "join_now": "Join now",
   "cancel": "Cancel",
-  "comment": "Write a comment"
+  "comment": "Write a comment",
+  "please_choose_date_and_duration": "Please choose date and duration",
+  "payment": "Payment",
+  "credit_card": "Credit Card",
+  "sukon_wallet": "Sukon Wallet",
+  "add_new_card": "Add new card",
+  "pay": "Proceed to pay",
+  "pay_now": "Pay now",
+  "insufficient_balance": "Insufficient balance"
 }

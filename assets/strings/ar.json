@@ -126,5 +126,13 @@
   "online": "اونلاين",
   "join_now": "انضم الان",
   "cancel": "إلغاء",
-  "comment": "كتابة تعليق"
+  "comment": "كتابة تعليق",
+  "please_choose_date_and_duration": "يرجى اختيار التاريخ والمدة المناسبة",
+  "payment": "الدفع",
+  "credit_card": "البطاقة البنكية",
+  "sukon_wallet": "محفظة سكون",
+  "add_new_card": "إضافة بطاقة جديدة",
+  "pay": "متابعة الدفع",
+  "pay_now": "دفع الآن",
+  "insufficient_balance": "الرصيد غير كافي"
 }

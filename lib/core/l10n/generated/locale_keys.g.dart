@@ -116,4 +116,13 @@ abstract class LocaleKeys {
   static const join_now = "join_now";
   static const cancel = "cancel";
   static const comment = "comment";
+  static const please_choose_date_and_duration =
+      "please_choose_date_and_duration";
+  static const payment = "payment";
+  static const credit_card = "credit_card";
+  static const sukon_wallet = "sukon_wallet";
+  static const add_new_card = "add_new_card";
+  static const pay = "pay";
+  static const pay_now = "pay_now";
+  static const insufficient_balance = "insufficient_balance";
 }

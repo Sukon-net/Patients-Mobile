@@ -36,8 +36,10 @@ abstract class AppColors {
   abstract final Color subTitleGray;
   abstract final Color inactiveCalenderCard;
   abstract final Color appCardBackground;
-  final Color appCardBorder = Color(0x26979798);
+  Color appCardBorder = const Color(0x26979798);
   abstract final List<Color> adGradientColors;
+  abstract final Color paymentMethodBorderColor;
+  abstract final Color paymentMethodBackgroundColor;
 }
 
 class LightAppColors extends AppColors {
@@ -151,6 +153,12 @@ class LightAppColors extends AppColors {
 
   @override
   final Color inactiveCalenderCard = const Color(0xFFF9F9F9);
+
+  @override
+  final Color paymentMethodBorderColor = const Color(0x1A868686);
+
+  @override
+  final Color paymentMethodBackgroundColor = const Color(0xFFFBFBFB);
 }
 
 class DarkAppColors extends AppColors {
@@ -264,4 +272,10 @@ class DarkAppColors extends AppColors {
 
   @override
   final Color inactiveCalenderCard = const Color(0xFFF9F9F9);
+
+  @override
+  final Color paymentMethodBorderColor = const Color(0x1A868686);
+
+  @override
+  final Color paymentMethodBackgroundColor = const Color(0xFFFBFBFB);
 }

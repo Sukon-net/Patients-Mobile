@@ -72,4 +72,6 @@ class Assets {
   static const String assetsBottomArrowIcon =
       "assets/icons/bottom_arrow_icon.svg";
   static const String assetsFilterIcon = "assets/icons/filter_icon.svg";
+  static const String assetsIconsCard = "assets/icons/card.svg";
+  static const String assetsIconsWallet = "assets/icons/wallet.svg";
 }

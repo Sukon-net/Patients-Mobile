@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:clients/core/l10n/generated/locale_keys.g.dart';
 import 'package:clients/core/routing/navigator_service.dart';
+import 'package:clients/core/routing/routes.dart';
 import 'package:clients/core/theme/text_styles.dart';
 import 'package:clients/core/utils/extensions/context_theme_extensions.dart';
 import 'package:clients/core/widgets/custom_error_widget.dart';
@@ -15,6 +16,7 @@ import 'package:clients/features/book_session/presentation/widgets/custom_calend
 import 'package:clients/features/book_session/presentation/widgets/custom_dropdown_button.dart';
 import 'package:clients/features/book_session/presentation/widgets/loading_available_slots.dart';
 import 'package:clients/features/home/widgets/appointment_card.dart';
+import 'package:clients/features/payment/presentation/payment_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,12 +65,21 @@ class BookSessionScreen extends StatelessWidget {
               backgroundColor: backgroundColor,
             );
           }
+          if (state.status == BookSessionStatus.success) {
+            NavigatorService.pushReplacementNamed(Routes.sessionBooked);
+          }
         },
         builder: (context, state) {
           final availableDays = state.availableDays ?? [];
           String? dropdownValue = state.selectedDuration;
           final bool showAvailableSlots =
               state.selectedDate != null && state.selectedDuration != null;
+
+          if (state.status == BookSessionStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
 
           return Padding(
             padding: EdgeInsetsDirectional.symmetric(
@@ -316,8 +327,34 @@ class BookSessionScreen extends StatelessWidget {
                   padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
                   child: PrimaryFilledButton(
                     text: context.tr(LocaleKeys.book_an_appointment),
-                    //TODO: on button clicked
-                    onClick: () {},
+                    onClick: () async {
+                      if (state.selectedDate == null ||
+                          state.selectedDuration == null ||
+                          state.selectedSlot == null) {
+                        Toastifications.show(
+                          context: context,
+                          message: context
+                              .tr(LocaleKeys.please_choose_date_and_duration),
+                          textColor: textColor,
+                          borderColor: borderColor,
+                          backgroundColor: backgroundColor,
+                        );
+                      } else {
+                        final paymentResult = await NavigatorService.pushNamed(
+                          Routes.payment,
+                          arguments: PaymentScreenArguments(
+                            amount: state.selectedDuration ==
+                                    sessionDurationList.first
+                                ? doctor.sessionEGPPrice!
+                                : doctor.sessionEGPPrice! * 2,
+                            shouldShowSukonWallet: true,
+                          ),
+                        );
+                        if (paymentResult == true) {
+                          context.read<BookSessionCubit>().bookSession();
+                        }
+                      }
+                    },
                     borderRadius: 16.r,
                   ),
                 )

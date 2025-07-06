@@ -39,4 +39,18 @@ class BookSessionService {
       return availableSlotsList;
     });
   }
+
+  Future<Either<BackendFailure, void>> bookSession(int doctorId, String date,
+      String slot, String duration, String complain) {
+    return tryApiRequest(() async {
+      final response = await _dio.post(ApiConstants.bookSession, data: {
+        'doctor_id': doctorId,
+        'date': date,
+        'start_time': slot,
+        'duration': duration,
+        'complaint': complain.isEmpty ? "Empty" : complain,
+      });
+      return response.data['data'];
+    });
+  }
 }

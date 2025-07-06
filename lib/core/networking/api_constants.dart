@@ -16,6 +16,11 @@ class ApiConstants {
   static const String getSpecializations = "specializations/index";
   static const String getAppointments = "patient-dashboard/appointments/index";
 
+  static const String getBalance = "me/balance";
+  static const String rechargeWallet = "wallet/recharge";
+
+  static const String bookSession = "patient-dashboard/appointments/book";
+
   /// Filtered Doctors according to: "Specializations" by passing 'specialization' name as query parameter, "Top Rates" by passing 'sort_by_rating' as query parameter
   static const String getAllDoctors = "patient-dashboard/doctors/index";
 

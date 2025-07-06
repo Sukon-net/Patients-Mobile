@@ -88,6 +88,32 @@ class BookSessionCubit extends Cubit<BookSessionState> {
     emit(state.copyWith(selectedSlot: slot));
   }
 
+  Future<void> bookSession() async {
+    emit(state.copyWith(status: BookSessionStatus.loading));
+    final isPM = state.selectedSlot!.split(" ").last == "PM";
+    final convertedTimeSlot =
+        int.parse(state.selectedSlot!.split(" ").first.split(":")[0]) +
+            (isPM ? 12 : 0);
+    final convertedTimeSlotString =
+        "$convertedTimeSlot:${state.selectedSlot!.split(" ").first.split(":")[1]}";
+    final result = await _repo.bookSession(
+      doctorId,
+      DateFormat('yyyy-M-d', 'en').format(state.selectedDate!),
+      convertedTimeSlotString,
+      state.selectedDuration!.split(" ").first,
+      complainController.text,
+    );
+    result.fold(
+      (error) {
+        emit(state.copyWith(
+            status: BookSessionStatus.error, errorMessage: error.message));
+      },
+      (success) {
+        emit(state.copyWith(status: BookSessionStatus.success));
+      },
+    );
+  }
+
   @override
   Future<void> close() {
     complainController.dispose();
