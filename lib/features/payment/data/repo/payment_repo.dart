@@ -32,7 +32,7 @@ class PaymentRepoImpl implements PaymentRepo {
   Future<Either<BackendFailure, double>> getWalletBalance() async {
     return tryApiRequest(() async {
       final response = await _dio.get(ApiConstants.getBalance);
-      return double.parse(response.data['data']['balance']);
+      return double.parse(response.data['data']['balance'] ?? '0');
     });
   }
 }

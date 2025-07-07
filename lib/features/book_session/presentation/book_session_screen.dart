@@ -56,7 +56,8 @@ class BookSessionScreen extends StatelessWidget {
       body: BlocConsumer<BookSessionCubit, BookSessionState>(
         listener: (context, state) {
           if (state.availableDaysStatus == AvailableDaysStatues.error ||
-              state.availableSlotsStatus == AvailableSlotsStatues.error) {
+              state.availableSlotsStatus == AvailableSlotsStatues.error ||
+              state.status == BookSessionStatus.error) {
             Toastifications.show(
               context: context,
               message: state.errorMessage,
@@ -340,6 +341,11 @@ class BookSessionScreen extends StatelessWidget {
                           backgroundColor: backgroundColor,
                         );
                       } else {
+                        if (!context
+                            .read<BookSessionCubit>()
+                            .validateComplain()) {
+                          return;
+                        }
                         final paymentResult = await NavigatorService.pushNamed(
                           Routes.payment,
                           arguments: PaymentScreenArguments(

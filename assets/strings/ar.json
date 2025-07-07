@@ -134,5 +134,6 @@
   "add_new_card": "إضافة بطاقة جديدة",
   "pay": "متابعة الدفع",
   "pay_now": "دفع الآن",
-  "insufficient_balance": "الرصيد غير كافي"
+  "insufficient_balance": "الرصيد غير كافي",
+  "complain_must_be_at_least_5_characters": "يجب أن تكون الشكوى على الأقل 5 أحرف"
 }

@@ -134,5 +134,6 @@
   "add_new_card": "Add new card",
   "pay": "Proceed to pay",
   "pay_now": "Pay now",
-  "insufficient_balance": "Insufficient balance"
+  "insufficient_balance": "Insufficient balance",
+  "complain_must_be_at_least_5_characters": "Complaint must be at least 5 characters"
 }

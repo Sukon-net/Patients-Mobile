@@ -7,4 +7,6 @@ class Validators {
   }
 
   static bool isValidName(String name) => name.length >= 3;
+
+  static bool isValidComplain(String complain) => complain.length >= 5;
 }

@@ -103,6 +103,7 @@ abstract class LocaleKeys {
   static const egp = 'egp';
   static const not_available_days_message = "not_available_days_message";
   static const not_available_slots_message = "not_available_slots_message";
+  static const no_available_slots_message = "no_available_slots_message";
   static const choose = "choose";
   static const error_when_load_appointments = "error_when_load_appointments";
   static const no_appointments_found = "no_appointments_found";
@@ -125,4 +126,8 @@ abstract class LocaleKeys {
   static const pay = "pay";
   static const pay_now = "pay_now";
   static const insufficient_balance = "insufficient_balance";
+  static const book_now = "book_now";
+  static const complaint_min_length_error = "complaint_min_length_error";
+  static const complain_must_be_at_least_5_characters =
+      "complain_must_be_at_least_5_characters";
 }

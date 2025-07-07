@@ -1,6 +1,9 @@
+import 'package:clients/core/l10n/generated/locale_keys.g.dart';
+import 'package:clients/core/utils/validators.dart';
 import 'package:clients/features/book_session/data/repository/book_session_repo.dart';
 import 'package:clients/features/book_session/model/time_range.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as context;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -112,6 +115,17 @@ class BookSessionCubit extends Cubit<BookSessionState> {
         emit(state.copyWith(status: BookSessionStatus.success));
       },
     );
+  }
+
+  bool validateComplain() {
+    if (!Validators.isValidComplain(complainController.text)) {
+      emit(state.copyWith(
+        status: BookSessionStatus.error,
+        errorMessage: context.tr(LocaleKeys.complain_must_be_at_least_5_characters),
+      ));
+      return false;
+    }
+    return true;
   }
 
   @override
