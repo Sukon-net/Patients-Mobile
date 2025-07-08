@@ -37,6 +37,7 @@ abstract class AppColors {
   abstract final Color inactiveCalenderCard;
   abstract final Color appCardBackground;
   Color appCardBorder = const Color(0x26979798);
+  Color textBackground = const Color(0x1218396B);
   abstract final List<Color> adGradientColors;
   abstract final Color paymentMethodBorderColor;
   abstract final Color paymentMethodBackgroundColor;

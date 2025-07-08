@@ -11,6 +11,7 @@ import 'package:clients/core/widgets/primary_filled_button.dart';
 import 'package:clients/core/widgets/shimmers/box_shimmer.dart';
 import 'package:clients/core/widgets/spacers.dart';
 import 'package:clients/core/widgets/top_app_bar.dart';
+import 'package:clients/features/book_session/presentation/session_booked_screen.dart';
 import 'package:clients/features/book_session/presentation/widgets/custom_available_slots.dart';
 import 'package:clients/features/book_session/presentation/widgets/custom_calender.dart';
 import 'package:clients/features/book_session/presentation/widgets/custom_dropdown_button.dart';
@@ -67,7 +68,17 @@ class BookSessionScreen extends StatelessWidget {
             );
           }
           if (state.status == BookSessionStatus.success) {
-            NavigatorService.pushReplacementNamed(Routes.sessionBooked);
+            NavigatorService.pushReplacementNamed(
+              Routes.sessionBooked,
+              arguments: SessionBookedScreenArguments(
+                doctor: doctor,
+                date: state.selectedDate,
+                time: state.selectedSlot,
+                price: state.selectedDuration == sessionDurationList.first
+                    ? doctor.sessionEGPPrice
+                    : doctor.sessionEGPPrice! * 2,
+              ),
+            );
           }
         },
         builder: (context, state) {

@@ -74,4 +74,8 @@ class Assets {
   static const String assetsFilterIcon = "assets/icons/filter_icon.svg";
   static const String assetsIconsCard = "assets/icons/card.svg";
   static const String assetsIconsWallet = "assets/icons/wallet.svg";
+  static const String assetsSuccessLottie = "assets/lotties/success.json";
+  static const String assetsBlueTimeIcon = "assets/icons/blue_time_icon.svg";
+  static const String assetsBlueDateIcon = "assets/icons/blue_date_icon.svg";
+  static const String assetsPriceIcon = "assets/icons/price_icon.svg";
 }

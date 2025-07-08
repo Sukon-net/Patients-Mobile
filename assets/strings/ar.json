@@ -71,7 +71,7 @@
   "home": "الرئيسية",
   "your_tasks": "مهامك",
   "calendar": "مواعيدك",
-  "messages": "الرسائل",
+  "notes": "الملاحظات",
   "more": "المزيد",
   "back_slash": "/",
   "appointment": {
@@ -135,5 +135,8 @@
   "pay": "متابعة الدفع",
   "pay_now": "دفع الآن",
   "insufficient_balance": "الرصيد غير كافي",
-  "complain_must_be_at_least_5_characters": "يجب أن تكون الشكوى على الأقل 5 أحرف"
+  "complain_must_be_at_least_5_characters": "يجب أن تكون الشكوى على الأقل 5 أحرف",
+  "payment_confirmed": "تم تأكيد الدفع",
+  "total_amount": "الإجمالي",
+  "view_my_appointments": "رؤية مواعيدي"
 }

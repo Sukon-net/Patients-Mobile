@@ -71,7 +71,7 @@
   "home": "Home",
   "your_tasks": "Tasks",
   "calendar": "Calendar",
-  "messages": "Messages",
+  "notes": "Notes",
   "more": "More",
   "back_slash": "\\",
   "appointment": {
@@ -135,5 +135,8 @@
   "pay": "Proceed to pay",
   "pay_now": "Pay now",
   "insufficient_balance": "Insufficient balance",
-  "complain_must_be_at_least_5_characters": "Complaint must be at least 5 characters"
+  "complain_must_be_at_least_5_characters": "Complaint must be at least 5 characters",
+  "payment_confirmed": "Payment confirmed",
+  "total_amount": "Total",
+  "view_my_appointments": "View my Appointments"
 }

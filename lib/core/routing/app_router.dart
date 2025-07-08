@@ -71,7 +71,7 @@ class AppRouter {
 
       case Routes.mainLayout:
         return MaterialPageRoute(
-          builder: (_) => const MainLayout(),
+          builder: (_) => MainLayout(pageIndex: arguments as int),
           settings: settings,
         );
 
@@ -133,8 +133,12 @@ class AppRouter {
         );
 
       case Routes.sessionBooked:
+        final sessionBookedArguments =
+            arguments as SessionBookedScreenArguments;
         return MaterialPageRoute(
-          builder: (_) => const SessionBookedScreen(),
+          builder: (_) => SessionBookedScreen(
+            arguments: sessionBookedArguments,
+          ),
           settings: settings,
         );
 

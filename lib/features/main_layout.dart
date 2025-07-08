@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainLayout extends StatefulWidget {
-  const MainLayout({super.key});
+  const MainLayout({super.key, this.pageIndex});
+
+  final int? pageIndex;
 
   @override
   State<MainLayout> createState() => _MainLayoutState();
@@ -28,6 +30,14 @@ class _MainLayoutState extends State<MainLayout> {
     const MoreScreen(),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.pageIndex != null) {
+      _selectedIndex = widget.pageIndex!;
+    }
+  }
+
   void _onTab(int index) {
     setState(() {
       _selectedIndex = index;
@@ -37,7 +47,19 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: WillPopScope(
+        onWillPop: () async {
+          if (_selectedIndex == 0) {
+            return true; // Allow back navigation if on the first tab
+          } else {
+            setState(() {
+              _selectedIndex = 0; // Reset to the first tab
+            });
+            return false; // Prevent back navigation
+          }
+        },
+        child: _pages[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -57,7 +79,7 @@ class _MainLayoutState extends State<MainLayout> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.assetsMessagesIcon),
-            label: LocaleKeys.messages.tr(),
+            label: LocaleKeys.notes.tr(),
             activeIcon: SvgPicture.asset(Assets.assetsMessagesActiveIcon),
           ),
           BottomNavigationBarItem(

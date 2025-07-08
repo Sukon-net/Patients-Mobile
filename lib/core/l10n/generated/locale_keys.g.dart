@@ -71,7 +71,7 @@ abstract class LocaleKeys {
   static const home = 'home';
   static const your_tasks = 'your_tasks';
   static const calendar = 'calendar';
-  static const messages = 'messages';
+  static const notes = 'notes';
   static const more = 'more';
   static const back_slash = 'back_slash';
   static const appointment = 'appointment';
@@ -130,4 +130,7 @@ abstract class LocaleKeys {
   static const complaint_min_length_error = "complaint_min_length_error";
   static const complain_must_be_at_least_5_characters =
       "complain_must_be_at_least_5_characters";
+  static const payment_confirmed = "payment_confirmed";
+  static const total_amount = "total_amount";
+  static const view_my_appointments = "view_my_appointments";
 }

@@ -13,9 +13,10 @@ extension ContextRoutingExtensions on BuildContext {
   }
 
   Future<dynamic> pushNamedAndRemoveUntil(String routeName,
-      {Object? arguments, required RoutePredicate predicate}) {
-    return NavigatorService.navigatorKey.currentState!
-        .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
+      {Object? arguments, RoutePredicate? predicate}) {
+    return NavigatorService.navigatorKey.currentState!.pushNamedAndRemoveUntil(
+        routeName, predicate ?? (_) => false,
+        arguments: arguments);
   }
 
   void pop({dynamic returnValue}) =>
