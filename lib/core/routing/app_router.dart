@@ -71,7 +71,7 @@ class AppRouter {
 
       case Routes.mainLayout:
         return MaterialPageRoute(
-          builder: (_) => MainLayout(pageIndex: arguments as int),
+          builder: (_) => MainLayout(pageIndex: arguments as int?),
           settings: settings,
         );
 
